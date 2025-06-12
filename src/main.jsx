@@ -5,7 +5,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./app/store.js";
 import { PersistGate } from "redux-persist/integration/react";
-import "./i18n"
+import "./i81n.js"
 
 import axios from 'axios';
 
