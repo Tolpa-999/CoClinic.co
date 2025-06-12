@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+    
+body{
+    background-color: rgb(243, 243, 243);
+}   
+
+
+
+.arabic-font {
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+}
+
+.english-font {
+  font-family: 'Abel', sans-serif;
+  font-size: 16px;
+}
