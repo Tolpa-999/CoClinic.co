@@ -14,7 +14,6 @@ import {
 import { AuthUrls } from "../utils/serverURL";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from './LanguageSwitcher';
-import i18next from "i18next";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -67,9 +66,9 @@ const Header = () => {
   return (
     <>
       <header className="bg-white shadow-sm">
-        <div className="relative">
+        <div className="relative ">
           {/* Language Switcher (Desktop) */}
-          <div className="hidden lg:block absolute top-2 right-4 z-10">
+          <div className={`hidden lg:block absolute top-2  ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
             <LanguageSwitcher />
           </div>
           <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-3">

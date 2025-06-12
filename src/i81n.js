@@ -923,14 +923,12 @@ const resources = {
 
 const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
 
-document.documentElement.dir = savedLanguage === 'ar' ? 'rtl' : 'ltr'
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
     lng: savedLanguage,
-    dir: savedLanguage === 'ar' ? 'rtl' : 'ltr',
     fallbackLng: 'en', // fallback language in case translation is missing
     interpolation: {
       escapeValue: false, // React already does escaping
