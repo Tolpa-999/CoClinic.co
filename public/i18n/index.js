@@ -12,10 +12,10 @@ i18n
     supportedLngs: ['en', 'ar'],
     interpolation: { escapeValue: false },
     react: {
-      useSuspense: false // ✅ THIS LINE IS IMPORTANT
+      useSuspense: false,
     },
     backend: {
-      loadPath: 'src/i18n/locales/{{lng}}/translation.json',
+      loadPath: '/locales/{{lng}}/translation.json', // Updated path
     },
     detection: {
       order: ['localStorage', 'navigator'],
