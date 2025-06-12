@@ -12,7 +12,7 @@ i18n
     supportedLngs: ['en', 'ar'],
     interpolation: { escapeValue: false },
     react: {
-      useSuspense: true // ✅ THIS LINE IS IMPORTANT
+      useSuspense: false // ✅ THIS LINE IS IMPORTANT
     },
     backend: {
       loadPath: 'src/i18n/locales/{{lng}}/translation.json',
