@@ -13,6 +13,7 @@ const LanguageSwitcher = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
+    localStorage.setItem("lang", lng)
     document.documentElement.lang = lng;
   };
 

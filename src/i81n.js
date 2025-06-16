@@ -923,7 +923,7 @@ const resources = {
     }
 };
 
-const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
+const savedLanguage = localStorage.getItem('lang');
 
 
 i18n
