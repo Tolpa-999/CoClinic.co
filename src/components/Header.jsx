@@ -106,7 +106,7 @@ const Header = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Find doctors, services..."
+                  placeholder={t('header.find')}
                   className="w-72 pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 text-sm text-gray-600 placeholder-gray-400"
                 />
               </div>
@@ -181,21 +181,21 @@ const Header = () => {
             </div>
 
             {/* Search Bar (Mobile) - Show only on small screens */}
-            <div className="flex-1 p-2 lg:hidden">
+            <div className="flex-1 p-2 lg:hidden max-sm:hidden">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <FaSearch className="w-4 h-4 text-gray-400" />
                 </div>
                 <input
                   type="text"
-                  placeholder="Find doctors, services..."
+                  placeholder={t('header.find')}
                   className="min-w-0 w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 text-sm text-gray-600 placeholder-gray-400"
                 />
               </div>
             </div>
 
             {/* Mobile Sign-In/Profile */}
-            <div className="ml-4 lg:hidden">
+            <div className="ml-4 lg:hidden flex flex-row ">
               {currentUser ? (
                 <div className="relative">
                   <button
@@ -236,16 +236,16 @@ const Header = () => {
               ) : (
                 <>
                   <Link
-                    to="/signup"
-                    className="ml-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-200 text-sm font-medium shadow-sm"
-                  >
-                    {t('header.sign_up')}
-                  </Link>
-                  <Link
                     to="/signin"
-                    className="ml-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-200 text-sm font-medium shadow-sm"
+                    className="ml-2 px-2 py-2  text-black rounded-mdtransition-colors duration-200 text-sm font-bold underline"
                   >
                     {t('header.sign_in')}
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="ml-4 px-2 py-2 text-black rounded-md  transition-colors duration-200 text-sm font-bold underline "
+                  >
+                    {t('header.sign_up')}
                   </Link>
                 </>
               )}
@@ -259,7 +259,7 @@ const Header = () => {
         <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
           <div className="flex justify-between p-4">
             <LanguageSwitcher />
-            <button onClick={() => setIsMobileMenuOpen(false)}>
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <FaTimes className="w-6 h-6 text-gray-700" />
             </button>
           </div>

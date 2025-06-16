@@ -136,6 +136,7 @@ const resources = {
   },
 
   "header": {
+    "find": "Find doctors, services...",
     "home": "Home",
     "ai_chat": "AI Chat",
     "live_chat": "Live Chat",
@@ -598,6 +599,7 @@ const resources = {
   },
 
   "header": {
+    "find": "ابحث عن الأطباء والخدمات...",
     "home": "الرئيسية",
     "ai_chat": "مساعد الذكاء الاصطناعي",
     "live_chat": "الدردشة المباشرة",
