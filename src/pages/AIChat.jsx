@@ -1,183 +1,178 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import {AiCahtUrls} from '../utils/serverURL'
 
-const initialSuggestionPrompts = [
-  "Hi! I am feeling dizzy 😊",
-  "How can I stop smoking? 🚭",
-  "Tell me about the cons of smoking ⚠️",
-];
-
-const AIChat = () => {
-  const [messages, setMessages] = useState(() => {
-    const savedMessages = localStorage.getItem("aiChatMessages");
-    return savedMessages ? JSON.parse(savedMessages) : [];
-  });
-
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [suggestionPrompts, setSuggestionPrompts] = useState(
-    initialSuggestionPrompts
-  );
-
+const Chat = ({ userId }) => {
+  const { t } = useTranslation();
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatHistoryId, setChatHistoryId] = useState(null);
+  const [language, setLanguage] = useState('en'); // Default to English
   const messagesEndRef = useRef(null);
 
+
+  // Fetch chat history when chatHistoryId changes
   useEffect(() => {
-    localStorage.setItem("aiChatMessages", JSON.stringify(messages));
-    scrollToBottom();
+    if (chatHistoryId) {
+      fetchChatHistory(chatHistoryId);
+    }
+  }, [chatHistoryId]);
+
+  // Auto-scroll to the latest message
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSend = async (message) => {
-    if (!message.trim()) return;
+  const fetchChatHistory = async (id) => {
+    try {
+      const response = await axios.get(`${AiCahtUrls.getChats}${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      setMessages(response.data);
+    } catch (error) {
+      toast.error(t('Failed to fetch chat history'));
+      console.error('Error fetching chat history:', error);
+    }
+  };
 
-    const newMessage = {
-      role: "user",
-      content: message,
-      timestamp: new Date(),
-    };
-    setMessages([...messages, newMessage]);
-    setLoading(true);
-    setInput("");
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const userMessage = { role: 'user', content: input, language };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
 
     try {
-      // Fetch AI response from Gemini API
-      const aiResponse = await fetchGeminiResponse(message);
-
-      // Add the AI response to the chat messages
-      const newAiMessage = {
-        role: "assistant",
-        content: aiResponse,
-        timestamp: new Date(),
-      };
-      setMessages((prevMessages) => [...prevMessages, newAiMessage]);
-    } catch (error) {
-      console.log(error)
-      // console.error("Failed to fetch AI response:", error);
-    } finally {
-      setLoading(false);
-    }
-
-    // Clear suggestion prompts after sending a message
-    setSuggestionPrompts([]);
-  };
-
-  // Replace the fetchGeminiResponse function
-  const fetchGeminiResponse = async (message) => {
-    const response = await fetch("/api/v1/aichats/aichat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }), // Send message as payload
-    });
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to get response from backend: ${response.statusText}`
+      const response = await axios.post(
+        AiCahtUrls.create,
+        { message: input, language, chatHistoryId, userId },
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
+
+      // If new chat, set chatHistoryId from response
+      if (!chatHistoryId && response.data.chatHistoryId) {
+        setChatHistoryId(response.data.chatHistoryId);
+      }
+
+      const eventSource = new EventSource(response.data.url || `/api/chat/stream/${response.data.chatHistoryId}`);
+      let botMessage = { role: 'model', content: '', language };
+      setMessages((prev) => [...prev, botMessage]);
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        if (data.text) {
+          botMessage.content += data.text;
+          setMessages((prev) => [...prev.slice(0, -1), { ...botMessage }]);
+        } else if (data === '[DONE]') {
+          eventSource.close();
+          setIsLoading(false);
+        } else if (data.error) {
+          toast.error(t(data.error));
+          eventSource.close();
+          setIsLoading(false);
+        }
+      };
+
+      eventSource.onerror = () => {
+        eventSource.close();
+        setIsLoading(false);
+        toast.error(t('Streaming error occurred'));
+      };
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setIsLoading(false);
+      toast.error(t('Failed to send message'));
     }
-
-    const data = await response.json();
-    console.log("Backend Response:", data); // Log the backend response
-    return data.aiResponse; // Return the modified AI response from the backend
   };
 
-  const handleSuggestionClick = (prompt) => {
-    handleSend(prompt);
-  };
-
-  const formatTime = (timestamp) => {
-    const date = new Date(timestamp);
-    return `${date.getHours()}:${date.getMinutes()}`;
-  };
-
-  const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
     }
   };
 
   return (
-    <div className="flex justify-center bg-[#f0f7f4]">
-      {/* Chat Container */}
-      <div className="w-full max-w-6xl max-h-[70vh] bg-[#ffffff] flex flex-col">
-        {/* Header */}
-        <div className="bg-[#f0f7f4] py-4 px-6 flex justify-between items-center">
-          <h1 className="text-xl font-bold">AI CHAT</h1>
-        </div>
-
-        {/* Suggestion Prompts */}
-        {messages.length === 0 && (
-          <div className="flex flex-wrap gap-2 p-4 justify-center bg-[#f0f7f4]">
-            {suggestionPrompts.map((prompt, index) => (
-              <div
-                key={index}
-                className="cursor-pointer rounded-full bg-[#d7e9e3] hover:bg-[#b4d1c9] px-4 py-2 text-sm text-gray-800 shadow transition-transform transform hover:scale-105"
-                onClick={() => handleSuggestionClick(prompt)}
-              >
-                {prompt}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Messages (Scrollable Chat Section) */}
-        <div
-          className="flex-1 overflow-y-auto p-4 mb-4"
-          style={{ height: "400px" }}
+    <div className="flex flex-col h-screen max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-green-50 p-4 font-['Cairo',_'Abel']">
+      {/* Chat Header */}
+      <div className="text-center mb-4">
+        <h1 className="text-2xl font-semibold text-gray-800">
+          {t('Chat with a Caring Doctor')}
+        </h1>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="mt-2 p-1 rounded-md bg-white shadow-sm text-gray-700"
         >
-          {messages.map((message, index) => (
-            <div
+          <option value="en">{t('English')}</option>
+          <option value="ar">{t('Arabic')}</option>
+        </select>
+      </div>
+
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <AnimatePresence>
+          {messages.map((msg, index) => (
+            <motion.div
               key={index}
-              className={`flex mb-3 ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-xs p-3 rounded-lg shadow-md text-gray-800 text-sm ${
-                  message.role === "user" ? "bg-[#c2e0db]" : "bg-[#d9ece8]"
-                }`}
+                className={`max-w-xs p-3 rounded-lg shadow-sm ${
+                  msg.role === 'user'
+                    ? 'bg-blue-200 text-gray-800'
+                    : 'bg-green-100 text-gray-700'
+                } ${language === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                <div>{message.content}</div>
-                <div className="text-right text-xs mt-1 text-gray-500">
-                  {formatTime(message.timestamp)}
-                </div>
+                {msg.content}
               </div>
-            </div>
+            </motion.div>
           ))}
-          {loading && (
-            <div className="flex justify-start">
-              <p className="text-sm text-gray-500">AI is typing...</p>
-            </div>
-          )}
-          {/* Reference element to scroll into view when new messages are added */}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input Field */}
-        <div className="flex items-center p-3 ">
-          <input
-            type="text"
-            className="flex-1 p-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#a7c4bc] bg-white"
-            placeholder="Type your message..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            disabled={loading}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSend(input);
-              }
-            }}
-          />
-          <button
-            className="ml-2 text-white p-3 rounded-lg hover:bg-[#8cae9f] transition-colors disabled:bg-[#b4d1c9]"
-            onClick={() => handleSend(input)}
-            disabled={loading || input.trim() === ""}
+        </AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-start"
           >
-            Send
-          </button>
-        </div>
+            <div className="p-3 rounded-lg bg-green-100 text-gray-700">
+              <span className="animate-pulse">{t('Typing')}...</span>
+            </div>
+          </motion.div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Input Area */}
+      <div className="p-4 bg-white rounded-t-lg shadow-md">
+        <textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder={t('Type your message...')}
+          className="w-full p-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-300"
+          rows="2"
+          dir={language === 'ar' ? 'rtl' : 'ltr'}
+        />
+        <button
+          onClick={sendMessage}
+          disabled={isLoading}
+          className="mt-2 w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors disabled:bg-gray-400"
+        >
+          {t('Send')}
+        </button>
       </div>
     </div>
   );
 };
 
-export default AIChat;
+export default Chat;

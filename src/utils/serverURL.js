@@ -14,6 +14,9 @@ const baseAppointmentUrl = `${baseURL}/appointment`
 
 const baseUploadUrl = baseURL
 
+
+const baseAiChat = baseAdminUrl
+
 export const UploadUrls = {
     uploadFile: `${baseUploadUrl}/upload`
 }
@@ -59,9 +62,6 @@ export const CommentUrls = {
 export const AdminUrls = {
     promote_demote: `${baseAdminUrl}/promote_demote`,
 }
-
-
-
 export const AppointmentUrls = {
         checkout: `${baseAppointmentUrl}/checkout`, // New endpoint
     verifyPayment: `${baseAppointmentUrl}/verify-payment`,
@@ -71,4 +71,10 @@ export const AppointmentUrls = {
     doctors: `${baseAppointmentUrl}/doctors`,
     status: `${baseAppointmentUrl}/status`,
     delete: `${baseAppointmentUrl}/delete`,
+}
+
+
+export const AiCahtUrls = {
+    create: `${baseAiChat}/chatbot`,
+    getChats: `${baseAiChat}/chatbot`,
 }

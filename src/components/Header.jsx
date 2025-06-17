@@ -68,9 +68,6 @@ const Header = () => {
       <header className="bg-white shadow-sm">
         <div className="relative ">
           {/* Language Switcher (Desktop) */}
-          <div className={`hidden lg:block absolute top-2  ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
-            <LanguageSwitcher />
-          </div>
           <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-3">
             {/* Logo Section */}
             <div onClick={handleUnsetProfile} className="flex items-center space-x-8">
@@ -111,6 +108,10 @@ const Header = () => {
                 />
               </div>
             </div>
+
+            <div className={`hidden lg:block relative top-2  ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
+            <LanguageSwitcher />
+          </div>
 
             {/* Desktop Navigation and Profile */}
             <div className="hidden lg:flex items-center space-x-6">
@@ -179,6 +180,8 @@ const Header = () => {
                 </div>
               )}
             </div>
+
+            
 
             {/* Search Bar (Mobile) - Show only on small screens */}
             <div className="flex-1 p-2 lg:hidden max-sm:hidden">
