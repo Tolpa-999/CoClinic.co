@@ -27,7 +27,7 @@ export const UploadUrls = {
 export const AuthUrls = {
     signUp: `${baseAuthUrl}/signup`,
     verifyEmail: `${baseAuthUrl}/verify-email`,
-    signIn: `${baseAuthUrl}/signin`,
+    signIn: `${baseAuthUrl}/signin?lng=ar`,
     verifyEmail: `${baseAuthUrl}/verify`,
     forgetPass: `${baseAuthUrl}/send-reset-password-code`,
     resetPass: `${baseAuthUrl}/reset-password-verify`,
