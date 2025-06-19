@@ -29,7 +29,7 @@ const AppointmentList = ({ userType }) => {
 
   return (
     <div className="grid gap-6 min-lg:grid-cols-2">
-      {appointments.map((appointment) => (
+      {appointments?.map((appointment) => (
         <div
           key={appointment._id}
           className="group bg-white p-6 rounded-2xl hover:shadow-lg transition-shadow border-2 border-[#3d4756] relative"

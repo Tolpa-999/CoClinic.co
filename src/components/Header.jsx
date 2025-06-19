@@ -37,7 +37,11 @@ const Header = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const { data } = await axios.get(AuthUrls.signOut);
+      const { data } = await axios.get(AuthUrls.signOut,
+        {
+          withCredentials: true
+        }
+      );
       if (data.status !== "success") {
         dispatch(deleteUserFailure(data));
         return;

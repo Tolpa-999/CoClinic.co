@@ -1,5 +1,8 @@
 const baseURL = "https://co-clinic.vercel.app/api"
 
+// const baseURL = "https:localhost:3000/api"
+
+
 const baseAuthUrl = `${baseURL}/auth/users`
 
 const baseUserUrl = `${baseURL}/users`

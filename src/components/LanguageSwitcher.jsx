@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
     localStorage.setItem("lang", lng)
-    localStorage.setItem("i18next", lng)
+      document.cookie = `i18next=${lng}; path=/; max-age=31536000; SameSite=None; Secure`;
     document.documentElement.lang = lng;
   };
 
