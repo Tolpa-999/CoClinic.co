@@ -7,9 +7,6 @@ import { persistor, store } from "./app/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import "./i81n.js"
 
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
