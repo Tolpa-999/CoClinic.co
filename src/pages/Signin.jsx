@@ -46,9 +46,12 @@ const Signin = () => {
 
     dispatch(signInStart());
     try {
-      const response = await axios.post(AuthUrls.signIn, formData, {
-        withCredentials: true,
-      });
+      const response = await axios.post('https://co-clinic.vercel.app/api/auth/users/signin?lng=ar', {
+  email: "something@email.com",
+  password: "wrong"
+}, {
+  withCredentials: true
+});
 
       if (response.data.success === false) {
         toast.error(response.data.error || t('signin.login_failed'));
