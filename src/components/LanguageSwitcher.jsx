@@ -12,15 +12,19 @@ const LanguageSwitcher = () => {
   const { t } = useTranslation();
   const currentLanguage = i18n.language;
 
+  const dispatch = useDispatch();
+
   console.log(isOpen)
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
     
+    localStorage.setItem("lang", lng)
+
+
     dispatch(setLanguage(lng))
 
-    localStorage.setItem("lang", lng)
       document.cookie = `i18next=${lng}; path=/; max-age=31536000; SameSite=None; Secure`;
     document.documentElement.lang = lng;
   };
