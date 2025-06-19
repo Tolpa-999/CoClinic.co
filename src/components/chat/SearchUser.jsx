@@ -6,6 +6,12 @@ import UserSearchCard from './UserSearchCard';
 import axios from 'axios';
 import { IoClose } from "react-icons/io5";
 import {UserUrls} from '../../utils/serverURL'
+import axiosInstance from '../../utils/axiosInstance';
+
+/////// translate is required here
+
+
+
 
 const SearchUser = ({onClose}) => {
     const [searchUser,setSearchUser] = useState([])
@@ -18,7 +24,7 @@ const SearchUser = ({onClose}) => {
             const URL = UserUrls.searchOne
             try {
                 setLoading(true)
-                const response = await axios.post(URL,{
+                const response = await axiosInstance.post(URL,{
                     search : search
                 })
                 setLoading(false)

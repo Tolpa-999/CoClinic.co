@@ -6,7 +6,8 @@ import { logout, setOnlineUser, setSocketConnection, setUser }from '../../featur
 import Sidebar from './Sidebar'
 import io from 'socket.io-client'
 
-import {UserUrls} from '../../utils/serverURL'
+import {baseURL, UserUrls} from '../../utils/serverURL'
+import axiosInstance from '../../utils/axiosInstance'
 
 const HomeChat = () => {
   // const user = useSelector(state => state.chat)
@@ -14,13 +15,12 @@ const HomeChat = () => {
   const navigate = useNavigate()
   const location = useLocation()
   useEffect(()=>{
-    const fetchUserDetails = async()=>{
+    const fetchUserDetails = async()=>{ 
       try {
           const URL = UserUrls.getDetails
           // console.log(URL)
-          const response = await axios({
+          const response = await axiosInstance({
             url : URL,
-            withCredentials : true
           })
           // console.log("response,   hhfkjdfh",response)
           dispatch(setUser(response?.data?.data))
@@ -41,7 +41,7 @@ const HomeChat = () => {
 
   /***socket connection */
   useEffect(()=>{
-    const socketConnection = io('http://localhost:3000',{
+    const socketConnection = io(baseURL,{
       auth : {
         token : localStorage.getItem('token')
       },

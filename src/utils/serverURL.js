@@ -1,24 +1,24 @@
-const baseURL = "https://co-clinic.vercel.app/api"
+export const baseURL = "https://co-clinic.vercel.app"
 
 // const baseURL = "https:localhost:3000/api"
 
 
-const baseAuthUrl = `${baseURL}/auth/users`
+const baseAuthUrl = `${baseURL}/api/auth/users`
 
-const baseUserUrl = `${baseURL}/users`
+const baseUserUrl = `${baseURL}/api/users`
 
-const baseBooksUrl = `${baseURL}/books`
+const baseBooksUrl = `${baseURL}/api/books`
 
-const baseCommentUrl = `${baseURL}/comments`
+const baseCommentUrl = `${baseURL}/api/comments`
 
-const baseAdminUrl = `${baseURL}/admin`
+const baseAdminUrl = `${baseURL}/api/admin`
 
-const baseAppointmentUrl = `${baseURL}/appointment`
+const baseAppointmentUrl = `${baseURL}/api/appointment`
 
-const baseUploadUrl = baseURL
+const baseUploadUrl = `${baseURL}/api`
 
 
-const baseAiChat = baseURL
+const baseAiChat = `${baseURL}/api`
 
 export const UploadUrls = {
     uploadFile: `${baseUploadUrl}/upload`

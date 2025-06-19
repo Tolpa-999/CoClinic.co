@@ -7,6 +7,12 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { CommentUrls } from "../../utils/serverURL";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosInstance";
+
+
+
+////// translation is required here 
+
 
 // Reusable Comment Form Component
 function CommentForm ({ onSubmit, comment, setComment, loading, error }) {
@@ -80,10 +86,17 @@ export default function CommentSection({ postId }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`${CommentUrls.getPostComments}/${postId}`, {
-          credentials: "include",
-        });
-        const data = await res.json();
+        const res = await axiosInstance.get(`${CommentUrls.getPostComments}/${postId}`);
+
+
+
+        console.log("res in comment section =====> ", res)
+
+
+        const data = await res.data;
+
+        console.log("data in comment section ====> ", data)
+
         if (data.status == 'success') {
           setComments(data.data);
         } else {

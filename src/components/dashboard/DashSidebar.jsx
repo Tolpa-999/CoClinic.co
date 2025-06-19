@@ -19,6 +19,7 @@ import {
   signOutUserStart,
 } from '../../features/user/userSlice';
 import { useTranslation } from 'react-i18next';
+import axiosInstance from '../../utils/axiosInstance';
 
 // Define sidebar items based on user role
 
@@ -56,7 +57,7 @@ const userItems = [
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const { data } = await axios.get(AuthUrls.signOut, { withCredentials: true });
+      const { data } = await axiosInstance.get(AuthUrls.signOut);
       if (data.status !== 'success') {
         dispatch(signOutUserFailure(data));
         return;

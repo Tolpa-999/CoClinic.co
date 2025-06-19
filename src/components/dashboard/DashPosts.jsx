@@ -22,7 +22,7 @@ function PostTable ({ posts, onDelete })  {
       <TableHeadCell>{t('dashboard.posts.edit')}</TableHeadCell>
     </TableHead>
     <TableBody className="divide-y relative">
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <TableRow
           key={post._id}
           className="bg-white dark:border-gray-700 dark:bg-gray-800"

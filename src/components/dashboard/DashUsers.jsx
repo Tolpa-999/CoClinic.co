@@ -6,6 +6,7 @@ import { FaCheck, FaTimes } from 'react-icons/fa';
 import { UserUrls, AdminUrls } from '../../utils/serverURL';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import axiosInstance from '../../utils/axiosInstance';
 
 export default function DashUsers() {
   const {t} = useTranslation()
@@ -19,17 +20,17 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(UserUrls.getAll, { credentials: 'include' });
-        const data = await res.json();
-        if (res.ok) {
-          setUsers(data.data);
-          if (data.data.length < 9) {
+        const res = await axiosInstance.get(UserUrls.getAll);
+        const data = res.data
+        if (data?.status == 'success') {
+          setUsers(data?.data);
+          if (data.length < 9) {
             setShowMore(false);
           }
         }
       } catch (error) {
-        toast.error(t('dashboard.users.error'), error.message || t('dashboard.users.unkown'));
-        console.error(t('dashboard.users.error'), error.message || t('dashboard.users.unkown'));
+        toast.error(t('dashboard.users.error'), error?.message || t('dashboard.users.unkown'));
+        console.error(t('dashboard.users.error'), error?.message || t('dashboard.users.unkown'));
       }
     };
     if (currentUser?.isAdmin) {
@@ -40,9 +41,9 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`${UserUrls.getAll}?startIndex=${startIndex}`, { credentials: 'include' });
-      const data = await res.json();
-      if (res.ok) {
+      const res = await axiosInstance.get(`${UserUrls.getAll}?startIndex=${startIndex}`);
+      const data = await res?.data;
+      if (data.status == 'success') {
         setUsers((prev) => [...prev, ...data.data]);
         if (data.data.length < 9) {
           setShowMore(false);
@@ -50,6 +51,7 @@ export default function DashUsers() {
       }
     } catch (error) {
       console.error(t('dashboard.users.error_more'), error?.message || t('dashboard.users.unkown'));
+      toast.error(t('dashboard.users.error_more'), error?.message || t('dashboard.users.unkown'));
     }
   };
 
@@ -58,13 +60,15 @@ export default function DashUsers() {
     const { action, userId } = modalConfig;
     try {
       if (action === 'delete') {
-        const res = await fetch(`${UserUrls.delete}/${userId}`, { method: 'DELETE', credentials: 'include' });
-        if (res.ok) {
+        const res = await axiosInstance.delete(`${UserUrls.delete}/${userId}`);
+        const data = res.data
+        if (data.status == 'success') {
           setUsers((prev) => prev.filter((user) => user._id !== userId));
         }
       } else if (action === 'promoteDemote') {
-        const res = await fetch(`${AdminUrls.promote_demote}/${userId}`, { method: 'PATCH', credentials: 'include' });
-        if (res.ok) {
+        const res = await axiosInstance.patch(`${AdminUrls.promote_demote}/${userId}`);
+        const data = res.data
+        if (data.status == 'success') {
           setUsers((prev) =>
             prev.map((user) => (user._id === userId ? { ...user, isAdmin: !user.isAdmin } : user))
           );
@@ -72,6 +76,7 @@ export default function DashUsers() {
       }
     } catch (error) {
       console.error(t('dashboard.users.single_error'), error?.message || t('users.unkown'));
+      toast.error(t('dashboard.users.single_error'), error?.message || t('users.unkown'));
     } finally {
       setModalConfig({ show: false, action: null, userId: null });
     }
