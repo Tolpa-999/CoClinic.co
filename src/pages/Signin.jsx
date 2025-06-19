@@ -12,6 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Oauth from "../components/Oauth";
 import { useTranslation } from "react-i18next";
 
+
+import axiosInstance from "../utils/axiosInstance";
+
+
+
 const Signin = () => {
   const {t} = useTranslation()
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -46,9 +51,7 @@ const Signin = () => {
 
     dispatch(signInStart());
     try {
-      const response = await axios.post(AuthUrls.signIn, formData, {
-        withCredentials: true,
-      });
+      const response = await axiosInstance.post(AuthUrls.signIn, formData);
 
       if (response.data.success === false) {
         toast.error(response.data.error || t('signin.login_failed'));

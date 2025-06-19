@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGlobe } from 'react-icons/fa';
 
+
+import { useDispatch } from 'react-redux';
+import { setLanguage } from '../features/language/languageSlice';
+
 const LanguageSwitcher = () => {
   const [isOpen, setIsOpen ] = useState(false);
   const { t } = useTranslation();
@@ -13,6 +17,9 @@ const LanguageSwitcher = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
+    
+    dispatch(setLanguage(lng))
+
     localStorage.setItem("lang", lng)
       document.cookie = `i18next=${lng}; path=/; max-age=31536000; SameSite=None; Secure`;
     document.documentElement.lang = lng;
