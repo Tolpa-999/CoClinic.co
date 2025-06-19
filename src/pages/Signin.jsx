@@ -48,7 +48,7 @@ const Signin = () => {
     try {
       const response = await axios.post(AuthUrls.signIn, formData, {
         headers: {
-          "x-language": "ar"
+          "Accept-Language": "ar"
         },
         withCredentials: true,
       });
