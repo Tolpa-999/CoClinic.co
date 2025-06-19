@@ -15,7 +15,7 @@ const baseAppointmentUrl = `${baseURL}/appointment`
 const baseUploadUrl = baseURL
 
 
-const baseAiChat = baseAdminUrl
+const baseAiChat = baseURL
 
 export const UploadUrls = {
     uploadFile: `${baseUploadUrl}/upload`
@@ -75,6 +75,6 @@ export const AppointmentUrls = {
 
 
 export const AiCahtUrls = {
-    create: `${baseAiChat}/chatbot`,
-    getChats: `${baseAiChat}/chatbot`,
+    create: `${baseAiChat}/chatbot/create`,
+    getChats: `${baseAiChat}/chatbot/chats`,
 }

@@ -9,7 +9,7 @@ const Footer = () => {
   const {t} = useTranslation()
 
   return (
-    <Box className="bg-[#0f3d3e] text-white pt-8 pb-6 mt-16">
+    <Box className="bg-[#0f3d3e] text-white pt-8 pb-6">
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Health Care Philosophy */}

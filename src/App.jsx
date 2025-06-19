@@ -27,6 +27,7 @@ import { Suspense } from "react";
 import AppointmentConfirmation from "./pages/Appointments/AppointmentConfirmation";
 import { useTranslation } from "react-i18next";
 import useLanguageEffect from "./hooks/useLanguageEffect";
+import ChatPage from "./pages/AiChat/ChatPage";
 
 
 const App = () => {
@@ -48,7 +49,7 @@ const App = () => {
         <Route path="" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/aichat" element={<AIChat />} />
+          <Route path="/aichat" element={<ChatPage/>} />
           <Route path="/livechat" element={<LiveChat />} />
           <Route path="/appointment" element={<Appointment/>} />
           <Route path="/appointment/confirmation/:appointmentId" element={<AppointmentConfirmation />} />

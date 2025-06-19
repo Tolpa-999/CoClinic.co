@@ -50,7 +50,7 @@ const Chat = ({ userId }) => {
     try {
       const response = await axios.post(
         AiCahtUrls.create,
-        { message: input, language, chatHistoryId, userId },
+        { message: input, language, userId },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
 
@@ -59,7 +59,7 @@ const Chat = ({ userId }) => {
         setChatHistoryId(response.data.chatHistoryId);
       }
 
-      const eventSource = new EventSource(response.data.url || `/api/chat/stream/${response.data.chatHistoryId}`);
+      const eventSource = new EventSource(response.data.url || `/api/chat/${response.data.chatHistoryId}`);
       let botMessage = { role: 'model', content: '', language };
       setMessages((prev) => [...prev, botMessage]);
 
