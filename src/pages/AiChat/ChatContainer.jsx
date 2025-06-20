@@ -66,7 +66,11 @@ useEffect(() => {
 
         const data = await response.json(); // Parse the JSON response
         console.log('messages ======>', data);
-        setMessages(data);
+        if (Array.isArray(data.data)) {
+  setMessages(data.data);
+} else {
+  console.error('Expected data.data to be an array:', data);
+}
       } catch (error) {
         console.error('Error loading chat history:', error);
       } finally {
