@@ -22,7 +22,7 @@ import Appointment from "./pages/Appointments/Appointments";
 import '@fontsource/abel'; // Defaults to 400
 import '@fontsource/cairo'; // Defaults to 400
 import VerifyEmail from "./pages/VerifyEmail";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import AppointmentConfirmation from "./pages/Appointments/AppointmentConfirmation";
 import { useTranslation } from "react-i18next";
 import useLanguageEffect from "./hooks/useLanguageEffect";
@@ -35,6 +35,7 @@ import { useSelector } from 'react-redux';
 
 
 const App = () => {
+
   useLanguageEffect();
 
 
