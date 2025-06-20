@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import i18n from 'i18next';
-import axiosInstance from '../api/axiosInstance'; // make sure path is correct
+import axiosInstance from '../utils/axiosInstance'; // make sure path is correct
 
 const useLanguageEffect = () => {
   useEffect(() => {
