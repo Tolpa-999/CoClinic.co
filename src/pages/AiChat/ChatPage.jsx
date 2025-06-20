@@ -15,22 +15,21 @@ const ChatPage = () => {
     }
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50 p-2"
-    >
-      {/* <Container maxWidth="lg" className="h-[90vh] w-[100vw]"> */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="h-full"
-        >
-          <ChatContainer user={userInfo} />
-        </motion.div>
-      {/* </Container> */}
-    </motion.div>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 to-indigo-50"
+>
+  <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ delay: 0.2 }}
+    className="flex-1 flex"
+  >
+    <ChatContainer user={userInfo} />
+  </motion.div>
+</motion.div>
+
   );
 };
 
