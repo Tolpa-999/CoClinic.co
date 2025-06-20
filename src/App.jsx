@@ -30,6 +30,7 @@ import ChatPage from "./pages/AiChat/ChatPage";
 
 
 import { useSelector } from 'react-redux';
+import { store } from "./app/store";
 
 
 
