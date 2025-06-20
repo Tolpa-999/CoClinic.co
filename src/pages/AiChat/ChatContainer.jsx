@@ -33,8 +33,18 @@ const ChatContainer = ({ user }) => {
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  if (messagesEndRef.current) {
+    const offset = 40; // scroll a little bit above the exact bottom
+    const element = messagesEndRef.current;
+    const scrollContainer = element.parentElement;
+
+    scrollContainer?.scrollTo({
+      top: element.offsetTop - offset,
+      behavior: 'smooth',
+    });
+  }
+};
+
 
   useEffect(() => {
     scrollToBottom();
@@ -243,7 +253,7 @@ useEffect(() => {
             </p>
           </motion.div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 pb-8">
             {messages?.map((message, index) => (
               <motion.div
                 key={index}
