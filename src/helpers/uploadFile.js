@@ -1,5 +1,5 @@
 // api/uploadFile.js
-import axiosInstance from './axiosInstance';
+import axiosInstance from '../utils/axiosInstance';
 import { UploadUrls } from '../utils/serverURL';
 
 const uploadFile = async (file) => {
