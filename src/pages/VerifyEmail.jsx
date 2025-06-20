@@ -4,6 +4,7 @@ import logo from "../assets/coclinic.png";
 import { AuthUrls } from "../utils/serverURL";
 import { FaEnvelope, FaKey } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 
 const VerifyEmail = () => {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ const VerifyEmail = () => {
 
     setOpenAlert(false);
     try {
-      const response = await axios.post(AuthUrls.verifyEmail, {
+      const response = await axiosInstance.post(AuthUrls.verifyEmail, {
         email: formData.email,
         confirmCode: formData.confirmCode,
       });

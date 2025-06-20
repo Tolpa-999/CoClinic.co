@@ -8,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPatientAppointments, getDoctorAppointments, cancelAppointment } from '../../features/appointment/appointmentSlice';
 import BookAppointmentForm from './BookAppointmentForm'; // Import the updated form
+import axiosInstance from '../../utils/axiosInstance';
 
 const AppointmentPage = () => {
   const dispatch = useDispatch();
@@ -45,10 +46,9 @@ const AppointmentPage = () => {
 
   const handleStatusUpdate = async (appointmentId, newStatus) => {
     try {
-      await axios.put(
+      await axiosInstance.put(
         `${AppointmentUrls.status}/${appointmentId}`,
-        { status: newStatus },
-        { withCredentials: true }
+        { status: newStatus }
       );
       dispatch(getPatientAppointments({ page: 1, limit: 10 })); // Refresh appointments
       toast.success('Status updated successfully');

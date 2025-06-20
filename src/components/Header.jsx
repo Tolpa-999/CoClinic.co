@@ -14,6 +14,7 @@ import {
 import { AuthUrls } from "../utils/serverURL";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from './LanguageSwitcher';
+import axiosInstance from "../utils/axiosInstance";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -37,10 +38,7 @@ const Header = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const { data } = await axios.get(AuthUrls.signOut,
-        {
-          withCredentials: true
-        }
+      const { data } = await axiosInstance.get(AuthUrls.signOut
       );
       if (data.status !== "success") {
         dispatch(deleteUserFailure(data));

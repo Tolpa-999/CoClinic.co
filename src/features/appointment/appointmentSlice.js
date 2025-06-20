@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppointmentUrls } from '../../utils/serverURL';
+import axiosInstance from '../../utils/axiosInstance';
 
 export const bookAppointment = createAsyncThunk(
   'appointment/bookAppointment',
   async (appointmentData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(AppointmentUrls.create, appointmentData, { withCredentials: true });
+      const { data } = await axiosInstance.post(AppointmentUrls.create, appointmentData);
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Booking failed');
@@ -18,7 +19,7 @@ export const createAppointmentCheckout = createAsyncThunk(
   'appointment/createAppointmentCheckout',
   async (appointmentData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(AppointmentUrls.checkout, appointmentData, { withCredentials: true });
+      const { data } = await axiosInstance.post(AppointmentUrls.checkout, appointmentData);
       return data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Checkout failed');
@@ -30,7 +31,7 @@ export const getPatientAppointments = createAsyncThunk(
   'appointment/getPatientAppointments',
   async (params, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(AppointmentUrls.patient, { params, withCredentials: true });
+      const { data } = await axiosInstance.get(AppointmentUrls.patient, { params});
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch appointments');
@@ -42,7 +43,7 @@ export const getDoctorAppointments = createAsyncThunk(
   'appointment/getDoctorAppointments',
   async (params, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(AppointmentUrls.doctor, { params, withCredentials: true });
+      const { data } = await axiosInstance.get(AppointmentUrls.doctor, { params});
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch appointments');
@@ -54,7 +55,7 @@ export const cancelAppointment = createAsyncThunk(
   'appointment/cancelAppointment',
   async (appointmentId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`${AppointmentUrls.delete}/${appointmentId}`, { withCredentials: true });
+      const { data } = await axiosInstance.delete(`${AppointmentUrls.delete}/${appointmentId}`);
       return appointmentId;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Cancellation failed');
@@ -66,7 +67,7 @@ export const updateAppointmentStatus = createAsyncThunk(
   'appointment/updateAppointmentStatus',
   async ({ id, status }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put(`${AppointmentUrls.status}/${id}`, { status }, { withCredentials: true });
+      const { data } = await axiosInstance.put(`${AppointmentUrls.status}/${id}`, { status });
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Status update failed');
@@ -78,7 +79,7 @@ export const getDoctors = createAsyncThunk(
   'appointment/getDoctors',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(AppointmentUrls.doctors, { withCredentials: true });
+      const { data } = await axiosInstance.get(AppointmentUrls.doctors);
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch doctors');

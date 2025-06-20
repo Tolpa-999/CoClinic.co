@@ -120,13 +120,12 @@ export default function CommentSection({ postId }) {
     }
     setLoading(true);
     try {
-      const res = await fetch(CommentUrls.create, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: comment, postId, userId: currentUser._id }),
-      });
-      const data = await res.json();
+      const res = await axiosInstance.post(CommentUrls.create, {
+      content: comment,
+      postId,
+      userId: currentUser._id,
+    });;
+      const data = await res.data;
       if (data.status == "success") {
         setComment("");
         setCommentError(null);
@@ -147,11 +146,8 @@ export default function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch(`${CommentUrls.likeOne}/${commentId}`, {
-        method: "PUT",
-        credentials: "include",
-      });
-      const data = await res.json();
+      const res = await axiosInstance.put(`${CommentUrls.likeOne}/${commentId}`);
+      const data = await res.data;
       if (data.status == "success") {
         const data = await res.json();
         setComments(
@@ -181,11 +177,8 @@ export default function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch(`${CommentUrls.deleteOne}/${commentId}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      const data = await res.json();
+      const res = await axiosInstance.delete(`${CommentUrls.deleteOne}/${commentId}`);
+      const data = await res.data;
       if (data.status == "success") {
         setComments(comments.filter((c) => c._id !== commentId));
       }

@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import {  deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, updateUserFailure, updateUserStart, updateUserSuccess } from "../features/user/userSlice";
 import { AuthUrls, UserUrls } from "../utils/serverURL";
+import axiosInstance from "../utils/axiosInstance";
 const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
   const {loading, error} = useSelector(state=>state.user)
@@ -43,7 +44,7 @@ const Profile = () => {
     }
 
     try {
-      const res = await axios.post(`${UserUrls.update}/`+currentUser._id, formData, {
+      const res = await axiosInstance.post(`${UserUrls.update}/`+currentUser._id, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -73,7 +74,7 @@ const Profile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const data = await axios.get(AuthUrls.signOut);
+      const data = await axiosInstance.get(AuthUrls.signOut);
       // const data = await res.json();
       console.log(data.data)
       if (data.status !== 200) {
@@ -88,7 +89,7 @@ const Profile = () => {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const data = await axios.delete(`${UserUrls.delete}/${currentUser._id}`);
+      const data = await axiosInstance.delete(`${UserUrls.delete}/${currentUser._id}`);
       
       if (data.status !== 200) {
         dispatch(deleteUserFailure(data.data));

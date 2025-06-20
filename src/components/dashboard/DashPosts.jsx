@@ -6,6 +6,7 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { BookUrl } from "../../utils/serverURL";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "../../utils/axiosInstance";
 
 // Reusable Post Table Component
 function PostTable ({ posts, onDelete })  {
@@ -82,9 +83,10 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(BookUrl.getAllBooks, { credentials: "include" });
-        const data = await res.json();
-        if (res.ok) {
+        const res = await axiosInstance.get(BookUrl.getAllBooks);
+
+        const data = await res.data
+        if (data.status == 'success') {
           setUserPosts(data.posts || data.data); // Handle varying response structures
           if ((data.posts || data.data).length < 9) setShowMore(false);
         }
@@ -99,11 +101,9 @@ export default function DashPosts() {
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
     try {
-      const res = await fetch(`${BookUrl.getAllBooks}?startIndex=${startIndex}`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-      if (res.ok) {
+      const res = await axiosInstance.get(`${BookUrl.getAllBooks}?startIndex=${startIndex}`);
+      const data =  res.data
+      if (data.status == 'success') {
         setUserPosts((prev) => [...prev, ...(data.posts || data.data)]);
         if ((data.posts || data.data).length < 9) setShowMore(false);
       }
@@ -114,11 +114,11 @@ export default function DashPosts() {
 
   const handleDeletePost = async () => {
     try {
-      const res = await fetch(`${BookUrl.delete}/${postIdToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      if (res.ok) {
+      const res = await axiosInstance.delete(`${BookUrl.delete}/${postIdToDelete}`);
+
+      const data = res.data
+      
+      if (data.status == 'success') {
         setUserPosts(userPosts.filter((p) => p._id !== postIdToDelete));
       }
     } catch (error) {

@@ -8,6 +8,7 @@ import { FaMapMarkerAlt, FaShare, FaBook, FaTag } from 'react-icons/fa';
 import CommentSection from '../components/dashboard/CommentSection';
 import { BookUrl } from "../utils/serverURL";
 import { motion } from 'framer-motion';
+import axiosInstance from '../utils/axiosInstance';
 
 SwiperCore.use([Navigation]);
 
@@ -22,9 +23,9 @@ export default function Book() {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${BookUrl.getById}/${params.listingId}`);
-        const data = await res.json();
-        if (data.success === false) {
+        const res = await axiosInstance.get(`${BookUrl.getById}/${params.listingId}`);
+        const data = res.data
+        if (data.status != 'success') {
           setError(true);
           setLoading(false);
           return;

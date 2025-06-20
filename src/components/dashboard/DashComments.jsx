@@ -5,6 +5,12 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { CommentUrls } from "../../utils/serverURL";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "../../utils/axiosInstance";
+
+
+
+//////// translation is required here
+
 
 // Reusable Comment Table Component
 const CommentTable = ({ comments, onDelete }) => (
@@ -53,9 +59,9 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(CommentUrls.getAll, { credentials: "include" });
-        const data = await res.json();
-        if (res.ok) {
+        const res = await axiosInstance.get(CommentUrls.getAll);
+        const data = await res.data
+        if (data.status == 'success') {
           setComments(data.data);
           if (data.data.length < 9) setShowMore(false);
         }
@@ -70,11 +76,9 @@ export default function DashComments() {
   const handleShowMore = async () => {
     const startIndex = comments.length;
     try {
-      const res = await fetch(`${CommentUrls.getAll}?startIndex=${startIndex}`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-      if (res.ok) {
+      const res = await axiosInstance.get(`${CommentUrls.getAll}?startIndex=${startIndex}`);
+      const data = await res.data;
+      if (data.status == 'success') {
         setComments((prev) => [...prev, ...data.data]);
         if (data.data.length < 9) setShowMore(false);
       }
@@ -85,11 +89,11 @@ export default function DashComments() {
 
   const handleDeleteComment = async () => {
     try {
-      const res = await fetch(`${CommentUrls.deleteOne}/${commentIdToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      if (res.ok) {
+      const res = await axiosInstance.delete(`${CommentUrls.deleteOne}/${commentIdToDelete}`);
+
+      const data = res.data
+
+      if (data.status == 'success') {
         setComments(comments.filter((c) => c._id !== commentIdToDelete));
       }
     } catch (error) {

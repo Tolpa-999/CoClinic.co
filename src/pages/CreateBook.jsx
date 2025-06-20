@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BookUrl } from '../utils/serverURL';
 import { toast } from 'react-toastify';
+import axiosInstance from '../utils/axiosInstance';
 
 const CreateBook = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -103,19 +104,18 @@ const CreateBook = () => {
         formDataToSend.append('images', file);
       });
 
-      const res = await fetch(BookUrl.create, {
-        credentials: "include",
-        method: 'POST',
-        body: formDataToSend,
-      });
+      const res = await axiosInstance.post(BookUrl.create, formDataToSend, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
 
-      const data = await res.json();
-      setLoading(false);
+const data = res.data;
+setLoading(false);
 
-      if (data.status !== 'success') {
-        setError(data?.message);
-        
-      } else {
+if (data.status !== 'success') {
+  setError(data?.message);
+} else {
         toast.success(data?.message || 'Book created successfully');
       }
     } catch (error) {

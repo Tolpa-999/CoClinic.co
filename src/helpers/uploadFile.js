@@ -1,17 +1,22 @@
-import {UploadUrls} from '../utils/serverURL'
+// api/uploadFile.js
+import axiosInstance from './axiosInstance';
+import { UploadUrls } from '../utils/serverURL';
 
 const uploadFile = async (file) => {
+  try {
     const formData = new FormData();
     formData.append('file', file);
-  
-    const response = await fetch(`${UploadUrls.uploadFile}`, {
-      method: 'POST',
-      body: formData,
+
+    const response = await axiosInstance.post(UploadUrls.uploadFile, formData, {
+      headers: {
+      },
     });
-  
-    const responseData = await response.json();
-    return responseData;
-  };
-  
-  export default uploadFile;
-  
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ Upload error:", error?.response?.data || error.message);
+    throw error; 
+  }
+};
+
+export default uploadFile;

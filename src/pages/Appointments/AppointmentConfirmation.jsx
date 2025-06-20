@@ -5,6 +5,7 @@ import { AppointmentUrls } from '../../utils/serverURL';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
+import axiosInstance from '../../utils/axiosInstance';
 
 const AppointmentConfirmation = () => {
   const { t } = useTranslation();
@@ -16,9 +17,8 @@ const AppointmentConfirmation = () => {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const { data } = await axios.get(`${AppointmentUrls.patient}`, {
+        const { data } = await axiosInstance.get(`${AppointmentUrls.patient}`, {
           params: { appointmentId },
-          withCredentials: true,
         });
         const appt = data.data.find((a) => a._id === appointmentId);
         if (appt) {

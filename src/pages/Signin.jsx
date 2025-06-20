@@ -53,7 +53,7 @@ const Signin = () => {
     try {
       const response = await axiosInstance.post(AuthUrls.signIn, formData);
 
-      if (response.data.success === false) {
+      if (response.data.status !== 'success') {
         toast.error(response.data.error || t('signin.login_failed'));
         dispatch(signInFailure(response.data.error));
         return;

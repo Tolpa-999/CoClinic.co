@@ -109,16 +109,14 @@ export default function DashboardComp() {
     const fetchData = async () => {
       try {
         const [usersRes, postsRes, commentsRes] = await Promise.all([
-          fetch(`${UserUrls.getAll}?limit=5`, { credentials: 'include' }),
-          fetch(`${BookUrl.getAllBooks}?limit=5`, { credentials: 'include' }),
-          fetch(`${CommentUrls.getAll}?limit=5`, { credentials: 'include' }),
+          axiosInstance.get(`${UserUrls.getAll}?limit=5`),
+        axiosInstance.get(`${BookUrl.getAllBooks}?limit=5`),
+        axiosInstance.get(`${CommentUrls.getAll}?limit=5`),
         ]);
 
-        const [usersData, postsData, commentsData] = await Promise.all([
-          usersRes.json(),
-          postsRes.json(),
-          commentsRes.json(),
-        ]);
+        const usersData = usersRes.data;
+      const postsData = postsRes.data;
+      const commentsData = commentsRes.data;
 
         if (usersRes.ok && postsRes.ok && commentsRes.ok) {
           setDashboardData({
@@ -134,8 +132,8 @@ export default function DashboardComp() {
           });
         }
       } catch (error) {
-        toast.error(t('dashboard.card.error'), error || t('dashboard.card.unkown'));
-        console.error(t('dashboard.card.error'), error || t('dashboard.card.unkown'));
+        toast.error(t('dashboard.card.error'), error?.message || t('dashboard.card.unkown'));
+        console.error(t('dashboard.card.error'), error?.message || t('dashboard.card.unkown'));
       }
     };
 

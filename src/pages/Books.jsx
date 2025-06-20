@@ -10,6 +10,7 @@ import ListingItem from '../components/ListingItem';
 import { unSetProfile } from '../features/user/userSlice';
 import { BookUrl } from '../utils/serverURL';
 import { useTranslation } from 'react-i18next';
+import axiosInstance from '../utils/axiosInstance';
 
 export default function Books() {
   const {t} = useTranslation();
@@ -24,12 +25,12 @@ export default function Books() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const offerRes = await fetch(`${BookUrl.getAllBooks}?offer=true&limit=5`);
-        const offerJson = await offerRes.json();
+        const offerRes = await axiosInstance.get(`${BookUrl.getAllBooks}?offer=true&limit=5`);
+        const offerJson = offerRes.data;
         setOfferListings(offerJson.data || []);
 
-        const allRes = await fetch(`${BookUrl.getAllBooks}?limit=12`);
-        const allJson = await allRes.json();
+        const allRes = await axiosInstance.get(`${BookUrl.getAllBooks}?limit=12`);
+        const allJson = allRes.data
         setAllListings(allJson.data || []);
       } catch (err) {
         console.error(err);

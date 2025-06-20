@@ -5,6 +5,7 @@ import { FaThumbsUp } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Button, Textarea } from 'flowbite-react';
 import {CommentUrls, UserUrls} from '../utils/serverURL'
+import axiosInstance from '../utils/axiosInstance';
 
 
 
@@ -16,9 +17,9 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`${UserUrls.getById}/${comment.userId}`);
-        const data = await res.json();
-        if (res.ok) {
+        const res = await axiosInstance.get(`${UserUrls.getById}/${comment.userId}`);
+        const data = await res.data;
+        if (res.status == 'success') {
           setUser(data.data);
           
         }
@@ -36,26 +37,24 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
     setEditedContent(comment.content);
   };
 
-  const handleSave = async () => {
-    try {
-      const res = await fetch(`${CommentUrls.editOne}/${comment._id}`, {
-        method: 'PUT',
-        credentials: "include",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content: editedContent,
-        }),
-      });
-      if (res.ok) {
-        setIsEditing(false);
-        onEdit(comment, editedContent);
+const handleSave = async () => {
+  try {
+    const res = await axiosInstance.put(
+      `${CommentUrls.editOne}/${comment._id}`,
+      {
+        content: editedContent,
       }
-    } catch (error) {
-      console.log(error.message);
+    );
+    const data = res.data;
+    if (data.status === 'success') {
+      setIsEditing(false);
+      onEdit(comment, editedContent);
     }
-  };
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
   return (
     <div className='flex p-4 border-b dark:border-gray-600 text-sm'>
       <div className='flex-shrink-0 mr-3'>

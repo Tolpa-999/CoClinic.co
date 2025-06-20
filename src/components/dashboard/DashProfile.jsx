@@ -12,6 +12,7 @@ import {
 } from "../../features/user/userSlice";
 import { UserUrls, AuthUrls } from "../../utils/serverURL";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "../../utils/axiosInstance";
 
 // Reusable Profile Form Component
 const ProfileForm = ({ currentUser, onSubmit, loading, error, success }) => {
@@ -98,12 +99,11 @@ const DashProfile = () => {
   const handleSubmit = async (formData) => {
     dispatch(updateUserStart());
     try {
-      const res = await axios.post(UserUrls.update + currentUser._id, formData, {
+      const res = await axiosInstance.post(UserUrls.update + currentUser._id, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
       });
-      if (res.data.success) {
-        dispatch(updateUserSuccess(res.data));
+      if (res.data.status == 'success' ) {
+        dispatch(updateUserSuccess(res.data.data));
         setSuccess(res.data.message);
       } else {
         dispatch(updateUserFailure(res?.data?.error || t('dashboard.profile.failed_update')));
@@ -118,7 +118,7 @@ const DashProfile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const { data } = await axios.get(AuthUrls.signOut, { withCredentials: true });
+      const { data } = await axiosInstance.get(AuthUrls.signOut);
       if (data.status === "success") {
         dispatch(deleteUserSuccess(data));
       } else {
@@ -132,11 +132,9 @@ const DashProfile = () => {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const { data } = await axios.delete(`${UserUrls.delete}/${currentUser._id}`, {
-        withCredentials: true,
-      });
+      const { data } = await axiosInstance.delete(`${UserUrls.delete}/${currentUser._id}`);
       if (data.status === "success") {
-        dispatch(deleteUserSuccess(data));
+        dispatch(deleteUserSuccess(data.data));
       } else {
         dispatch(deleteUserFailure(data));
       }
