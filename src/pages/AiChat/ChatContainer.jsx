@@ -7,11 +7,11 @@ import ChatHeader from '../AiChat/ChatHeader';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
-import { AiCahtUrls } from '../../utils/serverURL'
+import {AiCahtUrls} from '../../utils/serverURL'
 import { useTranslation } from 'react-i18next';
 
 const ChatContainer = ({ user }) => {
-  const lang = localStorage.getItem("lang")
+    const lang = localStorage.getItem("lang")
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ const ChatContainer = ({ user }) => {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
+    visible: { 
       opacity: 1,
       transition: { staggerChildren: 0.1 }
     }
@@ -40,37 +40,43 @@ const ChatContainer = ({ user }) => {
     scrollToBottom();
   }, [messages]);
 
-  const chatIdLocalStorage = localStorage.getItem("ChatBot")
+    const chatIdLocalStorage = localStorage.getItem("ChatBot")
 
-
+  
 
   const ChatHistoryFromBoth = chatHistoryId || chatIdLocalStorage
 
-  useEffect(() => {
-    if (ChatHistoryFromBoth) {
-      setIsLoadingHistory(true);
+useEffect(() => {
+  if (ChatHistoryFromBoth) {
+    setIsLoadingHistory(true);
+    const fetchChatHistory = async () => {
+      try {
+        const response = await fetch(`${AiCahtUrls.getChats}/${ChatHistoryFromBoth}`, {
+          headers: { 
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'application/json'
+          },
+          method: "GET",
+          credentials: "include"
+        });
 
-      const fetchChatHistory = async () => {
-        try {
-          const response = await axiosInstance.get(`${AiCahtUrls.getChats}/${ChatHistoryFromBoth}`, {
-            headers: {
-              Authorization: `Bearer ${user.token}`
-            }
-          });
-
-          setMessages(response.data); // assume backend returns messages directly
-          console.log('messages ======>', response.data);
-        } catch (error) {
-          console.error('Error loading chat history:', error?.response?.data || error.message);
-        } finally {
-          setIsLoadingHistory(false);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      };
 
-      fetchChatHistory();
-    }
-  }, [ChatHistoryFromBoth, user.token]);
-
+        const data = await response.json(); // Parse the JSON response
+        console.log('messages ======>', data);
+        setMessages(data);
+      } catch (error) {
+        console.error('Error loading chat history:', error);
+      } finally {
+        setIsLoadingHistory(false);
+      }
+    };
+    fetchChatHistory();
+  }
+}, [ChatHistoryFromBoth, user.token]);
+  
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
@@ -96,23 +102,25 @@ const ChatContainer = ({ user }) => {
     setMessages(prev => [...prev, botMessage]);
 
     try {
-      const response = await axios.post(AiCahtUrls.create, {
-        message: inputValue,
-        language,
-        chatHistoryId: ChatHistoryFromBoth
-      }, {
+      const response = await fetch(AiCahtUrls.create, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`
         },
-        responseType: 'stream', // مهم جداً للـ stream
+        body: JSON.stringify({ 
+          message: inputValue, 
+          language,
+          chatHistoryId: ChatHistoryFromBoth
+        }),
         signal: controllerRef.current.signal,
-        withCredentials: true
+        credentials: "include"
       });
 
-      const reader = response.data?.getReader?.() || response?.request?.response?.getReader?.();
-      if (!reader) throw new Error('ReadableStream not supported');
+      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.body) throw new Error('ReadableStream not supported');
 
+      const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let responseText = '';
       let buffer = '';
@@ -120,34 +128,33 @@ const ChatContainer = ({ user }) => {
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
-
+        
         const chunk = decoder.decode(value, { stream: true });
         buffer += chunk;
-
+        
         const events = buffer.split('\n\n');
         buffer = events.pop() || '';
-
+        
         for (const event of events) {
           if (!event.trim()) continue;
-
+          
           if (event.startsWith('data: ')) {
             const dataString = event.replace('data: ', '');
+            
             if (dataString.trim() === '[DONE]') continue;
-
+            
             try {
               const data = JSON.parse(dataString);
-
               if (data.chatHistoryId) {
                 setChatHistoryId(data.chatHistoryId);
-                console.log("chatHistory ====>", data.chatHistoryId);
-                localStorage.setItem("ChatBot", data.chatHistoryId);
+                console.log("chatHistory ====>", data.chatHistoryId)
+                localStorage.setItem("ChatBot", data.chatHistoryId)
               }
-
               if (data.text) {
                 responseText += data.text;
-                setMessages(prev => prev.map((msg, i) =>
-                  i === prev.length - 1
-                    ? { ...msg, content: responseText }
+                setMessages(prev => prev?.map((msg, i) => 
+                  i === prev.length - 1 
+                    ? { ...msg, content: responseText } 
                     : msg
                 ));
               }
@@ -158,16 +165,16 @@ const ChatContainer = ({ user }) => {
         }
       }
 
-      setMessages(prev => prev.map((msg, i) =>
-        i === prev.length - 1
-          ? { ...msg, isStreaming: false }
+      setMessages(prev => prev?.map((msg, i) => 
+        i === prev.length - 1 
+          ? { ...msg, isStreaming: false } 
           : msg
       ));
 
     } catch (error) {
       if (error.name !== 'AbortError') {
         console.error('Chat error:', error);
-        setMessages(prev => prev.slice(0, -1));
+        setMessages(prev => prev?.slice(0, -1));
       }
     } finally {
       setIsLoading(false);
@@ -186,9 +193,9 @@ const ChatContainer = ({ user }) => {
     controllerRef.current.abort();
     controllerRef.current = new AbortController();
     setIsLoading(false);
-    setMessages(prev => prev?.map((msg, i) =>
-      i === prev.length - 1
-        ? { ...msg, isStreaming: false }
+    setMessages(prev => prev?.map((msg, i) => 
+      i === prev.length - 1 
+        ? { ...msg, isStreaming: false } 
         : msg
     ));
   };
@@ -200,7 +207,7 @@ const ChatContainer = ({ user }) => {
       variants={containerVariants}
       className="flex flex-col h-[90vh] w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
     >
-      <ChatHeader
+      <ChatHeader 
         language={language}
         setLanguage={setLanguage}
         onClear={() => {
@@ -208,10 +215,10 @@ const ChatContainer = ({ user }) => {
           setChatHistoryId(null);
         }}
       />
-
+      
       <Box className="flex-1 overflow-y-auto p-4 bg-gray-50">
         {messages?.length == 0 ? (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -226,8 +233,8 @@ const ChatContainer = ({ user }) => {
               {language === 'ar' ? 'مرحباً! كيف يمكنني مساعدتك اليوم؟' : 'Hello! How can I help you today?'}
             </h3>
             <p className="text-gray-500">
-              {language === 'ar'
-                ? 'أنا هنا لأجيب على أسئلتك الطبية بكل ثقة واهتمام'
+              {language === 'ar' 
+                ? 'أنا هنا لأجيب على أسئلتك الطبية بكل ثقة واهتمام' 
                 : 'I\'m here to answer your medical questions with care and expertise'}
             </p>
           </motion.div>
@@ -240,9 +247,9 @@ const ChatContainer = ({ user }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <ChatMessage
-                  message={message}
-                  isUser={message.role === 'user'}
+                <ChatMessage 
+                  message={message} 
+                  isUser={message.role === 'user'} 
                   language={language}
                 />
               </motion.div>
@@ -254,22 +261,22 @@ const ChatContainer = ({ user }) => {
 
       <div className="border-t border-gray-200 p-4 bg-white">
         <div className="flex items-end">
-          <ChatInput
+          <ChatInput 
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             language={language}
             disabled={isLoading}
           />
-
+          
           {isLoading ? (
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               className="ml-2"
             >
-              <IconButton
-                color="error"
+              <IconButton 
+                color="error" 
                 onClick={handleAbort}
                 className="bg-red-100 hover:bg-red-200"
               >
@@ -284,8 +291,8 @@ const ChatContainer = ({ user }) => {
               whileTap={{ scale: 0.95 }}
               className="ml-2"
             >
-              <IconButton
-                color="primary"
+              <IconButton 
+                color="primary" 
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim()}
                 className="bg-blue-100 hover:bg-blue-200 disabled:bg-gray-100"
@@ -295,10 +302,10 @@ const ChatContainer = ({ user }) => {
             </motion.div>
           )}
         </div>
-
+        
         <div className="mt-2 text-xs text-gray-500 text-center">
-          {language === 'ar'
-            ? 'المعلومات المقدمة لأغراض تعليمية فقط ولا تغني عن استشارة الطبيب'
+          {language === 'ar' 
+            ? 'المعلومات المقدمة لأغراض تعليمية فقط ولا تغني عن استشارة الطبيب' 
             : 'Information provided for educational purposes only, not medical advice'}
         </div>
       </div>
