@@ -10,7 +10,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import Settings from "./pages/Settings";
 import Search from "./pages/Search";
 import Dashboard from "./pages/Dashboard";
-import AIChat from "./pages/AIChat";
 import LiveChat from "./pages/LiveChat";
 import Footer from "./components/Footer";
 import MessagePage from "./components/chat/MessagePage";
@@ -30,8 +29,18 @@ import useLanguageEffect from "./hooks/useLanguageEffect";
 import ChatPage from "./pages/AiChat/ChatPage";
 
 
+import { useSelector } from 'react-redux';
+
+
+
+
 const App = () => {
   useLanguageEffect();
+
+
+  useEffect(() => {
+  console.log('🧠 Redux language on app mount:', store.getState().language.language);
+}, []);
 
   return (
     <Suspense fallback={<div>Loading translations...</div>}>
