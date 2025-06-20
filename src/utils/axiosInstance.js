@@ -7,6 +7,7 @@ const axiosInstance = axios.create(); // بدون baseURL
 axiosInstance.interceptors.request.use(
   (config) => {
     const lang = store.getState().language.language;
+        console.log('Language used in header:', lang); // 🔍
     config.headers['Accept-Language'] = lang;
     config.withCredentials = true; 
     return config;
