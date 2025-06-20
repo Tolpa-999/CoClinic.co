@@ -209,7 +209,7 @@ useEffect(() => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="flex flex-col h-[90vh] w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
+      className="flex flex-col min-h-[95vh] w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
     >
       <ChatHeader 
         language={language}
