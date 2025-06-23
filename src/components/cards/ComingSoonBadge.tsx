@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { AccessTime } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 const ComingSoonBadge= () => {
+  const {t} = useTranslation()
   return (
     <Box
       display="flex"
@@ -24,7 +26,7 @@ const ComingSoonBadge= () => {
     >
       <AccessTime fontSize="small" />
       <Typography variant="caption" ml={1}>
-        Coming Soon
+        {t('featured.coming_soon.soon')}
       </Typography>
     </Box>
   );

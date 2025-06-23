@@ -1,15 +1,8 @@
 {
-
-
-
-
   "language": {
     "arabic": "Arabic",
     "english": "English"
   },
-
-
-
 
   "dashboard": {
     "title": "Dashboard",
@@ -35,7 +28,7 @@
       "delete": "Delete",
       "more": "Show More",
       "no_users": "You Have No Users Yet !",
-      "delete?":"Are you sure you want to delete this user ?",
+      "delete?": "Are you sure you want to delete this user ?",
       "sure_to": "Are you sure you want to ",
       "this": "this user?",
       "sure_delete": "Yes, I’m sure",
@@ -49,13 +42,23 @@
     },
 
     "comments": {
+      "date": "Date Updated",
       "content": "Comment Content",
+      "no_of_likes": "Number of likes",
+      "post_id": "Post Id",
+      "user_id": "User Id",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+
+      "anonymous": "Anonymous User",
+
       "no_comment": "You have no comments yet!",
       "likes": "Likes",
       "name": "Comments",
       "total": "Total comments",
       "recent": "Recent comments",
-      "delete": "Delete",
       "error": "Error fetching comments:",
       "error_more": "Error fetching more comments:",
       "error_delete": "Error deleting comment:",
@@ -77,10 +80,9 @@
       "delete": "Delete",
       "edit": "Edit",
 
-
       "total": "Total posts",
       "recent": "Recent posts",
-      
+
       "error": "Error fetching posts:",
       "error_more": "Error fetching more posts:",
       "unkown": "Unkown",
@@ -92,7 +94,6 @@
       "no_cancel": "No, cancel"
     },
 
-
     "profile": {
       "name": "Profile",
       "updating": "Updating...",
@@ -102,13 +103,11 @@
       "signout": "Sign out",
       "admin": "Admin",
       "user": "User"
-      
     },
 
     "table": {
       "all": "See all",
       "error": "Error fetching dashboard data:"
-
     },
 
     "card": {
@@ -116,16 +115,25 @@
       "all": "See all",
       "error": "Error fetching dashboard data:",
       "unkown": "Unkown"
-
     }
   },
-
-
-
 
   "general": {
     "loading": "Loading...",
     "error": "Error: "
+  },
+
+  "verify": {
+    "fill_all": "Please fill in all required fields.",
+    "failed": "Verification failed.",
+    "coclinic": "CoClinic",
+    "email_confirmation_code": "Please enter the email and confirmation code you received to verify your account.",
+    "email": "Email",
+    "email_placeholder": "you@example.com",
+    "confirmation_code": "Confirmation Code",
+    "confirmation_code_placeholder": "Enter the code sent to your email",
+    "verify_email": "Verify Email",
+    "success": "Your email has been verified. You can now log in."
   },
 
   "header": {
@@ -146,8 +154,10 @@
     "sign_in": "Sign In"
   },
 
-
   "home": {
+    "patient_served": "500k+ Patients Served",
+    "join_growing": "Join our growing community",
+
     "headline": "Your Trusted Partner in",
     "digital": "Digital Healthcare",
     "description": "Experience compassionate care through our integrated platform offering direct doctor communication, AI-powered consultations, and seamless healthcare management.",
@@ -200,31 +210,43 @@
       "title": "Coming Soon: Enhanced Support Features",
       "description": "We're constantly evolving to better serve your recovery needs",
       "dashboard": {
-      "title": "Dashboard",
-      "description": "Track your progress, set goals, and visualize data for continuous improvement.",
-      "benefits": "Monitor trends and celebrate achievements along your journey to recovery.",
-      "cta": "View Dashboard"
-    },
-    "community": {
-      "title": "Community Support",
-      "description": "Connect with others on a similar journey, share experiences, and find encouragement.",
-      "benefits": "Build a supportive network and access resources that inspire growth and recovery.",
-      "cta": "Join The Community"
-    },
-    "crisis": {
-      "title": "Crisis Support",
-      "description": "Access emergency contact options and immediate chat support with licensed counselors.",
-      "benefits": "Receive compassionate assistance and guidance during critical times.",
-      "cta": "Contact Crisis Support"
+        "title": "Dashboard",
+        "description": "Track your progress, set goals, and visualize data for continuous improvement.",
+        "benefits": "Monitor trends and celebrate achievements along your journey to recovery.",
+        "cta": "View Dashboard",
+        "soon": "Coming Soon"
+      },
+      "community": {
+        "title": "Community Support",
+        "description": "Connect with others on a similar journey, share experiences, and find encouragement.",
+        "benefits": "Build a supportive network and access resources that inspire growth and recovery.",
+        "cta": "Join The Community"
+      },
+      "crisis": {
+        "title": "Crisis Support",
+        "description": "Access emergency contact options and immediate chat support with licensed counselors.",
+        "benefits": "Receive compassionate assistance and guidance during critical times.",
+        "cta": "Contact Crisis Support"
+      }
     }
-    }
-    
   },
 
-
-   "appointment": {
-
+  "appointment": {
     "confirmation": {
+      "status_updated": "Status updated successfully",
+      "status_failed": "Status update failed",
+      "app_cancelled": "Appointment cancelled",
+      "app_failed": "Appointment failed",
+      "loading": "Loading appointments...",
+      "upcoming": "Upcoming Appointments",
+      "no_appointments": "No appointments found",
+      "time": "30 minutes",
+      "my": "My Appointments",
+      "your": "Your Appointments",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "decline": "Decline",
+
       "success": "Appointment loaded successfully",
       "not_found": "Appointment not found",
       "failed": "Failed to fetch appointment",
@@ -253,10 +275,9 @@
       "cancel": "Cancel",
       "single_confirm": "Confirm",
       "decline": "Decline",
-      "hide":"Hide Booking Form",
+      "hide": "Hide Booking Form",
       "book": "Book New Appointment"
     },
-
 
     "general": {
       "date": "Date :",
@@ -289,20 +310,45 @@
       "notes": "Notes",
       "appointment_2": "Book Appointment"
     }
-   },
+  },
 
-
-   "book": {
+  "book": {
     "loading": "Loading...",
-      "wrong": "Something went wrong!",
-      "copied": "Link copied!",
-      "off": "OFF",
-      "description": "Description"
+    "wrong": "Something went wrong!",
+    "copied": "Link copied!",
+    "off": "OFF",
+    "description": "Description"
+  },
 
-   },
+  "books": {
+    "post_book": "Post Book",
 
+    "allowed_only": "Only JPEG, JPG, PNG, or GIF files up to 5MB are allowed",
+    "number_of_allowed": "You can only upload up to 5 images per listing",
+    "at_least": "You must upload at least one image",
+    "lower_or_equal": "Discount price must be lower than regular price",
+    "created": "Book created successfully",
+    "failed_to_create": "Failed to create book. Please try again.",
 
-   "books": {
+    "create": "Post a Book",
+    "title": "Title",
+    "description": "Description",
+
+    "author": "Author",
+
+    "offer": "Offer",
+    "regular_price": "Regular price",
+    "discounted_price": "Discounted price",
+
+    "images": "Images:",
+    "first_image": "The first image will be the cover",
+    "uploaded_images": "Uploaded Images:",
+
+    "delete": "Delete",
+    "select_images": "Selected Images:",
+    "remove": "Remove",
+    "creating": "Creating...",
+
     "explore": "Explore Our Book Collection",
     "discover": "Discover hand-picked titles at unbeatable deals. Whether you're seeking inspiration or adventure, find your next favorite book here.",
     "browse": "Start Browsing",
@@ -335,48 +381,49 @@
       "unkown": "Unkown",
       "chars_remaining": "characters remaining"
     }
-   },
+  },
 
-
-   "live_chat": {
+  "live_chat": {
     "live": "Live Chat",
     "explore": "Explore users to start a conversation with.",
     "image": "Image",
     "video": "Video",
     "add": "Add Friend",
-    "chat": "Chat"
-   },
+    "chat": "Chat",
+    "loading": "Loading...",
+    "online": "Online",
+    "offline": "Offline",
+    "no_user": "No user found!",
+    "search": "Search user by name, email....",
+    "type_here": "Type message here..."
+  },
 
-   "profile": {
+  "profile": {
     "profile": "profile",
     "username": "username",
     "email": "email",
     "password": "password",
-    "update": "update",
+    "update": "Update",
     "delete": "Delete Account",
-    "signout": "Sign out"
-   },
+    "signout": "Sign out",
+    "please_select": "Please select a valid image file.",
+    "update_fialed": "Update failed.",
+    "loading": "Loading..."
+  },
 
-   "about": {
+  "about": {
     "co": "About CoClinic",
     "description1": "CoClinic is an innovative telehealth platform designed to provide seamless healthcare services through live consultations and interactive AI support. We focus on enhancing the patient experience by offering multiple avenues for interaction, including direct communication with doctors and AI-based chatbots for preliminary consultations.",
     "description2": "Our mission is to bridge the gap between patients and healthcare professionals, making healthcare accessible and convenient for everyone. Whether you need a quick consultation or in-depth medical advice, CoClinic is here to support you at every step."
-   },
-
+  },
 
   "signin": {
-    
     "fields_error": "All fields are required!",
     "email_error": "Please enter a valid email address!",
     "password_length": "Password must be at least 8 characters!",
     "login_falied": "Login failed.",
     "singin_sucess": "Signed in successfully!",
     "something_wrong": "Something went wrong.",
-
-
-
-
-
 
     "coclinic": "CoClinic",
     "headline": "Welcome back! Please sign in to access your account.",
@@ -388,7 +435,7 @@
 
     "loading": "Signing In ...",
     "no_account": "Don't have an account?",
-    "here": "Sign up here"  
+    "here": "Sign up here"
   },
 
   "signup": {
@@ -415,11 +462,6 @@
       "female": "Female"
     },
 
-
-
-
-
-
     "coclinic": "CoClinic",
     "headline": "Embark on a transformative journey with our AI-powered personalized recovery plans and habit-building strategies.",
     "select_role": "Select Role",
@@ -430,21 +472,48 @@
     },
     "username": "Username",
     "username_description": "Please enter a unique username for your account.",
-     "email": "Email",
-     "email_description": "Please enter a valid email address, e.g., name@domain.com.",
-     "name": "Name",
-     "password": "Password",
-     "birthdate": "Birthdate",
-     "select_b_date": "Select Birthdate",
-     "button": "Sign Up"
-
-     
-
-
+    "email": "Email",
+    "email_description": "Please enter a valid email address, e.g., name@domain.com.",
+    "name": "Name",
+    "password": "Password",
+    "birthdate": "Birthdate",
+    "select_b_date": "Select Birthdate",
+    "button": "Sign Up"
   },
 
+  "search": {
+    "term": "Search Term:",
+    "type": "Type:",
+    "sale": "Sale",
+    "offer": "Offer",
+    "sort": "Sort:",
+    "price_high_low": "Price high to low",
+    "prive_low_high": "Price low to high",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "listing_results": "Listing results:",
+    "no_listing": "No listing found!",
+    "loading": "Loading...",
+    "show_more": "Show more"
+  },
 
-     "footer": {
+  "chat": {
+    "medical": "Medical Assistant",
+    "expected": "Expected data.data to be an array:",
+    "error_history": "Error loading chat history:Error loading chat history:",
+    "error_parsing": "Error parsing chunk:",
+    "chat_error": "Chat error:",
+
+    "how_to_help": "Hello! How can I help you today?",
+    "here_to_answer": "I'm here to answer your medical questions with care and expertise",
+    "educational_puroses": "Information provided for educational purposes only, not medical advice",
+    "assistant": "Medical Assistant",
+    "new": "New Chat",
+    "powerd_by": "Powered by Gemini - Trusted Medical Answers",
+    "type_here": "Type your message here..."
+  },
+
+  "footer": {
     "brand": "CoClinic Care",
     "description": "Committed to providing compassionate, personalized healthcare that puts you first. Your wellness journey is our priority, every step of the way.",
     "services": "Services",
@@ -465,7 +534,4 @@
     "terms_of_service": "Terms of Service",
     "cookies_policy": "Cookies Policy"
   }
-
-
-
 }

@@ -128,8 +128,8 @@ const Home = () => {
                   className="rounded-lg w-full h-auto object-cover animate-pulse-slow"
                 />
                 <div className="mt-6 text-center">
-                  <h3 className="text-xl font-semibold text-gray-800">500k+ Patients Served</h3>
-                  <p className="text-gray-500 mt-2">Join our growing community</p>
+                  <h3 className="text-xl font-semibold text-gray-800">{t('home.patient_served')}</h3>
+                  <p className="text-gray-500 mt-2">{t('home.join_growing')}</p>
                 </div>
               </div>
             </motion.div>

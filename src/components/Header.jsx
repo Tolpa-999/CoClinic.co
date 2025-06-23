@@ -149,13 +149,6 @@ const Header = () => {
                       >
                         {t('header.my_profile')}
                       </Link>
-                      <Link
-                        to="/settings"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 transition-colors"
-                        onClick={handleProfile}
-                      >
-                        {t('header.account_settings')}
-                      </Link>
                       <button
                         onClick={handleSignOut}
                         className="w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-green-50 transition-colors"
@@ -222,13 +215,6 @@ const Header = () => {
                       >
                         {t('header.my_profile')}
                       </Link>
-                      <Link
-                        to="/settings"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 transition-colors"
-                        onClick={handleProfile}
-                      >
-                        {t('header.account_settings')}
-                      </Link>
                       <button
                         onClick={handleSignOut}
                         className="w-full text-start px-4 py-2 text-sm text-gray-700 hover:bg-green-50 transition-colors"
@@ -288,13 +274,6 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('header.my_profile')}
-              </Link>
-              <Link
-                to="/settings"
-                className="block py-2 text-gray-700 hover:text-green-700"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('header.settings')}
               </Link>
               <button
                 onClick={() => {

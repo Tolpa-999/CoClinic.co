@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 import { Button, Textarea } from 'flowbite-react';
 import {CommentUrls, UserUrls} from '../utils/serverURL'
 import axiosInstance from '../utils/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
+  const {t} = useTranslation()
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -67,7 +69,7 @@ const handleSave = async () => {
       <div className='flex-1'>
         <div className='flex items-center mb-1'>
           <span className='font-bold mr-1 text-xs truncate'>
-            {user ? `@${user.username}` : 'anonymous user'}
+            {user ? `@${user.username}` : t('dashboard.comments.anonymous')}
           </span>
           <span className='text-gray-500 text-xs'>
             {moment(comment.createdAt).fromNow()}
@@ -88,7 +90,7 @@ const handleSave = async () => {
                 className='text-black border-1'
                 onClick={handleSave}
               >
-                Save
+                {t('dashboard.comments.save')}
               </Button>
               <Button
                 type='button'
@@ -96,7 +98,7 @@ const handleSave = async () => {
                 className='text-black border-1 hover:text-red'
                 onClick={() => setIsEditing(false)}
               >
-                Cancel
+                {t('dashboard.comments.cancel')}
               </Button>
             </div>
           </>
@@ -129,14 +131,14 @@ const handleSave = async () => {
                       onClick={handleEdit}
                       className='text-gray-400 hover:text-blue-500'
                     >
-                      Edit
+                      {t('dashboard.comments.edit')}
                     </button>
                     <button
                       type='button'
                       onClick={() => onDelete(comment._id)}
                       className='text-gray-400 hover:text-red-500'
                     >
-                      Delete
+                      {t('dashboard.comments.delete')}
                     </button>
                   </>
                 )}

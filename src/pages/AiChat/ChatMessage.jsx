@@ -6,7 +6,6 @@ const ChatMessage = ({ message, isUser, language }) => {
   return (
     <Box 
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-3`}
-      sx={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

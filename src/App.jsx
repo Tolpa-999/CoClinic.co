@@ -7,7 +7,6 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
-import Settings from "./pages/Settings";
 import Search from "./pages/Search";
 import Dashboard from "./pages/Dashboard";
 import LiveChat from "./pages/LiveChat";
@@ -59,7 +58,6 @@ const App = () => {
         <Route path="/search" element={<Search />} />
         <Route path="" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
           <Route path="/aichat" element={<ChatPage/>} />
           <Route path="/livechat" element={<LiveChat />} />
           <Route path="/appointment" element={<Appointment/>} />

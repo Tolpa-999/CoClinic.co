@@ -4,7 +4,9 @@ import axios from "axios";
 import {  deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, updateUserFailure, updateUserStart, updateUserSuccess } from "../features/user/userSlice";
 import { AuthUrls, UserUrls } from "../utils/serverURL";
 import axiosInstance from "../utils/axiosInstance";
+import { useTranslation } from "react-i18next";
 const Profile = () => {
+  const {t} = useTranslation()
   const [profileImage, setProfileImage] = useState(null);
   const {loading, error} = useSelector(state=>state.user)
   const [success, setSuccess] = useState(null)
@@ -26,7 +28,7 @@ const Profile = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please select a valid image file.");
+      alert(t('profile.please_select'));
     }
   };
 
@@ -52,12 +54,12 @@ const Profile = () => {
 
       if (res.data.success) {
         dispatch(updateUserSuccess(res.data))
-        setSuccess(res.data.message)
+        setSuccess(res?.data?.message)
         
         
         
       } else {
-        dispatch(updateUserFailure(res.data.error || "Update failed."))
+        dispatch(updateUserFailure(res.data.error || t('profile.update_failed')))
         setSuccess(null)
       
 
@@ -66,7 +68,7 @@ const Profile = () => {
     } catch (error) {
       console.log(error)
 
-      dispatch(updateUserFailure(error.response?.data?.error || error.message || "Update failed."))
+      dispatch(updateUserFailure(error.response?.data?.error || error.message || t('profile.update_failed')))
       setSuccess(null)
       
     }
@@ -144,15 +146,15 @@ const Profile = () => {
           ref={passwordRef}
         />
         <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
-          {loading?"Updating...":"Update"}
+          {loading ? t('profile.loading') : t('profile.udpate')}
         </button>
       </form>
       {error && <p className="text-center text-red-500">{error}</p>}
       {success && <p className="text-center text-blue-500">{success}</p>}
       
       <div className="flex justify-between mt-5">
-        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete account</span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign out</span>
+        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">{t('profile.delete')}</span>
+        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">{t('profile.signout')}</span>
       </div>
     </div>
   );

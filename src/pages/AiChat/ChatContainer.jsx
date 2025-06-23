@@ -9,8 +9,10 @@ import axios from 'axios';
 
 import {AiCahtUrls} from '../../utils/serverURL'
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const ChatContainer = ({ user }) => {
+  const {t} = useTranslation()
     const lang = localStorage.getItem("lang")
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -79,10 +81,12 @@ useEffect(() => {
         if (Array.isArray(data.data)) {
   setMessages(data.data);
 } else {
-  console.error('Expected data.data to be an array:', data);
+  toast.error(t('chat.expected'), data);
+  console.error(t('chat.expected'), data);
 }
       } catch (error) {
-        console.error('Error loading chat history:', error);
+        toast.error(t('chat.error_history'), error);
+        console.error(t('chat.error_history'), error);
       } finally {
         setIsLoadingHistory(false);
       }
@@ -173,7 +177,8 @@ useEffect(() => {
                 ));
               }
             } catch (parseError) {
-              console.error('Error parsing chunk:', parseError, dataString);
+              console.error(t('chat.error_parsing'), parseError, dataString);
+              toast.error(t('chat.error_parsing'), parseError, dataString);
             }
           }
         }
@@ -187,7 +192,8 @@ useEffect(() => {
 
     } catch (error) {
       if (error.name !== 'AbortError') {
-        console.error('Chat error:', error);
+        console.error(t('chat.chat_error'), error?.message);
+        toast.error(t('chat.chat_error'), error?.message);
         setMessages(prev => prev?.slice(0, -1));
       }
     } finally {
@@ -244,12 +250,10 @@ useEffect(() => {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-gray-700 mb-2">
-              {language === 'ar' ? 'مرحباً! كيف يمكنني مساعدتك اليوم؟' : 'Hello! How can I help you today?'}
+              {t('chat.how_to_help')}
             </h3>
             <p className="text-gray-500">
-              {language === 'ar' 
-                ? 'أنا هنا لأجيب على أسئلتك الطبية بكل ثقة واهتمام' 
-                : 'I\'m here to answer your medical questions with care and expertise'}
+              {t('chat.how_to_answer')}
             </p>
           </motion.div>
         ) : (
@@ -318,9 +322,7 @@ useEffect(() => {
         </div>
         
         <div className="mt-2 text-xs text-gray-500 text-center">
-          {language === 'ar' 
-            ? 'المعلومات المقدمة لأغراض تعليمية فقط ولا تغني عن استشارة الطبيب' 
-            : 'Information provided for educational purposes only, not medical advice'}
+          {t('chat.educational_puroses')}
         </div>
       </div>
     </motion.div>

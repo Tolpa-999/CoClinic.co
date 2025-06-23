@@ -9,10 +9,14 @@ import CommentSection from '../components/dashboard/CommentSection';
 import { BookUrl } from "../utils/serverURL";
 import { motion } from 'framer-motion';
 import axiosInstance from '../utils/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 SwiperCore.use([Navigation]);
 
 export default function Book() {
+
+  const {t} = useTranslation()
+
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -43,9 +47,9 @@ export default function Book() {
 
   return (
     <main className="bg-gray-50 min-h-screen">
-      {loading && <p className="text-center my-7 text-2xl text-gray-600">Loading...</p>}
+      {loading && <p className="text-center my-7 text-2xl text-gray-600">{t('book.loading')}</p>}
       {error && (
-        <p className="text-center my-7 text-2xl text-red-500">Something went wrong!</p>
+        <p className="text-center my-7 text-2xl text-red-500">{t('book.wrong')}</p>
       )}
       {listing && !loading && !error && (
         <div>
@@ -77,7 +81,7 @@ export default function Book() {
             </button>
             {copied && (
               <p className="absolute top-full right-0 mt-2 bg-white p-2 rounded-md shadow-md text-sm text-gray-600">
-                Link copied!
+                {t('book.copied')}
               </p>
             )}
           </div>
@@ -113,12 +117,12 @@ export default function Book() {
                 {listing.offer && (
                   <span className="bg-green-100 text-green-800 px-3 py-1 rounded-md text-sm font-medium flex items-center">
                     <FaTag className="mr-1" />
-                    ${(+listing.regularPrice - +listing.discountPrice).toLocaleString('en-US')} OFF
+                    ${(+listing.regularPrice - +listing.discountPrice).toLocaleString('en-US')} {t('book.off')}
                   </span>
                 )}
               </div>
               <p className="text-gray-700 leading-relaxed mb-6">
-                <span className="font-semibold text-gray-800">Description: </span>
+                <span className="font-semibold text-gray-800">{t('book.loading')} </span>
                 {listing.description}
               </p>
               <CommentSection postId={listing._id} />

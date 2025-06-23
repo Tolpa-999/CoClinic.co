@@ -10,8 +10,12 @@ import { IoMdSend } from "react-icons/io";
 import Loading from './Loading';
 import moment from 'moment';
 import uploadFile from '../../helpers/uploadFile';
+import { useTranslation } from 'react-i18next';
 
 const MessagePage = () => {
+
+  const {t} = useTranslation()
+
   const params = useParams();
   const socketConnection = useSelector(state => state?.chat?.socketConnection);
   const user = useSelector(state => state?.chat);
@@ -151,7 +155,7 @@ const MessagePage = () => {
             <h3 className="font-semibold text-lg my-0 text-ellipsis line-clamp-1">{dataUser?.isDoctor ? "Dr.":"Patient "}{dataUser?.username}</h3>
             {console.log(dataUser)}
             <p className="-my-2 text-sm">
-              {dataUser.online ? <span className="text-primary">online</span> : <span className="text-slate-400">offline</span>}
+              {dataUser.online ? <span className="text-primary">{t('live_chat.online')}</span> : <span className="text-slate-400">{t('live_chat.offline')}</span>}
             </p>
           </div>
         </div>
@@ -222,13 +226,13 @@ const MessagePage = () => {
                   <div className="text-primary">
                     <FaImage size={18} />
                   </div>
-                  <p>Image</p>
+                  <p>{t('live_chat.image')}</p>
                 </label>
                 <label htmlFor="uploadVideo" className="flex items-center p-2 px-3 gap-3  cursor-pointer">
                   <div className="text-purple-500">
                     <FaVideo size={18} />
                   </div>
-                  <p>Video</p>
+                  <p>{t('live_chat.video')}</p>
                 </label>
                 <input type="file" id="uploadImage" onChange={handleUploadImage} className="hidden" />
                 <input type="file" id="uploadVideo" onChange={handleUploadVideo} className="hidden" />
@@ -238,7 +242,7 @@ const MessagePage = () => {
         </div>
 
         <form className="w-full h-full flex gap-2" onSubmit={handleSendMessage}>
-          <input type="text" placeholder="Type here message..." className="py-1 px-4 outline-none border-none rounded w-full h-full" value={message.text} onChange={handleOnChange} />
+          <input type="text" placeholder={t('live_chat.type_here')} className="py-1 px-4 outline-none border-none rounded w-full h-full" value={message.text} onChange={handleOnChange} />
           <button className="text-primary hover:text-secondary">
             <IoMdSend size={28} />
           </button>

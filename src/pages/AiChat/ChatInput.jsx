@@ -1,7 +1,9 @@
 import React from 'react';
 import { TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ChatInput = ({ value, onChange, onKeyPress, language, disabled }) => {
+  const {t} = useTranslation()
   return (
     <TextField
       fullWidth
@@ -12,11 +14,8 @@ const ChatInput = ({ value, onChange, onKeyPress, language, disabled }) => {
       onChange={onChange}
       onKeyPress={onKeyPress}
       disabled={disabled}
-      placeholder={
-        language === 'ar' 
-          ? 'اكتب رسالتك هنا...' 
-          : 'Type your message here...'
-      }
+      placeholder={t('chat.type_here')}
+      
       variant="outlined"
       sx={{
         '& .MuiOutlinedInput-root': {

@@ -7,6 +7,7 @@ import axios from 'axios';
 import { IoClose } from "react-icons/io5";
 import {UserUrls} from '../../utils/serverURL'
 import axiosInstance from '../../utils/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 /////// translate is required here
 
@@ -14,6 +15,7 @@ import axiosInstance from '../../utils/axiosInstance';
 
 
 const SearchUser = ({onClose}) => {
+    const {t} = useTranslation()
     const [searchUser,setSearchUser] = useState([])
     const [loading,setLoading] = useState(false)
     const [search,setSearch] = useState("")
@@ -47,7 +49,7 @@ const SearchUser = ({onClose}) => {
             <div className='bg-white rounded h-14 overflow-hidden flex '>
                 <input 
                     type='text'
-                    placeholder='Search user by name, email....'
+                    placeholder={t('live_chat.search')}
                     className='w-full outline-none py-1 h-full px-4'
                     onChange={(e)=>setSearch(e.target.value)}
                     value={search}
@@ -62,7 +64,7 @@ const SearchUser = ({onClose}) => {
                 {/**no user found */}
                 {
                     searchUser.length === 0 && !loading && (
-                        <div className='text-center text-slate-500'>no user found!
+                        <div className='text-center text-slate-500'>{t('live_chat.no_user')}
                         </div>
                     )
                 } 

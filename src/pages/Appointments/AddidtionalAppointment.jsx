@@ -9,8 +9,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPatientAppointments, getDoctorAppointments, cancelAppointment } from '../../features/appointment/appointmentSlice';
 import BookAppointmentForm from './BookAppointmentForm'; // Import the updated form
 import axiosInstance from '../../utils/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 const AppointmentPage = () => {
+
+  const {t} = useTranslation()
+
   const dispatch = useDispatch();
   const { currentUser, appointments, loading, error } = useSelector((state) => ({
     currentUser: state.user.currentUser,
@@ -31,7 +35,7 @@ const AppointmentPage = () => {
           dispatch(getPatientAppointments({ page: 1, limit: 10 }));
         }
       } catch (error) {
-        toast.error(error.response?.data?.message || 'Failed to fetch user data');
+        toast.error(error?.data?.message || t('appointment.confirmation.failed'));
       }
     };
 
@@ -51,18 +55,18 @@ const AppointmentPage = () => {
         { status: newStatus }
       );
       dispatch(getPatientAppointments({ page: 1, limit: 10 })); // Refresh appointments
-      toast.success('Status updated successfully');
+      toast.success(t('appointment.confirmation.status_updated'));
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Status update failed');
+      toast.error(error.response?.data?.message || t('appointment.confirmation.status_failed'));
     }
   };
 
   const handleCancelAppointment = async (appointmentId) => {
     try {
       await dispatch(cancelAppointment(appointmentId)).unwrap();
-      toast.success('Appointment cancelled');
+      toast.success(t('appointment.confirmation.app_cancelled'));
     } catch (error) {
-      toast.error(error || 'Cancellation failed');
+      toast.error(error?.response?.message || t('appointment.confirmation.app_failed'));
     }
   };
 
@@ -80,13 +84,13 @@ const AppointmentPage = () => {
     );
   };
 
-  if (loading) return <div>Loading appointments...</div>;
+  if (loading) return <div>{t('appointment.confirmation.loading')}</div>;
 
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold">
-          {isDoctor ? 'My Appointments' : 'Your Appointments'}
+          {isDoctor ? t('appointment.confirmation.my') : t('appointment.confirmation.your')}
         </h1>
       </div>
 
@@ -96,11 +100,11 @@ const AppointmentPage = () => {
         <div className="lg:col-span-2">
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold">Upcoming Appointments</h3>
+              <h3 className="text-lg font-semibold">{t('appointment.confirmation.upcoming')}</h3>
             </div>
             <div className="divide-y">
               {appointments.length === 0 ? (
-                <div className="p-6 text-center text-gray-500">No appointments found</div>
+                <div className="p-6 text-center text-gray-500">{t('appointment.confirmation.no_appointments')}</div>
               ) : (
                 appointments.map((appt) => (
                   <div key={appt._id} className="p-6 hover:bg-gray-50">
@@ -122,7 +126,7 @@ const AppointmentPage = () => {
                               onClick={() => handleCancelAppointment(appt._id)}
                               className="text-red-600 hover:text-red-700 text-sm"
                             >
-                              Cancel
+                              {t('appointment.confirmation.cancel')}
                             </button>
                           )}
                           {isDoctor && appt.status === 'pending' && (
@@ -131,13 +135,13 @@ const AppointmentPage = () => {
                                 onClick={() => handleStatusUpdate(appt._id, 'confirmed')}
                                 className="text-green-600 hover:text-green-700 text-sm"
                               >
-                                Confirm
+                                {t('appointment.confirmation.confirm')}
                               </button>
                               <button
                                 onClick={() => handleStatusUpdate(appt._id, 'cancelled')}
                                 className="text-red-600 hover:text-red-700 text-sm"
                               >
-                                Decline
+                                {t('appointment.confirmation.decline')}
                               </button>
                             </>
                           )}

@@ -13,15 +13,19 @@ import axiosInstance from "../../utils/axiosInstance";
 
 
 // Reusable Comment Table Component
-const CommentTable = ({ comments, onDelete }) => (
-  <Table hoverable className="shadow-md relative">
+function CommentTable ({ comments, onDelete }) {
+
+  const {t} = useTranslation
+
+  return (
+    <Table hoverable className="shadow-md relative">
     <TableHead >
-      <TableHeadCell>Date updated</TableHeadCell>
-      <TableHeadCell>Comment content</TableHeadCell>
-      <TableHeadCell>Number of likes</TableHeadCell>
-      <TableHeadCell>PostId</TableHeadCell>
-      <TableHeadCell>UserId</TableHeadCell>
-      <TableHeadCell>Delete</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.date')}</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.content')}</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.no_of_likes')}</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.post_id')}</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.user_id')}</TableHeadCell>
+      <TableHeadCell>{t('dashboard.comments.delete')}</TableHeadCell>
     </TableHead>
     <TableBody className="divide-y">
       {comments.map((comment) => (
@@ -39,14 +43,15 @@ const CommentTable = ({ comments, onDelete }) => (
               onClick={() => onDelete(comment._id)}
               className="font-medium text-red-500 hover:underline cursor-pointer"
             >
-              Delete
+              {t('dashboard.comments.delete')}
             </span>
           </TableCell>
         </TableRow>
       ))}
     </TableBody>
   </Table>
-);
+  )
+};
 
 export default function DashComments() {
   const {t} = useTranslation() 

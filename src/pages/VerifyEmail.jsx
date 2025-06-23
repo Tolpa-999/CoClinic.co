@@ -5,8 +5,10 @@ import { AuthUrls } from "../utils/serverURL";
 import { FaEnvelope, FaKey } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
+import { useTranslation } from "react-i18next";
 
 const VerifyEmail = () => {
+  const {t} = useTranslation()
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ email: "", confirmCode: null });
   const [openAlert, setOpenAlert] = useState(false);
@@ -21,7 +23,7 @@ const VerifyEmail = () => {
   const handleSubmit = async () => {
     if (!formData.email || !formData.confirmCode) {
       setOpenAlert(true);
-      setSnackbarMessage("Please fill in all required fields.");
+      setSnackbarMessage(t('verify.fill_all'));
       setSnackbarSeverity("error");
       return;
     }
@@ -41,7 +43,7 @@ const VerifyEmail = () => {
   navigate("/signin");
 }, 2000);
     } catch (error) {
-      setSnackbarMessage(error.response?.data?.error || "Verification failed.");
+      setSnackbarMessage(error.response?.data?.error || t('verify.failed'));
       setSnackbarSeverity("error");
     }
   };
@@ -51,12 +53,12 @@ const VerifyEmail = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg max-sm:min-w-[90%] max-w-md w-full ">
         <div className="flex flex-col items-center mb-8">
           <img src={logo} alt="Logo" className="h-16 w-16 mb-4" />
-          <h1 className="text-3xl font-bold text-green-500">CoClinic</h1>
+          <h1 className="text-3xl font-bold text-green-500"></h1>
         </div>
 
         <div className="bg-blue-50 p-6 rounded-lg text-center mb-6">
           <p className="text-gray-700">
-            Please enter the email and confirmation code you received to verify your account.
+            {t('verify.email_confirmation_code')}
           </p>
         </div>
 
@@ -81,14 +83,14 @@ const VerifyEmail = () => {
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 flex items-center">
             <FaEnvelope className="mr-2 text-gray-500" />
-            Email
+            {t('verify.email')}
           </label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="you@example.com"
+            placeholder={t('verify.email_placeholder')}
             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
@@ -96,14 +98,14 @@ const VerifyEmail = () => {
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 flex items-center">
             <FaKey className="mr-2 text-gray-500" />
-            Confirmation Code
+            {t('verify.confirmation_code')}
           </label>
           <input
             type="text"
             name="confirmCode"
             value={formData.confirmCode}
             onChange={handleChange}
-            placeholder="Enter the code sent to your email"
+            placeholder={t('verify.confirmation_code_placeholder')}
             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
@@ -112,12 +114,12 @@ const VerifyEmail = () => {
           onClick={handleSubmit}
           className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-200"
         >
-          Verify Email
+          {t('verify.verify_email')}
         </button>
 
         {verificationSuccess && (
           <p className="mt-4 text-green-600 text-sm text-center">
-            Your email has been verified. You can now log in.
+            {t('verify.success')}
           </p>
         )}
       </div>

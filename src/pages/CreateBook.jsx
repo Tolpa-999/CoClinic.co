@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { BookUrl } from '../utils/serverURL';
 import { toast } from 'react-toastify';
 import axiosInstance from '../utils/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 const CreateBook = () => {
+  const {t} = useTranslation()
+
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
@@ -46,12 +49,12 @@ const CreateBook = () => {
     );
 
     if (invalidFiles.length > 0) {
-      setError('Only JPEG, JPG, PNG, or GIF files up to 5MB are allowed');
+      setError(t('books.allowd_only'));
       return;
     }
 
     if (selectedFiles.length + formData.imageUrls.length > 6) {
-      setError('You can only upload up to 6 images per listing');
+      setError(t('books.number_of_allowed'));
       return;
     }
 
@@ -74,11 +77,11 @@ const CreateBook = () => {
     e.preventDefault();
 
     if (formData.imageUrls.length + files.length < 1) {
-      setError('You must upload at least one image');
+      setError(t('books.at_least'));
       return;
     }
     if (+formData.regularPrice < +formData.discountPrice && formData.offer) {
-      setError('Discount price must be lower than regular price');
+      setError(t('books.lower_or_equal'));
       return;
     }
 
@@ -116,22 +119,22 @@ setLoading(false);
 if (data.status !== 'success') {
   setError(data?.message);
 } else {
-        toast.success(data?.message || 'Book created successfully');
+        toast.success(data?.message || t('books.created'));
       }
     } catch (error) {
-      setError('Failed to create book. Please try again.');
+      setError(t('books.failed_to_create'));
       setLoading(false);
     }
   };
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">Post a Book</h1>
+      <h1 className="text-3xl font-semibold text-center my-7">{t('books.create')}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
-            placeholder="Title"
+            placeholder={t('books.title')}
             className="border p-3 rounded-lg"
             id="title"
             maxLength="62"
@@ -141,7 +144,7 @@ if (data.status !== 'success') {
             value={formData.title}
           />
           <textarea
-            placeholder="Description"
+            placeholder={t('books.description')}
             className="border p-3 rounded-lg"
             id="description"
             required
@@ -150,7 +153,7 @@ if (data.status !== 'success') {
           />
           <input
             type="text"
-            placeholder="Author"
+            placeholder={t('books.author')}
             className="border p-3 rounded-lg"
             id="author"
             required
@@ -166,7 +169,7 @@ if (data.status !== 'success') {
                 onChange={handleChange}
                 checked={formData.offer}
               />
-              <span>Offer</span>
+              <span>{t('books.offer')}</span>
             </div>
           </div>
           <div className="flex flex-wrap gap-6">
@@ -182,7 +185,7 @@ if (data.status !== 'success') {
                 value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
-                <p>Regular price</p>
+                <p>{t('books.regular_price')}</p>
                 <span className="text-xs">$</span>
               </div>
             </div>
@@ -199,7 +202,7 @@ if (data.status !== 'success') {
                   value={formData.discountPrice}
                 />
                 <div className="flex flex-col items-center">
-                  <p>Discounted price</p>
+                  <p>{t('books.discount_price')}</p>
                   <span className="text-xs">$</span>
                 </div>
               </div>
@@ -208,9 +211,9 @@ if (data.status !== 'success') {
         </div>
         <div className="flex flex-col flex-1 gap-4">
           <p className="font-semibold">
-            Images:
+            {t('books.images')}
             <span className="font-normal text-gray-600 ml-2">
-              The first image will be the cover (max 6)
+              {t('books.first_image')}
             </span>
           </p>
           <div className="flex gap-4">
@@ -228,7 +231,7 @@ if (data.status !== 'success') {
           )}
           {formData.imageUrls.length > 0 && (
             <div className="flex flex-col gap-2">
-              <p className="font-semibold">Uploaded Images:</p>
+              <p className="font-semibold">{t('books.uploaded_images')}</p>
               {formData.imageUrls.map((url, index) => (
                 <div
                   key={index}
@@ -244,7 +247,7 @@ if (data.status !== 'success') {
                     onClick={() => handleRemoveImage(index)}
                     className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
                   >
-                    Delete
+                    {t('books.delete')}
                   </button>
                 </div>
               ))}
@@ -252,7 +255,7 @@ if (data.status !== 'success') {
           )}
           {files.length > 0 && (
             <div className="flex flex-col gap-2">
-              <p className="font-semibold">Selected Images:</p>
+              <p className="font-semibold">{t('books.select_images')}</p>
               {files.map((file, index) => (
                 <div
                   key={index}
@@ -268,7 +271,7 @@ if (data.status !== 'success') {
                     onClick={() => handleRemoveFile(index)}
                     className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
                   >
-                    Remove
+                    {t('books.remove')}
                   </button>
                 </div>
               ))}
@@ -278,7 +281,7 @@ if (data.status !== 'success') {
             disabled={loading}
             className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
-            {loading ? 'Creating...' : 'Post Book'}
+            {loading ? t('books.creating') : t('books.create')}
           </button>
           {error && !error.includes('image') && (
             <p className="text-red-700 text-sm">{error}</p>

@@ -54,7 +54,7 @@ const AppointmentConfirmation = () => {
             {t('appointment.confirmation.date')}: {moment(appointment.start).format('MMM Do YYYY, h:mm a')}
           </p>
           <p className="text-gray-600 mt-2">
-            {t('appointment.confirmation.duration')}: 30 minutes
+            {t('appointment.confirmation.duration')}: {t('appointment.confirmation.time')}
           </p>
           {appointment.notes && (
             <p className="text-gray-600 mt-2">
