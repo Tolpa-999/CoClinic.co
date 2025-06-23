@@ -315,7 +315,8 @@ const resources = {
       "please_select": "Please select a doctor",
       "date_time": "Date and Time",
       "notes": "Notes",
-      "appointment_2": "Book Appointment"
+      "appointment_2": "Book Appointment",
+      "processing": "Booking Appointments ..."
     }
   },
 
@@ -865,7 +866,8 @@ const resources = {
       "please_select": "الرجاء اختيار طبيب",
       "date_time": "التاريخ والوقت",
       "notes": "ملاحظات",
-      "appointment_2": "حجز الموعد"
+      "appointment_2": "حجز الموعد",
+      "processing": "جاري حجز موعد ..."
     }
   },
   
