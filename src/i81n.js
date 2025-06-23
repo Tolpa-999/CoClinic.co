@@ -6,17 +6,10 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
     en: {
         translation: {
-
-
-
-
   "language": {
     "arabic": "Arabic",
     "english": "English"
   },
-
-
-
 
   "dashboard": {
     "title": "Dashboard",
@@ -42,7 +35,7 @@ const resources = {
       "delete": "Delete",
       "more": "Show More",
       "no_users": "You Have No Users Yet !",
-      "delete?":"Are you sure you want to delete this user ?",
+      "delete?": "Are you sure you want to delete this user ?",
       "sure_to": "Are you sure you want to ",
       "this": "this user?",
       "sure_delete": "Yes, I’m sure",
@@ -56,13 +49,23 @@ const resources = {
     },
 
     "comments": {
+      "date": "Date Updated",
       "content": "Comment Content",
+      "no_of_likes": "Number of likes",
+      "post_id": "Post Id",
+      "user_id": "User Id",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+
+      "anonymous": "Anonymous User",
+
       "no_comment": "You have no comments yet!",
       "likes": "Likes",
       "name": "Comments",
       "total": "Total comments",
       "recent": "Recent comments",
-      "delete": "Delete",
       "error": "Error fetching comments:",
       "error_more": "Error fetching more comments:",
       "error_delete": "Error deleting comment:",
@@ -84,10 +87,9 @@ const resources = {
       "delete": "Delete",
       "edit": "Edit",
 
-
       "total": "Total posts",
       "recent": "Recent posts",
-      
+
       "error": "Error fetching posts:",
       "error_more": "Error fetching more posts:",
       "unkown": "Unkown",
@@ -99,7 +101,6 @@ const resources = {
       "no_cancel": "No, cancel"
     },
 
-
     "profile": {
       "name": "Profile",
       "updating": "Updating...",
@@ -109,13 +110,11 @@ const resources = {
       "signout": "Sign out",
       "admin": "Admin",
       "user": "User"
-      
     },
 
     "table": {
       "all": "See all",
       "error": "Error fetching dashboard data:"
-
     },
 
     "card": {
@@ -123,20 +122,28 @@ const resources = {
       "all": "See all",
       "error": "Error fetching dashboard data:",
       "unkown": "Unkown"
-
     }
   },
-
-
-
 
   "general": {
     "loading": "Loading...",
     "error": "Error: "
   },
 
+  "verify": {
+    "fill_all": "Please fill in all required fields.",
+    "failed": "Verification failed.",
+    "coclinic": "CoClinic",
+    "email_confirmation_code": "Please enter the email and confirmation code you received to verify your account.",
+    "email": "Email",
+    "email_placeholder": "you@example.com",
+    "confirmation_code": "Confirmation Code",
+    "confirmation_code_placeholder": "Enter the code sent to your email",
+    "verify_email": "Verify Email",
+    "success": "Your email has been verified. You can now log in."
+  },
+
   "header": {
-    "find": "Find doctors, services...",
     "home": "Home",
     "ai_chat": "AI Chat",
     "live_chat": "Live Chat",
@@ -154,8 +161,10 @@ const resources = {
     "sign_in": "Sign In"
   },
 
-
   "home": {
+    "patient_served": "500k+ Patients Served",
+    "join_growing": "Join our growing community",
+
     "headline": "Your Trusted Partner in",
     "digital": "Digital Healthcare",
     "description": "Experience compassionate care through our integrated platform offering direct doctor communication, AI-powered consultations, and seamless healthcare management.",
@@ -208,31 +217,43 @@ const resources = {
       "title": "Coming Soon: Enhanced Support Features",
       "description": "We're constantly evolving to better serve your recovery needs",
       "dashboard": {
-      "title": "Dashboard",
-      "description": "Track your progress, set goals, and visualize data for continuous improvement.",
-      "benefits": "Monitor trends and celebrate achievements along your journey to recovery.",
-      "cta": "View Dashboard"
-    },
-    "community": {
-      "title": "Community Support",
-      "description": "Connect with others on a similar journey, share experiences, and find encouragement.",
-      "benefits": "Build a supportive network and access resources that inspire growth and recovery.",
-      "cta": "Join The Community"
-    },
-    "crisis": {
-      "title": "Crisis Support",
-      "description": "Access emergency contact options and immediate chat support with licensed counselors.",
-      "benefits": "Receive compassionate assistance and guidance during critical times.",
-      "cta": "Contact Crisis Support"
+        "title": "Dashboard",
+        "description": "Track your progress, set goals, and visualize data for continuous improvement.",
+        "benefits": "Monitor trends and celebrate achievements along your journey to recovery.",
+        "cta": "View Dashboard",
+        "soon": "Coming Soon"
+      },
+      "community": {
+        "title": "Community Support",
+        "description": "Connect with others on a similar journey, share experiences, and find encouragement.",
+        "benefits": "Build a supportive network and access resources that inspire growth and recovery.",
+        "cta": "Join The Community"
+      },
+      "crisis": {
+        "title": "Crisis Support",
+        "description": "Access emergency contact options and immediate chat support with licensed counselors.",
+        "benefits": "Receive compassionate assistance and guidance during critical times.",
+        "cta": "Contact Crisis Support"
+      }
     }
-    }
-    
   },
 
-
-   "appointment": {
-
+  "appointment": {
     "confirmation": {
+      "status_updated": "Status updated successfully",
+      "status_failed": "Status update failed",
+      "app_cancelled": "Appointment cancelled",
+      "app_failed": "Appointment failed",
+      "loading": "Loading appointments...",
+      "upcoming": "Upcoming Appointments",
+      "no_appointments": "No appointments found",
+      "time": "30 minutes",
+      "my": "My Appointments",
+      "your": "Your Appointments",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "decline": "Decline",
+
       "success": "Appointment loaded successfully",
       "not_found": "Appointment not found",
       "failed": "Failed to fetch appointment",
@@ -261,10 +282,9 @@ const resources = {
       "cancel": "Cancel",
       "single_confirm": "Confirm",
       "decline": "Decline",
-      "hide":"Hide Booking Form",
+      "hide": "Hide Booking Form",
       "book": "Book New Appointment"
     },
-
 
     "general": {
       "date": "Date :",
@@ -297,20 +317,45 @@ const resources = {
       "notes": "Notes",
       "appointment_2": "Book Appointment"
     }
-   },
+  },
 
-
-   "book": {
+  "book": {
     "loading": "Loading...",
-      "wrong": "Something went wrong!",
-      "copied": "Link copied!",
-      "off": "OFF",
-      "description": "Description"
+    "wrong": "Something went wrong!",
+    "copied": "Link copied!",
+    "off": "OFF",
+    "description": "Description"
+  },
 
-   },
+  "books": {
+    "post_book": "Post Book",
 
+    "allowed_only": "Only JPEG, JPG, PNG, or GIF files up to 5MB are allowed",
+    "number_of_allowed": "You can only upload up to 5 images per listing",
+    "at_least": "You must upload at least one image",
+    "lower_or_equal": "Discount price must be lower than regular price",
+    "created": "Book created successfully",
+    "failed_to_create": "Failed to create book. Please try again.",
 
-   "books": {
+    "create": "Post a Book",
+    "title": "Title",
+    "description": "Description",
+
+    "author": "Author",
+
+    "offer": "Offer",
+    "regular_price": "Regular price",
+    "discounted_price": "Discounted price",
+
+    "images": "Images:",
+    "first_image": "The first image will be the cover",
+    "uploaded_images": "Uploaded Images:",
+
+    "delete": "Delete",
+    "select_images": "Selected Images:",
+    "remove": "Remove",
+    "creating": "Creating...",
+
     "explore": "Explore Our Book Collection",
     "discover": "Discover hand-picked titles at unbeatable deals. Whether you're seeking inspiration or adventure, find your next favorite book here.",
     "browse": "Start Browsing",
@@ -343,48 +388,49 @@ const resources = {
       "unkown": "Unkown",
       "chars_remaining": "characters remaining"
     }
-   },
+  },
 
-
-   "live_chat": {
+  "live_chat": {
     "live": "Live Chat",
     "explore": "Explore users to start a conversation with.",
     "image": "Image",
     "video": "Video",
     "add": "Add Friend",
-    "chat": "Chat"
-   },
+    "chat": "Chat",
+    "loading": "Loading...",
+    "online": "Online",
+    "offline": "Offline",
+    "no_user": "No user found!",
+    "search": "Search user by name, email....",
+    "type_here": "Type message here..."
+  },
 
-   "profile": {
+  "profile": {
     "profile": "profile",
     "username": "username",
     "email": "email",
     "password": "password",
-    "update": "update",
+    "update": "Update",
     "delete": "Delete Account",
-    "signout": "Sign out"
-   },
+    "signout": "Sign out",
+    "please_select": "Please select a valid image file.",
+    "update_fialed": "Update failed.",
+    "loading": "Loading..."
+  },
 
-   "about": {
+  "about": {
     "co": "About CoClinic",
     "description1": "CoClinic is an innovative telehealth platform designed to provide seamless healthcare services through live consultations and interactive AI support. We focus on enhancing the patient experience by offering multiple avenues for interaction, including direct communication with doctors and AI-based chatbots for preliminary consultations.",
     "description2": "Our mission is to bridge the gap between patients and healthcare professionals, making healthcare accessible and convenient for everyone. Whether you need a quick consultation or in-depth medical advice, CoClinic is here to support you at every step."
-   },
-
+  },
 
   "signin": {
-    
     "fields_error": "All fields are required!",
     "email_error": "Please enter a valid email address!",
     "password_length": "Password must be at least 8 characters!",
     "login_falied": "Login failed.",
     "singin_sucess": "Signed in successfully!",
     "something_wrong": "Something went wrong.",
-
-
-
-
-
 
     "coclinic": "CoClinic",
     "headline": "Welcome back! Please sign in to access your account.",
@@ -396,7 +442,7 @@ const resources = {
 
     "loading": "Signing In ...",
     "no_account": "Don't have an account?",
-    "here": "Sign up here"  
+    "here": "Sign up here"
   },
 
   "signup": {
@@ -423,11 +469,6 @@ const resources = {
       "female": "Female"
     },
 
-
-
-
-
-
     "coclinic": "CoClinic",
     "headline": "Embark on a transformative journey with our AI-powered personalized recovery plans and habit-building strategies.",
     "select_role": "Select Role",
@@ -438,21 +479,48 @@ const resources = {
     },
     "username": "Username",
     "username_description": "Please enter a unique username for your account.",
-     "email": "Email",
-     "email_description": "Please enter a valid email address, e.g., name@domain.com.",
-     "name": "Name",
-     "password": "Password",
-     "birthdate": "Birthdate",
-     "select_b_date": "Select Birthdate",
-     "button": "Sign Up"
-
-     
-
-
+    "email": "Email",
+    "email_description": "Please enter a valid email address, e.g., name@domain.com.",
+    "name": "Name",
+    "password": "Password",
+    "birthdate": "Birthdate",
+    "select_b_date": "Select Birthdate",
+    "button": "Sign Up"
   },
 
+  "search": {
+    "term": "Search Term:",
+    "type": "Type:",
+    "sale": "Sale",
+    "offer": "Offer",
+    "sort": "Sort:",
+    "price_high_low": "Price high to low",
+    "prive_low_high": "Price low to high",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "listing_results": "Listing results:",
+    "no_listing": "No listing found!",
+    "loading": "Loading...",
+    "show_more": "Show more"
+  },
 
-     "footer": {
+  "chat": {
+    "medical": "Medical Assistant",
+    "expected": "Expected data.data to be an array:",
+    "error_history": "Error loading chat history:Error loading chat history:",
+    "error_parsing": "Error parsing chunk:",
+    "chat_error": "Chat error:",
+
+    "how_to_help": "Hello! How can I help you today?",
+    "here_to_answer": "I'm here to answer your medical questions with care and expertise",
+    "educational_puroses": "Information provided for educational purposes only, not medical advice",
+    "assistant": "Medical Assistant",
+    "new": "New Chat",
+    "powerd_by": "Powered by Gemini - Trusted Medical Answers",
+    "type_here": "Type your message here..."
+  },
+
+  "footer": {
     "brand": "CoClinic Care",
     "description": "Committed to providing compassionate, personalized healthcare that puts you first. Your wellness journey is our priority, every step of the way.",
     "services": "Services",
@@ -473,141 +541,157 @@ const resources = {
     "terms_of_service": "Terms of Service",
     "cookies_policy": "Cookies Policy"
   }
-
-
-
 }
+
     },
     ar: {
         translation: {
-
   "language": {
     "arabic": "العربية",
     "english": "الإنجليزية"
   },
-
-
+  
   "dashboard": {
-  "title": "لوحة التحكم",
-  "signout": "تسجيل الخروج",
-
-  "post": {
-    "name": "منشور"
-  },
-
-  "users": {
-    "name": "المستخدمون",
-    "total": "إجمالي المستخدمين",
-    "recent": "أحدث المستخدمين",
-
-    "image": "صورة المستخدم",
-    "username": "اسم المستخدم",
-    "email": "البريد الإلكتروني",
-    "admin": "مسؤول",
-    "doctor": "طبيب",
-    "promote": "ترقية",
-    "demote": "إزالة الترقية",
-    "date": "تاريخ الإنشاء",
-    "delete": "حذف",
-    "more": "عرض المزيد",
-    "no_users": "لا يوجد مستخدمون حتى الآن!",
-    "delete?": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
-    "sure_to": "هل أنت متأكد أنك تريد",
-    "this": "هذا المستخدم؟",
-    "sure_delete": "نعم، أنا متأكد",
-    "no_cancel": "لا، إلغاء",
-
-    "error": "حدث خطأ أثناء جلب المستخدمين:",
-    "error_more": "حدث خطأ أثناء تحميل المزيد من المستخدمين:",
-    "single_error": "خطأ:",
-
-    "unkown": "غير معروف"
-  },
-
-  "comments": {
-    "content": "محتوى التعليق",
-    "no_comment": "لا توجد تعليقات حتى الآن!",
-    "likes": "الإعجابات",
-    "name": "التعليقات",
-    "total": "إجمالي التعليقات",
-    "recent": "أحدث التعليقات",
-    "delete": "حذف",
-    "error": "حدث خطأ أثناء جلب التعليقات:",
-    "error_more": "حدث خطأ أثناء تحميل المزيد من التعليقات:",
-    "error_delete": "حدث خطأ أثناء حذف التعليق:",
-    "more": "عرض المزيد",
-    "empty": "لا توجد تعليقات حتى الآن!",
-    "delete?": "هل أنت متأكد أنك تريد حذف هذا التعليق؟",
-    "sure_delete": "نعم، أنا متأكد",
-    "no_cancel": "لا، إلغاء",
-
-    "unkown": "غير معروف"
-  },
-
-  "posts": {
-    "name": "المنشورات",
-    "date": "تاريخ التحديث",
-    "image": "صورة المنشور",
-    "title": "عنوان المنشور",
-    "category": "الفئة",
-    "delete": "حذف",
-    "edit": "تعديل",
-
-    "total": "إجمالي المنشورات",
-    "recent": "أحدث المنشورات",
-    
-    "error": "حدث خطأ أثناء جلب المنشورات:",
-    "error_more": "حدث خطأ أثناء تحميل المزيد من المنشورات:",
-    "unkown": "غير معروف",
-    "delete_error": "حدث خطأ أثناء حذف المنشور:",
-    "more": "عرض المزيد",
-    "no_posts": "لا توجد منشورات حتى الآن!",
-    "delete?": "هل أنت متأكد أنك تريد حذف هذا المنشور؟",
-    "sure_delete": "نعم، أنا متأكد",
-    "no_cancel": "لا، إلغاء"
-  },
-
-  "profile": {
-    "name": "الملف الشخصي",
-    "updating": "جارٍ التحديث...",
-    "update": "تحديث",
-    "failed_update": "فشل في التحديث.",
-    "delete": "حذف الحساب",
+    "title": "لوحة التحكم",
     "signout": "تسجيل الخروج",
-    "admin": "مسؤول",
+    
+    "post": {
+      "name": "منشور"
+    },
+    
+    "users": {
+      "name": "المستخدمين",
+      "total": "إجمالي المستخدمين",
+      "recent": "أحدث المستخدمين",
+      
+      "image": "صورة المستخدم",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "admin": "مدير",
+      "doctor": "طبيب",
+      "promote": "ترقية",
+      "demote": "تنزيل",
+      "date": "تاريخ الإنشاء",
+      "delete": "حذف",
+      "more": "عرض المزيد",
+      "no_users": "لا يوجد مستخدمين حتى الآن!",
+      "delete?": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+      "sure_to": "هل أنت متأكد أنك تريد",
+      "this": "هذا المستخدم؟",
+      "sure_delete": "نعم، أنا متأكد",
+      "no_cancel": "لا، إلغاء",
+      
+      "error": "خطأ في جلب المستخدمين:",
+      "error_more": "خطأ في جلب المزيد من المستخدمين:",
+      "single_error": "خطأ:",
+      
+      "unkown": "غير معروف"
+    },
+    
+    "comments": {
+      "date": "تاريخ التحديث",
+      "content": "محتوى التعليق",
+      "no_of_likes": "عدد الإعجابات",
+      "post_id": "معرّف المنشور",
+      "user_id": "معرّف المستخدم",
+      "delete": "حذف",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "edit": "تعديل",
+      
+      "anonymous": "مستخدم مجهول",
+      
+      "no_comment": "لا يوجد تعليقات حتى الآن!",
+      "likes": "إعجابات",
+      "name": "التعليقات",
+      "total": "إجمالي التعليقات",
+      "recent": "أحدث التعليقات",
+      "error": "خطأ في جلب التعليقات:",
+      "error_more": "خطأ في جلب المزيد من التعليقات:",
+      "error_delete": "خطأ في حذف التعليق:",
+      "more": "عرض المزيد",
+      "empty": "لا يوجد تعليقات حتى الآن!",
+      "delete?": "هل أنت متأكد أنك تريد حذف هذا التعليق؟",
+      "sure_delete": "نعم، أنا متأكد",
+      "no_cancel": "لا، إلغاء",
+      
+      "unkown": "غير معروف"
+    },
+    
+    "posts": {
+      "name": "المنشورات",
+      "date": "تاريخ التحديث",
+      "image": "صورة المنشور",
+      "title": "عنوان المنشور",
+      "category": "الفئة",
+      "delete": "حذف",
+      "edit": "تعديل",
+      
+      "total": "إجمالي المنشورات",
+      "recent": "أحدث المنشورات",
+      
+      "error": "خطأ في جلب المنشورات:",
+      "error_more": "خطأ في جلب المزيد من المنشورات:",
+      "unkown": "غير معروف",
+      "delete_error": "خطأ في حذف المنشور:",
+      "more": "عرض المزيد",
+      "no_posts": "لا يوجد منشورات حتى الآن!",
+      "delete?": "هل أنت متأكد أنك تريد حذف هذا المنشور؟",
+      "sure_delete": "نعم، أنا متأكد",
+      "no_cancel": "لا، إلغاء"
+    },
+    
+    "profile": {
+      "name": "الملف الشخصي",
+      "updating": "جاري التحديث...",
+      "update": "تحديث",
+      "failed_update": "فشل التحديث.",
+      "delete": "حذف الحساب",
+      "signout": "تسجيل الخروج",
+      "admin": "مدير",
       "user": "مستخدم"
+    },
+    
+    "table": {
+      "all": "عرض الكل",
+      "error": "خطأ في جلب بيانات لوحة التحكم:"
+    },
+    
+    "card": {
+      "last": "الشهر الماضي",
+      "all": "عرض الكل",
+      "error": "خطأ في جلب بيانات لوحة التحكم:",
+      "unkown": "غير معروف"
+    }
   },
-
-  "table": {
-    "all": "عرض الكل",
-    "error": "حدث خطأ أثناء جلب بيانات لوحة التحكم:"
-  },
-
-  "card": {
-    "last": "الشهر الماضي",
-    "all": "عرض الكل",
-    "error": "حدث خطأ أثناء جلب بيانات لوحة التحكم:",
-    "unkown": "غير معروف"
-  }
-},
-
-
-
+  
   "general": {
-    "loading": "جارٍ التحميل...",
-    "error": "خطأ:"
+    "loading": "جاري التحميل...",
+    "error": "خطأ: "
   },
-
+  
+  "verify": {
+    "fill_all": "الرجاء ملء جميع الحقول المطلوبة.",
+    "failed": "فشل التحقق.",
+    "coclinic": "CoClinic",
+    "email_confirmation_code": "الرجاء إدخال البريد الإلكتروني ورمز التأكيد الذي تلقيته للتحقق من حسابك.",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "you@example.com",
+    "confirmation_code": "رمز التأكيد",
+    "confirmation_code_placeholder": "أدخل الرمز المرسل إلى بريدك",
+    "verify_email": "تحقق من البريد",
+    "success": "تم التحقق من بريدك الإلكتروني. يمكنك الآن تسجيل الدخول."
+  },
+  
   "header": {
-    "find": "ابحث عن الأطباء والخدمات...",
     "home": "الرئيسية",
-    "ai_chat": "مساعد الذكاء الاصطناعي",
+    "ai_chat": "الدردشة بالذكاء الاصطناعي",
     "live_chat": "الدردشة المباشرة",
     "appointments": "المواعيد",
     "resources": "الموارد",
-    "about": "من نحن",
-    "co": "Co",
-    "clinic": "Clinic",
+    "about": "معلومات عنا",
+    "co": "كو",
+    "clinic": "كلينيك",
     "slogan": "رعاية رحيمة، في أي وقت",
     "my_profile": "ملفي الشخصي",
     "settings": "الإعدادات",
@@ -616,89 +700,113 @@ const resources = {
     "sign_up": "إنشاء حساب",
     "sign_in": "تسجيل الدخول"
   },
-
+  
   "home": {
-    "headline": "شريكك الموثوق في الرعاية ",
-    "digital": "الصحية الرقمية",
-    "description": "اختبر رعاية إنسانية عبر منصتنا المتكاملة التي توفر تواصلاً مباشراً مع الأطباء، واستشارات مدعومة بالذكاء الاصطناعي، وإدارة سلسة للرعاية الصحية.",
+    "patient_served": "500 ألف+ مريض تم خدمتهم",
+    "join_growing": "انضم إلى مجتمعنا المتنامي",
+    
+    "headline": "شريكك الموثوق في",
+    "digital": "الرعاية الصحية الرقمية",
+    "description": "جرب رعاية رحيمة من خلال منصتنا المتكاملة التي توفر اتصالًا مباشرًا مع الأطباء، واستشارات مدعومة بالذكاء الاصطناعي، وإدارة سلسة للرعاية الصحية.",
     "get_started": "ابدأ الآن",
-    "learn_more": "اعرف المزيد",
+    "learn_more": "تعلم المزيد",
     "hipaa": "متوافق مع HIPAA",
     "rated": "خدمة بتقييم 5 نجوم"
   },
-
-
+  
   "featured": {
-    "title": "دعم شامل لرحلتك ",
-    "r_journey": "نحو التعافي",
-    "description": "عزز تعافيك من خلال مجموعة أدوات وموارد متكاملة، مصممة من قبل متخصصين في الرعاية الصحية.",
+    "title": "دعم شامل لرحلتك نحو",
+    "r_journey": " التعافي",
+    "description": "مكن تعافيك مع مجموعة الأدوات والموارد المتكاملة المصممة من قبل متخصصي الرعاية الصحية.",
+    
     "ai_assistant": {
-      "title": "مساعد الذكاء الاصطناعي",
-      "description": "احصل على دعم متواصل على مدار الساعة من خلال مساعد الذكاء الاصطناعي وتمتع بتجربة تفاعلية سلسة.",
-      "benefits": "حسّن تجربتك مع ردود فورية ومساعدة مخصصة.",
-      "cta": "تحدث مع الئاكاء الاصطناعي"
+      "title": "المساعد بالذكاء الاصطناعي",
+      "description": "احصل على دعم على مدار الساعة مع مساعدنا الذكي وتفاعل محادثة سلسة.",
+      "benefits": "عزز تجربتك مع ردود فورية ومساعدة مخصصة.",
+      "cta": "تحدث مع الذكاء الاصطناعي"
     },
+    
     "get_doctor": {
       "title": "احصل على طبيب",
-      "description": "ابحث واحجز وقيّم الأطباء النفسيين للوصول إلى الدعم المناسب لرحلتك نحو التعافي.",
-      "benefits": "استفد من خيارات علاجية مخصصة وابنِ علاقة علاجية فعالة.",
+      "description": "ابحث واحجز وقيم الأطباء للعثور على الدعم المناسب لرحلتك نحو التعافي.",
+      "benefits": "احصل على خيارات علاجية مخصصة وعلاقة علاجية هادفة.",
       "cta": "ابحث عن طبيب"
     },
+    
     "resources": {
       "title": "موارد تعليمية",
-      "description": "احصل على مكتبة شاملة من المقالات والفيديوهات والمواد المتعلقة بالتعافي من الإدمان.",
-      "benefits": "وسع معرفتك واكتسب رؤى لدعم رحلتك العلاجية.",
-      "cta": "استكشف الموارد"
+      "description": "احصل على مكتبة شاملة من المقالات والفيديوهات والمواد حول التعافي من الإدمان.",
+      "benefits": "وسع معرفتك واحصل على رؤى لدعم رحلتك نحو التعافي."
     },
+    
     "recovery": {
-      "title": "تعافٍ مخصص",
-      "description": "خصص رحلة التعافي وفقًا للتقييمات والاحتياجات الشخصية.",
-      "benefits": "احصل على خطط دعم شخصية لتحقيق الشفاء على المدى الطويل.",
+      "title": "تعافي مخصص",
+      "description": "خصص رحلتك نحو التعافي بناءً على تقييمات واحتياجات فردية.",
+      "benefits": "احصل على خطط تعافي مخصصة ودعم لتحقيق صحة طويلة الأمد.",
       "cta": "عرض خطة التعافي"
     },
+    
     "tracker": {
       "title": "متتبع العادات",
-      "description": "راقب عاداتك، وتعرف على المحفزات، وتتبع التقدم للحفاظ على السلوكيات الإيجابية.",
-      "benefits": "حدد أهدافًا وشاهد تحسنًا في العادات اليومية لدعم التعافي.",
+      "description": "راقب العادات، حدد المحفزات، وتتبع التقدم للحفاظ على سلوكيات إيجابية.",
+      "benefits": "حدد أهدافًا وشاهد تحسنًا في العادات اليومية لدعم أهداف تعافيك.",
       "cta": "عرض متتبع العادات"
     },
+    
     "quotes": {
       "title": "اقتباسات ملهمة",
-      "description": "رحلة الألف ميل تبدأ بخطوة واحدة.",
-      "cta": "استكشف المزيد",
-      "benefits": "اعثر على التحفيز والدعم لمواصلة طريقك نحو التعافي."
+      "description": "\"رحلة الألف ميل تبدأ بخطوة واحدة.\"",
+      "cta": "استكشف المزيد من الاقتباسات",
+      "benefits": "ابحث عن التحفيز والتشجيع للبقاء قويًا في رحلتك نحو التعافي."
     },
+    
     "coming_soon": {
-      "title": "قريبًا: ميزات دعم متقدمة",
-      "description": "نحن نعمل باستمرار لتطوير خدماتنا وتلبية احتياجاتك في رحلة التعافي.",
+      "title": "قريبًا: ميزات دعم محسنة",
+      "description": "نحن نتطور باستمرار لخدمة احتياجات تعافيك بشكل أفضل",
+      
       "dashboard": {
-      "title": "لوحة التحكم",
-      "benefits": "تتبع واحتفل ب انجازاتك اثناء رحلة التعافي",
-      "description": "تابع تقدمك، حدد أهدافك، واستعرض بياناتك من أجل تحسين مستمر.",
-      "cta": "عرض لوحة التحكم"
-    },
-    "community": {
-      "title": "الدعم المجتمعي",
-      "description": "تواصل مع الآخرين في رحلات مشابهة، وشارك الخبرات، وابحث عن الإلهام.",
-      "benefits": "ابنِ شبكة دعم واستفد من الموارد التي تعزز النمو والتعافي.",
-      "cta": "انضم إلى المجتمع"
-    },
-    "crisis": {
-      "title": "دعم في الأزمات",
-      "description": "احصل على خيارات اتصال طارئة ودعم فوري من مستشارين معتمدين.",
-      "benefits": "تلَقَ المساعدة باهتمام وتعاطف في الأوقات الحرجة.",
-      "cta": "اتصل بالدعم الطارئ"
-    }
+        "title": "لوحة التحكم",
+        "description": "تابع تقدمك، حدد أهدافًا، وتصور البيانات للتحسن المستمر.",
+        "benefits": "راقب الاتجاهات واحتفل بالإنجازات في رحلتك نحو التعافي.",
+        "cta": "عرض لوحة التحكم",
+        "soon": "قريبًا"
+      },
+      
+      "community": {
+        "title": "دعم المجتمع",
+        "description": "تواصل مع آخرين في رحلة مماثلة، شارك التجارب، وابحث عن التشجيع.",
+        "benefits": "ابن شبكة دعم واحصل على موارد تلهم النمو والتعافي.",
+        "cta": "انضم إلى المجتمع"
+      },
+      
+      "crisis": {
+        "title": "دعم الأزمات",
+        "description": "احصل على خيارات اتصال طارئة ودردشة فورية مع مستشارين مرخصين.",
+        "benefits": "احصل على مساعدة رحيمة وإرشادات خلال الأوقات الحرجة.",
+        "cta": "اتصل بدعم الأزمات"
+      }
     }
   },
-
-
+  
   "appointment": {
-
     "confirmation": {
+      "status_updated": "تم تحديث الحالة بنجاح",
+      "status_failed": "فشل تحديث الحالة",
+      "app_cancelled": "تم إلغاء الموعد",
+      "app_failed": "فشل الموعد",
+      "loading": "جاري تحميل المواعيد...",
+      "upcoming": "المواعيد القادمة",
+      "no_appointments": "لا توجد مواعيد",
+      "time": "30 دقيقة",
+      "my": "مواعيدي",
+      "your": "مواعيدك",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "decline": "رفض",
+      
       "success": "تم تحميل الموعد بنجاح",
-      "not_found": "لم يتم العثور على موعد",
-      "failed": "فشل في جلب بيانات الموعد",
+      "not_found": "لم يتم العثور على الموعد",
+      "failed": "فشل جلب الموعد",
       "title": "تم تأكيد الموعد!",
       "with": "موعدك مع",
       "date": "التاريخ والوقت",
@@ -707,15 +815,15 @@ const resources = {
       "status": "الحالة",
       "view_appointments": "عرض جميع المواعيد"
     },
-
+    
     "form": {
       "success": "تم حجز الموعد بنجاح!",
       "failed": "فشل الحجز",
       "sucess_update": "تم تحديث الحالة بنجاح",
-      "cancelled": "تم الإلغاء",
+      "cancelled": "ملغى",
       "loading": "جاري تحميل المواعيد...",
       "new": "حجز موعد جديد",
-      "doctor": "الطبيب",
+      "doctor": "طبيب",
       "date&time": "التاريخ والوقت",
       "notes": "ملاحظات",
       "confirm": "تأكيد الحجز",
@@ -724,10 +832,10 @@ const resources = {
       "cancel": "إلغاء",
       "single_confirm": "تأكيد",
       "decline": "رفض",
-      "hide": "إخفاء النموذج",
+      "hide": "إخفاء نموذج الحجز",
       "book": "حجز موعد جديد"
     },
-
+    
     "general": {
       "date": "التاريخ:",
       "from": "من:",
@@ -735,85 +843,114 @@ const resources = {
       "to": "إلى:",
       "mine": "مواعيدي"
     },
-
+    
     "status": {
       "completed": "مكتمل",
       "confirmed": "مؤكد",
-      "cancelled": "ملغي",
+      "cancelled": "ملغى",
       "pending": "قيد الانتظار"
     },
-
+    
     "patient": {
       "cancel_consultaion": "إلغاء الاستشارة",
       "consultation": "استشارة المريض"
     },
-
+    
     "book": {
-      "form": "احجز موعد جديد",
-      "hide_form": "اخفاء استمارة الحجز",
+      "form": "حجز موعد جديد",
+      "hide_form": "إخفاء نموذج الحجز",
       "appointment_1": "حجز موعد",
-      "select_doctor": "اختر الطبيب",
-      "loading": "جارٍ تحميل الأطباء...",
-      "please_select": "يرجى اختيار طبيب",
+      "select_doctor": "اختر طبيبًا",
+      "loading": "جاري تحميل الأطباء...",
+      "please_select": "الرجاء اختيار طبيب",
       "date_time": "التاريخ والوقت",
       "notes": "ملاحظات",
-      "appointment_2": "تأكيد الحجز"
+      "appointment_2": "حجز الموعد"
     }
   },
-
+  
   "book": {
     "loading": "جاري التحميل...",
-    "wrong": "حدث خطأ!",
+    "wrong": "حدث خطأ ما!",
     "copied": "تم نسخ الرابط!",
-    "off": "متوقف",
+    "off": "إيقاف",
     "description": "الوصف"
   },
-
-
+  
   "books": {
+    "post_book": "نشر كتاب",
+    
+    "allowed_only": "يُسمح فقط بملفات JPEG أو JPG أو PNG أو GIF بحجم يصل إلى 5MB",
+    "number_of_allowed": "يمكنك تحميل ما يصل إلى 5 صور لكل قائمة",
+    "at_least": "يجب تحميل صورة واحدة على الأقل",
+    "lower_or_equal": "يجب أن يكون سعر الخصم أقل من السعر العادي",
+    "created": "تم إنشاء الكتاب بنجاح",
+    "failed_to_create": "فشل إنشاء الكتاب. الرجاء المحاولة مرة أخرى.",
+    
+    "create": "نشر كتاب",
+    "title": "العنوان",
+    "description": "الوصف",
+    "author": "المؤلف",
+    "offer": "عرض",
+    "regular_price": "السعر العادي",
+    "discounted_price": "سعر الخصم",
+    "images": "الصور:",
+    "first_image": "ستكون الصورة الأولى هي الغلاف",
+    "uploaded_images": "الصور المرفوعة:",
+    "delete": "حذف",
+    "select_images": "الصور المحددة:",
+    "remove": "إزالة",
+    "creating": "جاري الإنشاء...",
+    
     "explore": "استكشف مجموعتنا من الكتب",
-    "discover": "اكتشف عناوين مختارة بعناية وبأسعار لا تُنافس. سواء كنت تبحث عن الإلهام أو المغامرة، ستجد هنا كتابك المفضل القادم.",
+    "discover": "اكتشف عناوين مختارة بعناية بصفقات لا تُقاوم. سواء كنت تبحث عن إلهام أو مغامرة، ستجد كتابك المفضل التالي هنا.",
     "browse": "ابدأ التصفح",
-    "today_offer": "عروض اليوم الخاصة",
+    "today_offer": "العروض الخاصة اليوم",
     "loading": "جاري تحميل العروض...",
     "featured": "كتب مميزة",
     "more": "عرض المزيد",
-    "join_community": "انضم إلى مجتمع القرّاء",
-    "subscribe_benefits": "اشترك لتصلك التحديثات حول الإصدارات الجديدة، ولقاءات الكتّاب، والخصومات الحصرية.",
+    "join_community": "انضم إلى مجتمع القراءة لدينا",
+    "subscribe_benefits": "اشترك للحصول على تحديثات حول الوافدين الجدد، محادثات المؤلفين، وخصومات حصرية.",
     "subscribe_now": "اشترك الآن",
     "failed": "فشل نشر التعليق.",
     "error": "حدث خطأ أثناء نشر التعليق.",
-
+    
     "comment": {
       "failed": "فشل جلب التعليقات:",
       "error": "خطأ في جلب التعليقات:",
-      "length": "يجب أن تتراوح التعليقات بين 1 و200 حرف.",
+      "length": "يجب أن يكون طول التعليق بين 1 و200 حرف.",
       "name": "التعليقات",
-      "as": "تم تسجيل الدخول باسم:",
-      "must": "يجب تسجيل الدخول للتعليق.",
+      "as": "مسجل الدخول كـ:",
+      "must": "يجب تسجيل الدخول لإضافة تعليق.",
       "sign": "تسجيل الدخول",
-      "no_comments": "لا توجد تعليقات حتى الآن!",
+      "no_comments": "لا توجد تعليقات بعد!",
       "sure": "هل أنت متأكد أنك تريد حذف هذا التعليق؟",
       "yes": "نعم، أنا متأكد",
       "no": "لا، إلغاء",
       "error_like": "خطأ في الإعجاب بالتعليق:",
       "error_delete": "خطأ في حذف التعليق:",
       "submit": "إرسال",
-      "submitting": "جاري الإرسال...",
+      "submitting": "جاري الإرسال",
       "unkown": "غير معروف",
-      "chars_remaining": "حروف متبقية"
+      "chars_remaining": "حرف متبقي"
     }
   },
-
+  
   "live_chat": {
     "live": "الدردشة المباشرة",
     "explore": "استكشف المستخدمين لبدء محادثة معهم.",
     "image": "صورة",
     "video": "فيديو",
     "add": "إضافة صديق",
-    "chat": "محادثة"
+    "chat": "دردشة",
+    "loading": "جاري التحميل...",
+    "online": "متصل",
+    "offline": "غير متصل",
+    "no_user": "لم يتم العثور على مستخدم!",
+    "search": "ابحث عن مستخدم بالاسم، البريد الإلكتروني....",
+    "type_here": "اكتب رسالتك هنا..."
   },
-
+  
   "profile": {
     "profile": "الملف الشخصي",
     "username": "اسم المستخدم",
@@ -821,98 +958,129 @@ const resources = {
     "password": "كلمة المرور",
     "update": "تحديث",
     "delete": "حذف الحساب",
-    "signout": "تسجيل الخروج"
+    "signout": "تسجيل الخروج",
+    "please_select": "الرجاء اختيار ملف صورة صالح.",
+    "update_fialed": "فشل التحديث.",
+    "loading": "جاري التحميل..."
   },
-
+  
   "about": {
     "co": "عن CoClinic",
-    "description1": "CoClinic هي منصة رعاية صحية رقمية مبتكرة تهدف إلى تقديم خدمات طبية سلسة من خلال الاستشارات المباشرة والدعم التفاعلي بالذكاء الاصطناعي. نحن نركز على تحسين تجربة المريض من خلال توفير وسائل تواصل متعددة تشمل التواصل المباشر مع الأطباء وروبوتات الدردشة الذكية للاستشارات الأولية.",
-    "description2": "مهمتنا هي سد الفجوة بين المرضى والمتخصصين في الرعاية الصحية، وجعل الوصول إلى الخدمات الصحية سهلاً ومتاحاً للجميع. سواء كنت بحاجة إلى استشارة سريعة أو نصيحة طبية متعمقة، فإن CoClinic هنا لدعمك في كل خطوة."
+    "description1": "CoClinic هي منصة رعاية صحية عن بُعد مبتكرة مصممة لتقديم خدمات رعاية صحية سلسة من خلال استشارات مباشرة ودعم تفاعلي بالذكاء الاصطناعي. نركز على تعزيز تجربة المريض من خلال تقديم طرق متعددة للتفاعل، بما في ذلك التواصل المباشر مع الأطباء وروبوتات الدردشة بالذكاء الاصطناعي للاستشارات الأولية.",
+    "description2": "مهمتنا هي سد الفجوة بين المرضى ومقدمي الرعاية الصحية، وجعل الرعاية الصحية في متناول الجميع ومريحة. سواء كنت بحاجة إلى استشارة سريعة أو مشورة طبية متعمقة، CoClinic هنا لدعمك في كل خطوة."
   },
-
+  
   "signin": {
-
-  "fields_error": "جميع الحقول مطلوبة!",
-  "email_error": "يرجى إدخال عنوان بريد إلكتروني صالح!",
-  "password_length": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل!",
-  "login_falied": "فشل تسجيل الدخول.",
-  "singin_sucess": "تم تسجيل الدخول بنجاح!",
-  "something_wrong": "حدث خطأ ما.",
-  "no_account": "ليس لديك حساب ؟",
-  "here": "انشء حساب" ,
-  "loading": "جاري تسجيل الدخول...",
-
-
-    "headline": "مرحباً بعودتك! يرجى تسجيل الدخول للوصول إلى حسابك.",
+    "fields_error": "جميع الحقول مطلوبة!",
+    "email_error": "الرجاء إدخال عنوان بريد إلكتروني صالح!",
+    "password_length": "يجب أن تكون كلمة المرور 8 أحرف على الأقل!",
+    "login_falied": "فشل تسجيل الدخول.",
+    "singin_sucess": "تم تسجيل الدخول بنجاح!",
+    "something_wrong": "حدث خطأ ما.",
+    
+    "coclinic": "CoClinic",
+    "headline": "مرحبًا بعودتك! الرجاء تسجيل الدخول للوصول إلى حسابك.",
     "email": "البريد الإلكتروني",
     "email_placeholder": "name@example.com",
     "password": "كلمة المرور",
     "password_placeholder": "أدخل كلمة المرور الخاصة بك",
-    "button": "تسجيل الدخول"
+    "button": "تسجيل الدخول",
+    
+    "loading": "جاري تسجيل الدخول ...",
+    "no_account": "ليس لديك حساب؟",
+    "here": "سجل هنا"
   },
-
+  
   "signup": {
-
-    "fill_all1": "يرجى تعبئة جميع الحقول قبل الإرسال.",
-  "fill_all2": "يرجى تعبئة جميع الحقول المطلوبة.",
-  "loading": "جاري إنشاء الحساب...",
-  "registering_error": "فشل في عملية التسجيل.",
-  "registering_sucess": "تم التسجيل بنجاح! يرجى التحقق من بريدك الإلكتروني.",
-  "specialization": "التخصص",
-  "specialization_description": "أدخل تخصصك الطبي.",
-
-  "admin_code": "رمز المسؤول",
-  "admin_code_description": "أدخل رمز التحقق الخاص بالمسؤول.",
-  "name_description": "ما هو اسمك الكامل؟",
-  "password_description": "أدخل كلمة مرور قوية لتأمين حسابك.",
-  "birthdate_description": "اختر تاريخ ميلادك.",
-  "gender_description": "ما هو جنسك؟",
-  "gender": "الجنس",
-  "select": "اختر",
-  "go_login": "اذهب لتسجيل الدخول",
-  "gender_options": {
+    "fill_all1": "الرجاء ملء جميع الحقول قبل الإرسال.",
+    "fill_all2": "الرجاء ملء جميع الحقول المطلوبة.",
+    "loading": "جاري التسجيل ...",
+    "registering_error": "فشل التسجيل.",
+    "registering_sucess": "تم التسجيل بنجاح! الرجاء التحقق من بريدك الإلكتروني.",
+    "specialization": "التخصص",
+    "specialization_description": "أدخل تخصصك الطبي.",
+    
+    "admin_code": "رمز المدير",
+    "admin_code_description": "أدخل رمز التحقق للمدير.",
+    "name_description": "ما هو اسمك الكامل؟",
+    "password_description": "أدخل كلمة مرور قوية لتأمين حسابك.",
+    "birthdate_description": "حدد تاريخ ميلادك.",
+    "gender_description": "ما هو جنسك؟",
+    "gender": "الجنس",
+    "select": "اختر",
+    "go_login": "انتقل إلى تسجيل الدخول",
+    
+    "gender_options": {
       "male": "ذكر",
-      "female": "انثى"
+      "female": "أنثى"
     },
-
-
-
-
-    "headline": "ابدأ رحلتك التحولية مع خطط التعافي المخصصة بالذكاء الاصطناعي واستراتيجيات بناء العادات.",
+    
+    "coclinic": "CoClinic",
+    "headline": "انطلق في رحلة تحويلية مع خططنا المخصصة للتعافي المدعومة بالذكاء الاصطناعي واستراتيجيات بناء العادات.",
     "select_role": "اختر الدور",
     "role": {
       "patient": "مريض",
       "doctor": "طبيب",
-      "admin": "مسؤول"
+      "admin": "مدير"
     },
     "username": "اسم المستخدم",
-    "username_description": "يرجى إدخال اسم مستخدم فريد لحسابك.",
+    "username_description": "الرجاء إدخال اسم مستخدم فريد لحسابك.",
     "email": "البريد الإلكتروني",
-    "email_description": "يرجى إدخال بريد إلكتروني صالح، مثل name@domain.com.",
+    "email_description": "الرجاء إدخال عنوان بريد إلكتروني صالح، مثل name@domain.com.",
     "name": "الاسم",
     "password": "كلمة المرور",
     "birthdate": "تاريخ الميلاد",
-    "select_b_date": "اختيار تاريخ الميلاد",
+    "select_b_date": "حدد تاريخ الميلاد",
     "button": "إنشاء حساب"
-},
-
-
-
-    "footer": {
+  },
+  
+  "search": {
+    "term": "مصطلح البحث:",
+    "type": "النوع:",
+    "sale": "بيع",
+    "offer": "عرض",
+    "sort": "ترتيب:",
+    "price_high_low": "السعر من الأعلى إلى الأقل",
+    "prive_low_high": "السعر من الأقل إلى الأعلى",
+    "latest": "الأحدث",
+    "oldest": "الأقدم",
+    "listing_results": "نتائج القوائم:",
+    "no_listing": "لم يتم العثور على قوائم!",
+    "loading": "جاري التحميل...",
+    "show_more": "عرض المزيد"
+  },
+  
+  "chat": {
+    "medical": "المساعد الطبي",
+    "expected": "كان من المتوقع أن تكون data.data مصفوفة:",
+    "error_history": "خطأ في تحميل سجل الدردشة:",
+    "error_parsing": "خطأ في تحليل الجزء:",
+    "chat_error": "خطأ في الدردشة:",
+    
+    "how_to_help": "مرحبًا! كيف يمكنني مساعدتك اليوم؟",
+    "here_to_answer": "أنا هنا للإجابة على استفساراتك الطبية بعناية وخبرة",
+    "educational_puroses": "المعلومات المقدمة لأغراض تعليمية فقط، وليست نصيحة طبية",
+    "assistant": "المساعد الطبي",
+    "new": "دردشة جديدة",
+    "powerd_by": "مدعوم من جيميني - إجابات طبية موثوقة",
+    "type_here": "اكتب رسالتك هنا..."
+  },
+  
+  "footer": {
     "brand": "رعاية CoClinic",
-    "description": "ملتزمون بتقديم رعاية صحية رحيمة وشخصية تضعك في المقام الأول. رحلتك نحو العافية هي أولويتنا في كل خطوة.",
+    "description": "ملتزمون بتقديم رعاية صحية رحيمة ومخصصة تضعك في المقام الأول. رحلتك نحو الصحة هي أولويتنا، في كل خطوة.",
     "services": "الخدمات",
-    "your_email": "بريدك الالكتروني",
+    "your_email": "بريدك الإلكتروني",
     "appointments": "المواعيد",
     "ai_consultation": "استشارة الذكاء الاصطناعي",
-    "emergency_chat": "الدردشة الطارئة",
+    "emergency_chat": "دردشة الطوارئ",
     "recovery_plans": "خطط التعافي",
-    "contact_us": "تواصل معنا",
-    "address": "123 شارع الصحة، مدينة الرعاية، كاليفورنيا 98765",
+    "contact_us": "اتصل بنا",
+    "address": "123 شارع الصحة، مدينة العناية، كاليفورنيا 98765",
     "phone": "(555) 123-4567",
     "email": "care@coclinic.com",
     "health_tips": "نصائح صحية",
-    "subscribe_prompt": "اشترك في النشرة البريدية للحصول على نصائح صحية وتحديثات",
+    "subscribe_prompt": "اشترك في نشرتنا الإخبارية للحصول على نصائح صحية وتحديثات",
     "subscribe": "اشترك",
     "copyright": "© 2024 CoClinic - رعاية رحيمة للجميع",
     "privacy_policy": "سياسة الخصوصية",
