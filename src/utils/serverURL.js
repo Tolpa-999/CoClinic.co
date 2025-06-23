@@ -66,7 +66,7 @@ export const AdminUrls = {
     promote_demote: `${baseAdminUrl}/promote_demote`,
 }
 export const AppointmentUrls = {
-        checkout: `${baseAppointmentUrl}/checkout`, // New endpoint
+        checkout: `${baseAppointmentUrl}/create-checkout-session`, // New endpoint
     verifyPayment: `${baseAppointmentUrl}/verify-payment`,
     create: `${baseAppointmentUrl}/create`,
     patient: `${baseAppointmentUrl}/patient`,
