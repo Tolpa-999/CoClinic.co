@@ -253,7 +253,7 @@ useEffect(() => {
               {t('chat.how_to_help')}
             </h3>
             <p className="text-gray-500">
-              {t('chat.how_to_answer')}
+              {t('chat.here_to_answer')}
             </p>
           </motion.div>
         ) : (
