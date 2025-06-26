@@ -126,14 +126,6 @@ const Profile = () => {
         />
         <input
           type="text"
-          placeholder="username"
-          id="username"
-          className="border p-3 rounded-lg"
-          ref={usernameRef}
-          defaultValue={currentUser.username}
-        />
-        <input
-          type="text"
           placeholder="name"
           id="name"
           className="border p-3 rounded-lg"
