@@ -70,6 +70,10 @@ const Header = () => {
     to: "/dashboard", 
     label: t('header.dashboard')
   }
+  const doctorLinks = {
+    to: "/create-book", 
+    label: t('header.create_book')
+  }
 
 
   return (
@@ -142,6 +146,17 @@ const Header = () => {
                     className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
                   >
                     {adminLinks.label}
+                  </Link>
+                  )
+                }
+                {
+                  currentUser?.isDoctor && (
+                    <Link
+                    key={doctorLinks.to}
+                    to={doctorLinks.to}
+                    className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
+                  >
+                    {doctorLinks.label}
                   </Link>
                   )
                 }
@@ -291,6 +306,18 @@ const Header = () => {
                     className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
                   >
                     {adminLinks.label}
+                  </Link>
+                  )
+            }
+
+            {
+                  currentUser?.isDoctor && (
+                    <Link
+                    key={doctorLinks.to}
+                    to={doctorLinks.to}
+                    className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
+                  >
+                    {doctorLinks.label}
                   </Link>
                   )
                 }

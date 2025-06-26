@@ -144,6 +144,7 @@ const resources = {
   },
 
   "header": {
+    "create_book": "Create Book",
     "find": "Find Doctors, Services ...",
     "home": "Home",
     "ai_chat": "AI Chat",
@@ -690,6 +691,7 @@ const resources = {
   },
   
   "header": {
+    "create_book": "انشاء كتاب",
     "find": "ابحث عن الأطباء والخدمات ..",
     "home": "الرئيسية",
     "ai_chat": "الدردشة بالذكاء الاصطناعي",

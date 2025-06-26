@@ -5,18 +5,22 @@ import { BookUrl } from '../utils/serverURL';
 import { toast } from 'react-toastify';
 import axiosInstance from '../utils/axiosInstance';
 import { useTranslation } from 'react-i18next';
+import { store } from '../app/store';
 
 const CreateBook = () => {
   const {t} = useTranslation()
 
+
   const { currentUser } = useSelector((state) => state.user);
+
+  console.log("current User ===> ", currentUser)
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
     title: '',
     description: '',
-    author: '',
+    author: currentUser.name,
     regularPrice: 50,
     discountPrice: 0,
     offer: false,
@@ -159,6 +163,7 @@ if (data.status !== 'success') {
             required
             onChange={handleChange}
             value={formData.author}
+            disabled
           />
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
@@ -220,10 +225,11 @@ if (data.status !== 'success') {
             <input
               onChange={handleFileChange}
               className="p-3 border border-gray-300 rounded w-full"
-              type="file"
+              type="text"
               id="images"
-              accept="image/jpeg,image/jpg,image/png,image/gif"
-              multiple
+              placeholder='Image Url'
+              // accept="image/jpeg,image/jpg,image/png,image/gif"
+              // multiple
             />
           </div>
           {error && error.includes('image') && (
