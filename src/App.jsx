@@ -61,7 +61,7 @@ const App = () => {
           <Route path="/aichat" element={<ChatPage/>} />
           <Route path="/livechat" element={<LiveChat />} />
           <Route path="/appointment" element={<Appointment/>} />
-          <Route path="/appointment/confirmation/:appointmentId" element={<AppointmentConfirmation />} />
+          <Route path="/appointment/confirmation" element={<AppointmentConfirmation />} />
           <Route path="/recoveryplan" element={<h3>Hello world</h3>} />
           <Route path="/resource" element={<Books/>} />
           <Route path="/resource/:listingId" element={<Book />} />

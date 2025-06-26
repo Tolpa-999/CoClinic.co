@@ -7,27 +7,34 @@ import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import axiosInstance from '../../utils/axiosInstance';
 
+
+
 const AppointmentConfirmation = () => {
   const { t } = useTranslation();
-  const { appointmentId } = useParams();
   const navigate = useNavigate();
   const [appointment, setAppointment] = useState(null);
   const [loading, setLoading] = useState(true);
+  const sessionId = localStorage.getItem('payment-session')
 
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const { data } = await axiosInstance.get(`${AppointmentUrls.patient}`, {
-          params: { appointmentId },
+        const { data } = await axiosInstance.get(`${AppointmentUrls.verifyPayment}`, {
+          sessionId: sessionId
         });
-        const appt = data.data.find((a) => a._id === appointmentId);
-        if (appt) {
-          setAppointment(appt);
-          toast.success(t('appointment.confirmation.success'));
-        } else {
-          toast.error(t('appointment.confirmation.not_found'));
-          navigate('/appointment');
-        }
+
+        console.log("data in the verify payment request ====> ", data)
+
+        // const all_appointments = await axiosInstance.get(`${AppointmentUrls.patient}`)
+
+        // const appt = data.data.find((a) => a._id === appointmentId);
+        // if (appt) {
+        //   setAppointment(appt);
+        //   toast.success(t('appointment.confirmation.success'));
+        // } else {
+        //   toast.error(t('appointment.confirmation.not_found'));
+        //   navigate('/appointment');
+        // }
       } catch (error) {
         console.log("error in response from appointment confirmatino ====> ", error)
         toast.error(error.response?.data?.message || t('appointment.confirmation.failed'));
@@ -38,7 +45,7 @@ const AppointmentConfirmation = () => {
     };
 
     fetchAppointment();
-  }, [appointmentId, navigate, t]);
+  }, [sessionId, navigate, t]);
 
   if (loading) return <div>{t('general.loading')}</div>;
 

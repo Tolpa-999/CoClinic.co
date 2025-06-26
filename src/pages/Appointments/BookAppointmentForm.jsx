@@ -42,7 +42,9 @@ const BookAppointmentForm = () => {
       ).unwrap();
 
       // Redirect to Stripe checkout
+      localStorage.setItem('payment-session', result?.data?.sessionId)
       window.location.href = result.data.url;
+      
     } catch (err) {
       toast.error(err || t('appointment.book.checkout_failed'));
     }

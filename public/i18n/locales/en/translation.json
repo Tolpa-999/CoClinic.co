@@ -1,8 +1,30 @@
 {
+
+    "search": {
+      "options": "search options",
+    "title": "Search",
+    "term": "Search Term:",
+    "placeholder": "Search...",
+    "type": "Type:",
+    "sale": "Sale",
+    "offer": "Offer",
+    "sort": "Sort:",
+    "price_high_low": "Price high to low",
+    "price_low_high": "Price low to high",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "listing_results": "Listing results:",
+    "no_listing": "No listing found!",
+    "loading": "Loading...",
+    "show_more": "Show more"
+  },
+
+
   "language": {
     "arabic": "Arabic",
     "english": "English"
   },
+
 
   "dashboard": {
     "title": "Dashboard",
@@ -481,21 +503,7 @@
     "button": "Sign Up"
   },
 
-  "search": {
-    "term": "Search Term:",
-    "type": "Type:",
-    "sale": "Sale",
-    "offer": "Offer",
-    "sort": "Sort:",
-    "price_high_low": "Price high to low",
-    "prive_low_high": "Price low to high",
-    "latest": "Latest",
-    "oldest": "Oldest",
-    "listing_results": "Listing results:",
-    "no_listing": "No listing found!",
-    "loading": "Loading...",
-    "show_more": "Show more"
-  },
+
 
   "chat": {
     "medical": "Medical Assistant",

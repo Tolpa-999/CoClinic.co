@@ -68,9 +68,9 @@ export const AdminUrls = {
 export const AppointmentUrls = {
         checkout: `${baseAppointmentUrl}/create-checkout-session`, // New endpoint
     verifyPayment: `${baseAppointmentUrl}/verify-payment`,
-    create: `${baseAppointmentUrl}/create`,
-    patient: `${baseAppointmentUrl}/patient`,
-    doctor: `${baseAppointmentUrl}/doctor`,
+    // create: `${baseAppointmentUrl}/create`,
+    patient: `${baseAppointmentUrl}/patient-appointments`,
+    doctor: `${baseAppointmentUrl}/doctor-appointments`,
     doctors: `${baseAppointmentUrl}/doctors`,
     status: `${baseAppointmentUrl}/status`,
     delete: `${baseAppointmentUrl}/delete`,
