@@ -3,13 +3,15 @@ import userReducer from "../features/user/userSlice";
 import chatReducer from "../features/chat/chatSlice"; // Import chatSlice
 import appointmentReducer from "../features/appointment/appointmentSlice"; // Import chatSlice
 import languageReducer from "../features/language/languageSlice"; // Import chatSlice
+import otherReducer from "../features/others/otherSlices"; // 
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
   user: userReducer,
   chat: chatReducer, // chatSlice to the root reducer
   appointment: appointmentReducer,
-  language: languageReducer
+  language: languageReducer,
+  other: otherReducer,
 });
 const persistConfig = {
   key: "root",

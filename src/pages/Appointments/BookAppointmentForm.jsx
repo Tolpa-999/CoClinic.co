@@ -6,9 +6,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
+import { setOthers } from '../../features/others/otherSlices';
+
+
+
 const BookAppointmentForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  
+
   const { doctors, loading, error } = useSelector((state) => state.appointment);
   const [doctorId, setDoctorId] = useState('');
   const [start, setStart] = useState(new Date());
@@ -18,6 +25,7 @@ const BookAppointmentForm = () => {
   useEffect(() => {
     dispatch(getDoctors());
   }, [dispatch]);
+
 
   useEffect(() => {
     if (error) {
@@ -42,7 +50,8 @@ const BookAppointmentForm = () => {
       ).unwrap();
 
       // Redirect to Stripe checkout
-      localStorage.setItem('payment-session', result?.data?.sessionId)
+      dispatch(setOthers(result?.data?.sessionId))
+      // console.log(result?.data)
       window.location.href = result.data.url;
       
     } catch (err) {

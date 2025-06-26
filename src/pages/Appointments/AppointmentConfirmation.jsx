@@ -7,19 +7,24 @@ import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import axiosInstance from '../../utils/axiosInstance';
 
+import { store } from '../../app/store';
 
 
 const AppointmentConfirmation = () => {
+  const sessionId = store.getState().other.sessionId;
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [appointment, setAppointment] = useState(null);
   const [loading, setLoading] = useState(true);
-  const sessionId = localStorage.getItem('payment-session')
+
+
+
+  console.log("sessionId =====> ", sessionId)
 
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        const { data } = await axiosInstance.get(`${AppointmentUrls.verifyPayment}`, {
+        const { data } = await axiosInstance.post(`${AppointmentUrls.verifyPayment}`, {
           sessionId: sessionId
         });
 
