@@ -28,13 +28,26 @@ const AppointmentConfirmation = () => {
           sessionId: sessionId
         });
 
-        const appointmentId = data?.appointmentId
+        console.log('data in appointment confifmation =====> ', data)
 
-        console.log('appoinemtnId in appointment confifmation =====> ', appointmentId)
+        const appointment_id = data?.data?.appointmentId
 
-        if (appointmentId) {
-          setAppointment(appointmentId);
-          toast.success(t('appointment.confirmation.success'));
+        if (!appointment_id) {
+          console.error('appointmentId not found in the response')
+          return ;
+        }
+
+        const appointment_exists  = await axiosInstance.get(`${AppointmentUrls.patient}?appointmentId=${appointment_id}`);
+
+        console.log('appointment_exists.data ====> ', appointment_exists?.data?.data[0])
+
+        
+
+        console.log('appoinemtnId in appointment confifmation =====> ', appointment_id)
+
+        if (appointment_id) {
+          setAppointment(appointment_exists?.data?.data[0]);
+          toast.success(t(appointment_exists?.data?.message || 'appointment.confirmation.success'));
         } else {
           toast.error(t('appointment.confirmation.not_found'));
           console.error(t('appointment.confirmation.not_found'));
