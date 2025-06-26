@@ -30,17 +30,20 @@ const AppointmentConfirmation = () => {
 
         const appointmentId = data?.appointmentId
 
+        console.log('appoinemtnId in appointment confifmation =====> ', appointmentId)
+
         if (appointmentId) {
           setAppointment(appointmentId);
           toast.success(t('appointment.confirmation.success'));
         } else {
           toast.error(t('appointment.confirmation.not_found'));
-          navigate('/appointment');
+          console.error(t('appointment.confirmation.not_found'));
+          // navigate('/appointment');
         }
       } catch (error) {
         console.log("error in response from appointment confirmatino ====> ", error)
         toast.error(error.response?.data?.message || t('appointment.confirmation.failed'));
-        navigate('/appointment');
+        // navigate('/appointment');
       } finally {
         setLoading(false);
       }
