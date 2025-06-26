@@ -19,7 +19,7 @@ const AppointmentConfirmation = () => {
 
 
 
-  console.log("sessionId =====> ", sessionId)
+  
 
   useEffect(() => {
     const fetchAppointment = async () => {
@@ -28,18 +28,15 @@ const AppointmentConfirmation = () => {
           sessionId: sessionId
         });
 
-        console.log("data in the verify payment request ====> ", data)
+        const appointmentId = data?.appointmentId
 
-        // const all_appointments = await axiosInstance.get(`${AppointmentUrls.patient}`)
-
-        // const appt = data.data.find((a) => a._id === appointmentId);
-        // if (appt) {
-        //   setAppointment(appt);
-        //   toast.success(t('appointment.confirmation.success'));
-        // } else {
-        //   toast.error(t('appointment.confirmation.not_found'));
-        //   navigate('/appointment');
-        // }
+        if (appointmentId) {
+          setAppointment(appointmentId);
+          toast.success(t('appointment.confirmation.success'));
+        } else {
+          toast.error(t('appointment.confirmation.not_found'));
+          navigate('/appointment');
+        }
       } catch (error) {
         console.log("error in response from appointment confirmatino ====> ", error)
         toast.error(error.response?.data?.message || t('appointment.confirmation.failed'));
