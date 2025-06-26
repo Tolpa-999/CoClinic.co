@@ -38,6 +38,8 @@ const Profile = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("username", usernameRef.current.value);
+    formData.append("name", usernameRef.current.value);
+    formData.append("age", usernameRef.current.value);
     formData.append("email", emailRef.current.value);
     formData.append("password", passwordRef.current.value);
     
@@ -131,12 +133,20 @@ const Profile = () => {
           defaultValue={currentUser.username}
         />
         <input
-          type="email"
-          placeholder="email"
-          id="email"
+          type="text"
+          placeholder="name"
+          id="name"
           className="border p-3 rounded-lg"
-          ref={emailRef}
-          defaultValue={currentUser.email}
+          ref={usernameRef}
+          defaultValue={currentUser.name}
+        />
+        <input
+          type="age"
+          placeholder="age"
+          id="age"
+          className="border p-3 rounded-lg"
+          ref={usernameRef}
+          defaultValue={currentUser.age}
         />
         <input
           type="password"
