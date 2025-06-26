@@ -29,8 +29,8 @@ const resources = {
       "email": "Email",
       "admin": "Admin",
       "doctor": "Doctor",
-      "promote": "Promote ",
-      "demote": "Demote",
+      "approve": "Approve",
+      "unapprove": "Unapprove",
       "date": "Date Created",
       "delete": "Delete",
       "more": "Show More",
@@ -144,6 +144,7 @@ const resources = {
   },
 
   "header": {
+    "find": "Find Doctors, Services ...",
     "home": "Home",
     "ai_chat": "AI Chat",
     "live_chat": "Live Chat",
@@ -158,7 +159,8 @@ const resources = {
     "account_settings": "Account Settings",
     "sign_out": "Sign Out",
     "sign_up": "Sign Up",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "dashboard": "Dashboard"
   },
 
   "home": {
@@ -407,7 +409,7 @@ const resources = {
   },
 
   "profile": {
-    "profile": "profile",
+    "profile": "Profile",
     "username": "username",
     "email": "email",
     "password": "password",
@@ -573,8 +575,8 @@ const resources = {
       "email": "البريد الإلكتروني",
       "admin": "مدير",
       "doctor": "طبيب",
-      "promote": "ترقية",
-      "demote": "تنزيل",
+      "approve": "اعتماد",
+      "unapprove": "الغاء الاعتماد",
       "date": "تاريخ الإنشاء",
       "delete": "حذف",
       "more": "عرض المزيد",
@@ -688,6 +690,7 @@ const resources = {
   },
   
   "header": {
+    "find": "ابحث عن الأطباء والخدمات ..",
     "home": "الرئيسية",
     "ai_chat": "الدردشة بالذكاء الاصطناعي",
     "live_chat": "الدردشة المباشرة",
@@ -702,7 +705,8 @@ const resources = {
     "account_settings": "إعدادات الحساب",
     "sign_out": "تسجيل الخروج",
     "sign_up": "إنشاء حساب",
-    "sign_in": "تسجيل الدخول"
+    "sign_in": "تسجيل الدخول",
+    "dashboard": "لوحة التحكم"
   },
   
   "home": {

@@ -63,7 +63,7 @@ export const CommentUrls = {
 }
 
 export const AdminUrls = {
-    promote_demote: `${baseAdminUrl}/promote_demote`,
+    toggle_approve: `${baseAdminUrl}/toggle-approve`,
 }
 export const AppointmentUrls = {
         checkout: `${baseAppointmentUrl}/create-checkout-session`, // New endpoint

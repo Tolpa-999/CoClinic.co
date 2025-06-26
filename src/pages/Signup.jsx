@@ -76,14 +76,6 @@ const additionalFields = {
       icon: FaStethoscope,
     },
   ],
-  admin: [
-    {
-      key: "adminCode",
-      label: t('signup.admin_code'),
-      description: t('signup.admin_code_description'),
-      icon: FaUserShield,
-    },
-  ],
 };
 
 

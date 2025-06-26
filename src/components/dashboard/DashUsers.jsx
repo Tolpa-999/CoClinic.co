@@ -56,7 +56,6 @@ export default function DashUsers() {
   };
 
   const handleAction = async () => {
-    const {t} = useTranslation()
     const { action, userId } = modalConfig;
     try {
       if (action === 'delete') {
@@ -66,7 +65,7 @@ export default function DashUsers() {
           setUsers((prev) => prev.filter((user) => user._id !== userId));
         }
       } else if (action === 'promoteDemote') {
-        const res = await axiosInstance.patch(`${AdminUrls.promote_demote}/${userId}`);
+        const res = await axiosInstance.patch(`${AdminUrls.toggle_approve}/${userId}`);
         const data = res.data
         if (data.status == 'success') {
           setUsers((prev) =>
@@ -93,7 +92,7 @@ export default function DashUsers() {
               <TableHeadCell>{t('dashboard.users.email')}</TableHeadCell>
               <TableHeadCell>{t('dashboard.users.admin')}</TableHeadCell>
               <TableHeadCell>{t('dashboard.users.doctor')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.promote')} / {t('dashboard.users.demote')}</TableHeadCell>
+              <TableHeadCell>{t('dashboard.users.approve')} / {t('dashboard.users.unapprove')}</TableHeadCell>
               <TableHeadCell>{t('dashboard.users.date')}</TableHeadCell>
               <TableHeadCell>{t('dashboard.users.delete')}</TableHeadCell>
             </TableHead>
@@ -112,7 +111,8 @@ export default function DashUsers() {
                       className={user.isAdmin ? 'text-red-500' : 'text-green-500'}
                       onClick={() => setModalConfig({ show: true, action: 'promoteDemote', userId: user._id })}
                     >
-                      {user.isAdmin ? 'Demote' : 'Promote'}
+
+                      {user.isAdmin ? t('dashboard.users.unapprove') : t('dashboard.users.approve')}
                     </button>
                   </TableCell>
                   <TableCell align="center">{new Date(user.createdAt).toLocaleDateString()}</TableCell>

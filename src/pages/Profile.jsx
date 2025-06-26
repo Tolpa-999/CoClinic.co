@@ -107,7 +107,7 @@ const Profile = () => {
   
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+      <h1 className="text-3xl font-semibold text-center my-7">{t('profile.profile')}</h1>
       
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
@@ -148,7 +148,7 @@ const Profile = () => {
           ref={passwordRef}
         />
         <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
-          {loading ? t('profile.loading') : t('profile.udpate')}
+          {loading ? t('profile.loading') : t('profile.update')}
         </button>
       </form>
       {error && <p className="text-center text-red-500">{error}</p>}

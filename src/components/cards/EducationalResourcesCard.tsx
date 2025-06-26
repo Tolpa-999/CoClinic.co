@@ -18,7 +18,7 @@ const EducationalResourcesCard = () => {
           text: t('featured.resources.benefits'),
         },
       ]}
-      button={{ text: t('featured.resources.cta'), href: '/resource' }}
+      button={{ text: t('featured.resources.benefits'), href: '/resource' }}
     />
   );
 };

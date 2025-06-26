@@ -60,10 +60,17 @@ const Header = () => {
           { to: "/livechat", label: t('header.live_chat') },
           { to: "/appointment", label: t('header.appointments') },
           { to: "/resource", label: t('header.resources') },
+          
         ]
       : []),
     { to: "/about", label: t('header.about') },
   ];
+
+  const adminLinks = {
+    to: "/dashboard", 
+    label: t('header.dashboard')
+  }
+
 
   return (
     <>
@@ -127,6 +134,17 @@ const Header = () => {
                     {link.label}
                   </Link>
                 ))}
+                {
+                  currentUser?.isAdmin && (
+                    <Link
+                    key={adminLinks.to}
+                    to={adminLinks.to}
+                    className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
+                  >
+                    {adminLinks.label}
+                  </Link>
+                  )
+                }
               </nav>
               {currentUser ? (
                 <div className="relative ml-4">
@@ -265,6 +283,17 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            {
+                  currentUser?.isAdmin && (
+                    <Link
+                    key={adminLinks.to}
+                    to={adminLinks.to}
+                    className="text-gray-600 hover:text-green-700 transition-colors duration-200 text-meduim font-medium"
+                  >
+                    {adminLinks.label}
+                  </Link>
+                  )
+                }
           </div>
           {currentUser ? (
             <div className="p-4 border-t border-gray-200">

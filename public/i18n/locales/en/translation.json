@@ -159,6 +159,7 @@
   },
 
   "header": {
+    "find": "Find Doctors, Services ...",
     "home": "Home",
     "ai_chat": "AI Chat",
     "live_chat": "Live Chat",
@@ -173,7 +174,8 @@
     "account_settings": "Account Settings",
     "sign_out": "Sign Out",
     "sign_up": "Sign Up",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "dashboard": "Dashboard"
   },
 
   "home": {
@@ -421,7 +423,7 @@
   },
 
   "profile": {
-    "profile": "profile",
+    "profile": "Profile",
     "username": "username",
     "email": "email",
     "password": "password",
