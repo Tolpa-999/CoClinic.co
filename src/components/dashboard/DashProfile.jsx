@@ -118,7 +118,7 @@ const DashProfile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const { data } = await axiosInstance.get(AuthUrls.signOut);
+      const { data } = await axiosInstance.post(AuthUrls.signOut);
       if (data.status === "success") {
         dispatch(deleteUserSuccess(data));
       } else {

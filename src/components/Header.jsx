@@ -92,12 +92,6 @@ const Header = () => {
                   >
                     <FaBars className="w-6 h-6 text-gray-700" />
                   </button>
-                  <img
-                    src={logo}
-                    width={70}
-                    alt="CoClinic logo"
-                    className="rounded-lg border-2 border-green-100 p-1"
-                  />
                   <div className="hidden md:block">
                     <h1 className="text-4xl font-semibold text-gray-800">
                       <span className="text-green-600">{t('header.co')}</span>
@@ -122,9 +116,10 @@ const Header = () => {
               </div>
             </div>
 
-            <div className={`hidden lg:block relative top-2  ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
+                  <div className={`hidden lg:block items-center   ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
             <LanguageSwitcher />
           </div>
+            
 
             {/* Desktop Navigation and Profile */}
             <div className="hidden lg:flex items-center space-x-6">
@@ -160,6 +155,8 @@ const Header = () => {
                   </Link>
                   )
                 }
+
+                
               </nav>
               {currentUser ? (
                 <div className="relative ml-4">
@@ -212,7 +209,7 @@ const Header = () => {
             
 
             {/* Search Bar (Mobile) - Show only on small screens */}
-            <div className="flex-1 p-2 lg:hidden max-sm:hidden">
+            <div className="flex-1 p-2 lg:hidden ">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <FaSearch className="w-4 h-4 text-gray-400" />

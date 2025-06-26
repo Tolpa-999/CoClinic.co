@@ -30,18 +30,15 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group ">
       <button 
-        className="absolute flex items-center space-x-1 text-gray-600 hover:text-green-700 transition-colors"
+        className="flex items-center space-x-1 text-gray-600 hover:text-green-700 transition-colors cursor-pointer"
         aria-label={t('header.language_switcher')}
         onClick={() => {
           setIsOpen(!isOpen)
         }}
       >
         <FaGlobe className="max-md:w-5 max-md:h-5 md:w-7 md:h-7" />
-        <span className="inline text-sm font-medium">
-          {currentLanguage === 'en' ? 'EN' : 'AR'}
-        </span>
       </button>
       
       {

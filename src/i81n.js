@@ -7,6 +7,7 @@ const resources = {
     en: {
         translation: {
   "language": {
+    "title": "Language",
     "arabic": "Arabic",
     "english": "English"
   },
@@ -554,6 +555,7 @@ const resources = {
     ar: {
         translation: {
   "language": {
+    "title": "اللغة",
     "arabic": "العربية",
     "english": "الإنجليزية"
   },
@@ -694,11 +696,11 @@ const resources = {
     "create_book": "انشاء كتاب",
     "find": "ابحث عن الأطباء والخدمات ..",
     "home": "الرئيسية",
-    "ai_chat": "الدردشة بالذكاء الاصطناعي",
+    "ai_chat": "الذكاء الاصطناعي",
     "live_chat": "الدردشة المباشرة",
     "appointments": "المواعيد",
     "resources": "الموارد",
-    "about": "معلومات عنا",
+    "about": " من نحن",
     "co": "كو",
     "clinic": "كلينيك",
     "slogan": "رعاية رحيمة، في أي وقت",

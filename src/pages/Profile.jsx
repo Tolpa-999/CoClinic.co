@@ -5,6 +5,8 @@ import {  deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStar
 import { AuthUrls, UserUrls } from "../utils/serverURL";
 import axiosInstance from "../utils/axiosInstance";
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import i18n from "../i81n";
 const Profile = () => {
   const {t} = useTranslation()
   const [profileImage, setProfileImage] = useState(null);
@@ -31,8 +33,10 @@ const Profile = () => {
       alert(t('profile.please_select'));
     }
   };
+  const currentLanguage = i18n.language;
 
   const handleSubmit = async (e) => {
+
     
     dispatch(updateUserStart())
     e.preventDefault();
@@ -40,14 +44,14 @@ const Profile = () => {
     formData.append("username", usernameRef.current.value);
     formData.append("name", usernameRef.current.value);
     formData.append("age", usernameRef.current.value);
-    formData.append("email", emailRef.current.value);
     formData.append("password", passwordRef.current.value);
     
     if (profileImageRef.current instanceof File) {
       formData.append("profileImage", profileImageRef.current);
     }
 
-    try {
+    async function update() {
+          try {
       const res = await axiosInstance.post(`${UserUrls.update}/`+currentUser._id, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -74,11 +78,13 @@ const Profile = () => {
       setSuccess(null)
       
     }
+    }
+
   };
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const data = await axiosInstance.get(AuthUrls.signOut);
+      const data = await axiosInstance.post(AuthUrls.signOut);
       // const data = await res.json();
       console.log(data.data)
       if (data.status !== 200) {
@@ -108,6 +114,10 @@ const Profile = () => {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">{t('profile.profile')}</h1>
+
+      {/* <div className={`max-lg:hidden   ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
+            <LanguageSwitcher />
+        </div> */}
       
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
@@ -118,6 +128,7 @@ const Profile = () => {
           accept="image/*"
           onChange={handleImageChange}
         />
+
         <img
           onClick={() => fileRef.current.click()}
           src={profileImage || currentUser.avatar}
@@ -147,7 +158,9 @@ const Profile = () => {
           className="border p-3 rounded-lg"
           ref={passwordRef}
         />
-        <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
+        <button disabled={loading} onClick={() => {
+          update()
+        }} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? t('profile.loading') : t('profile.update')}
         </button>
       </form>
