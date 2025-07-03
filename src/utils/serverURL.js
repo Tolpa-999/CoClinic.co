@@ -1,6 +1,6 @@
 export const baseURL = "https://co-clinic.vercel.app"
 
-// const baseURL = "https:localhost:3000/api"
+// export const baseURL = "http:localhost:3000"
 
 
 const baseAuthUrl = `${baseURL}/api/auth/users`

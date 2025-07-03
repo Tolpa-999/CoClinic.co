@@ -41,7 +41,7 @@ const HomeChat = () => {
 
   /***socket connection */
   useEffect(()=>{
-    const socketConnection = io(baseURL,{
+    const socketConnection = io("https://co-clinic.up.railway.app",{
       auth : {
         token : localStorage.getItem('token')
       },
