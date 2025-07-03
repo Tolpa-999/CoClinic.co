@@ -45,6 +45,7 @@ const HomeChat = () => {
       auth : {
         token : localStorage.getItem('token')
       },
+      transports: ['websocket'], // force only WebSocket
     })
 
     socketConnection.on('onlineUser',(data)=>{
