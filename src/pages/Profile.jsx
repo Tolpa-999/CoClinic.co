@@ -50,6 +50,10 @@ const Profile = () => {
       formData.append("profileImage", profileImageRef.current);
     }
 
+
+  };
+
+
     async function update() {
           try {
       const res = await axiosInstance.post(`${UserUrls.update}/`+currentUser._id, formData, {
@@ -79,8 +83,6 @@ const Profile = () => {
       
     }
     }
-
-  };
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
@@ -158,9 +160,7 @@ const Profile = () => {
           className="border p-3 rounded-lg"
           ref={passwordRef}
         />
-        <button disabled={loading} onClick={() => {
-          update()
-        }} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
+        <button disabled={loading} onClick={update} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? t('profile.loading') : t('profile.update')}
         </button>
       </form>
