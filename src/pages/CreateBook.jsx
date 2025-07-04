@@ -5,19 +5,14 @@ import { BookUrl } from '../utils/serverURL';
 import { toast } from 'react-toastify';
 import axiosInstance from '../utils/axiosInstance';
 import { useTranslation } from 'react-i18next';
-import { store } from '../app/store';
 
 const CreateBook = () => {
-  const {t} = useTranslation()
-
-
+  const { t } = useTranslation();
   const { currentUser } = useSelector((state) => state.user);
-
-  console.log("current User ===> ", currentUser)
   const navigate = useNavigate();
-  const [files, setFiles] = useState([]);
+
   const [formData, setFormData] = useState({
-    imageUrls: [],
+    imageUrls: [''],
     title: '',
     description: '',
     author: currentUser.name,
@@ -30,57 +25,34 @@ const CreateBook = () => {
 
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
-    if (type === 'checkbox') {
-      setFormData((prev) => ({
-        ...prev,
-        [id]: checked,
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [id]: value,
-      }));
-    }
-  };
-
-  const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    // Validate file types and size
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-    const maxSize = 2 * 1024 * 1024; // 5MB
-    const invalidFiles = selectedFiles.filter(
-      (file) => !allowedTypes.includes(file.type) || file.size > maxSize
-    );
-
-    if (invalidFiles.length > 0) {
-      setError(t('books.allowd_only'));
-      return;
-    }
-
-    if (selectedFiles.length + formData.imageUrls.length > 6) {
-      setError(t('books.number_of_allowed'));
-      return;
-    }
-
-    setFiles(selectedFiles);
-    setError(null);
-  };
-
-  const handleRemoveImage = (index) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      imageUrls: prev.imageUrls.filter((_, i) => i !== index),
+      [id]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleRemoveFile = (index) => {
-    setFiles(files.filter((_, i) => i !== index));
+  const handleImageChange = (index, value) => {
+    setFormData(prev => {
+      const urls = [...prev.imageUrls];
+      urls[index] = value;
+      return { ...prev, imageUrls: urls };
+    });
+  };
+
+  const addImageField = () => {
+    setFormData(prev => ({ ...prev, imageUrls: [...prev.imageUrls, ''] }));
+  };
+
+  const removeImageField = (index) => {
+    setFormData(prev => {
+      const urls = prev.imageUrls.filter((_, i) => i !== index);
+      return { ...prev, imageUrls: urls.length ? urls : [''] };
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (formData.imageUrls.length + files.length < 1) {
+    if (formData.imageUrls.some(url => !url.trim())) {
       setError(t('books.at_least'));
       return;
     }
@@ -91,41 +63,20 @@ const CreateBook = () => {
 
     setLoading(true);
     setError(null);
-
     try {
-      const formDataToSend = new FormData();
-      // Append form fields
-      formDataToSend.append('title', formData.title);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('author', formData.author);
-      formDataToSend.append('regularPrice', formData.regularPrice);
-      formDataToSend.append('discountPrice', formData.discountPrice);
-      formDataToSend.append('offer', formData.offer);
-      formDataToSend.append('userRef', currentUser._id);
-      // Append existing image URLs
-      formData.imageUrls.forEach((url, index) => {
-        formDataToSend.append(`imageUrls[${index}]`, url);
-      });
-      // Append new files
-      files.forEach((file) => {
-        formDataToSend.append('images', file);
-      });
-
-      const res = await axiosInstance.post(BookUrl.create, formDataToSend, {
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-});
-
-const data = res.data;
-setLoading(false);
-
-if (data.status !== 'success') {
-  setError(data?.message);
-} else {
-        toast.success(data?.message || t('books.created'));
+      const payload = {
+        ...formData,
+      };
+      const res = await axiosInstance.post(BookUrl.create, payload);
+      const data = res.data;
+      setLoading(false);
+      if (data.status !== 'success') {
+        setError(data.message);
+      } else {
+        toast.success(data.message || t('books.created'));
+        navigate(`/book/${data.data._id}`);
       }
-    } catch (error) {
+    } catch {
       setError(t('books.failed_to_create'));
       setLoading(false);
     }
@@ -134,164 +85,110 @@ if (data.status !== 'success') {
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">{t('books.create')}</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-        <div className="flex flex-col gap-4 flex-1">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-col gap-4">
           <input
             type="text"
             placeholder={t('books.title')}
-            className="border p-3 rounded-lg"
             id="title"
-            maxLength="62"
-            minLength="10"
             required
+            minLength={10}
+            maxLength={62}
+            className="border p-3 rounded-lg"
             onChange={handleChange}
             value={formData.title}
           />
           <textarea
             placeholder={t('books.description')}
-            className="border p-3 rounded-lg"
             id="description"
             required
+            className="border p-3 rounded-lg"
             onChange={handleChange}
             value={formData.description}
           />
           <input
             type="text"
             placeholder={t('books.author')}
-            className="border p-3 rounded-lg"
             id="author"
             required
-            onChange={handleChange}
-            value={formData.author}
             disabled
+            className="border p-3 rounded-lg bg-gray-100"
+            value={formData.author}
           />
-          <div className="flex gap-6 flex-wrap">
-            <div className="flex gap-2">
-              <input
-                type="checkbox"
-                id="offer"
-                className="w-5"
-                onChange={handleChange}
-                checked={formData.offer}
-              />
-              <span>{t('books.offer')}</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="offer"
+              checked={formData.offer}
+              onChange={handleChange}
+              className="w-5"
+            />
+            <label htmlFor="offer">{t('books.offer')}</label>
           </div>
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <input
                 type="number"
                 id="regularPrice"
-                min="50"
-                max="10000000"
+                min={50}
                 required
-                className="p-3 border border-gray-300 rounded-lg"
+                className="p-3 border rounded-lg"
                 onChange={handleChange}
                 value={formData.regularPrice}
               />
-              <div className="flex flex-col items-center">
-                <p>{t('books.regular_price')}</p>
-                <span className="text-xs">$</span>
-              </div>
+              <span className="text-sm">{t('books.regular_price')}</span>
             </div>
             {formData.offer && (
               <div className="flex items-center gap-2">
                 <input
                   type="number"
                   id="discountPrice"
-                  min="0"
-                  max="10000000"
+                  min={0}
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="p-3 border rounded-lg"
                   onChange={handleChange}
                   value={formData.discountPrice}
                 />
-                <div className="flex flex-col items-center">
-                  <p>{t('books.discount_price')}</p>
-                  <span className="text-xs">$</span>
-                </div>
+                <span className="text-sm">{t('books.discount_price')}</span>
               </div>
             )}
           </div>
         </div>
-        <div className="flex flex-col flex-1 gap-4">
+
+        <div className="flex flex-col gap-4">
           <p className="font-semibold">
-            {t('books.images')}
-            <span className="font-normal text-gray-600 ml-2">
-              {t('books.first_image')}
-            </span>
+            {t('books.images')} <span className="font-normal text-gray-600">{t('books.first_image')}</span>
           </p>
-          <div className="flex gap-4">
-            <input
-              onChange={handleFileChange}
-              className="p-3 border border-gray-300 rounded w-full"
-              type="text"
-              id="images"
-              placeholder='Image Url'
-              // accept="image/jpeg,image/jpg,image/png,image/gif"
-              // multiple
-            />
-          </div>
-          {error && error.includes('image') && (
-            <p className="text-red-700 text-sm">{error}</p>
-          )}
-          {formData.imageUrls.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold">{t('books.uploaded_images')}</p>
-              {formData.imageUrls.map((url, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between p-3 border items-center"
-                >
-                  <img
-                    src={url}
-                    alt="Book image"
-                    className="w-20 h-20 object-contain rounded-lg"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveImage(index)}
-                    className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
-                  >
-                    {t('books.delete')}
-                  </button>
-                </div>
-              ))}
+          {formData.imageUrls.map((url, idx) => (
+            <div key={idx} className="flex items-center gap-2">
+              <input
+                type="url"
+                placeholder="Image URL"
+                required
+                className="flex-1 p-3 border rounded-lg"
+                value={url}
+                onChange={e => handleImageChange(idx, e.target.value)}
+              />
+              <button
+                type="button"
+                onClick={() => removeImageField(idx)}
+                className="p-2 text-red-600 hover:opacity-75"
+              >
+                &times;
+              </button>
             </div>
-          )}
-          {files.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold">{t('books.select_images')}</p>
-              {files.map((file, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between p-3 border items-center"
-                >
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt={file.name}
-                    className="w-20 h-20 object-contain rounded-lg"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveFile(index)}
-                    className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
-                  >
-                    {t('books.remove')}
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
+          ))}
+          <button type="button" onClick={addImageField} className="text-green-600 hover:underline">
+            + {t('books.add_image')}
+          </button>
+          {error && <p className="text-red-700 text-sm">{error}</p>}
           <button
+            type="submit"
             disabled={loading}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-slate-700 text-white rounded-lg hover:opacity-95 disabled:opacity-80"
           >
             {loading ? t('books.creating') : t('books.create')}
           </button>
-          {error && !error.includes('image') && (
-            <p className="text-red-700 text-sm">{error}</p>
-          )}
         </div>
       </form>
     </main>

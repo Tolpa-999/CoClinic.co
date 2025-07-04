@@ -348,6 +348,8 @@ const resources = {
 
   "books": {
     "post_book": "Post Book",
+    "add_image": "Add Image",
+    "discount_price": "Discount Price",
 
     "allowed_only": "Only JPEG, JPG, PNG, or GIF files up to 5MB are allowed",
     "number_of_allowed": "You can only upload up to 5 images per listing",
@@ -921,6 +923,8 @@ const resources = {
   
   "books": {
     "post_book": "نشر كتاب",
+    "add_image": "إضافة صورة",
+    "discount_price": "سعر الخصم",
     
     "allowed_only": "يُسمح فقط بملفات JPEG أو JPG أو PNG أو GIF بحجم يصل إلى 5MB",
     "number_of_allowed": "يمكنك تحميل ما يصل إلى 5 صور لكل قائمة",
