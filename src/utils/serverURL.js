@@ -19,6 +19,7 @@ const baseUploadUrl = `${baseURL}/api`
 
 
 const baseAiChat = `${baseURL}/api`
+// const baseAiChat = `http://localhost:3000/api`
 
 export const UploadUrls = {
     uploadFile: `${baseUploadUrl}/upload`
@@ -79,5 +80,5 @@ export const AppointmentUrls = {
 
 export const AiCahtUrls = {
     create: `${baseAiChat}/chatbot/create`,
-    getChats: `${baseAiChat}/chatbot/chats`,
+    getChat: `${baseAiChat}/chatbot/chat`,
 }

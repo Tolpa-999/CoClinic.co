@@ -93,6 +93,7 @@ const Profile = () => {
         dispatch(deleteUserFailure(data.data));
         return;
       }
+      localStorage.removeItem('chatConversationId');
       dispatch(deleteUserSuccess(data.data));
     } catch (error) {
       dispatch(deleteUserFailure(error.message));

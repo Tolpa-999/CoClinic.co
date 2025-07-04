@@ -31,6 +31,7 @@ import ChatPage from "./pages/AiChat/ChatPage";
 import { useSelector } from 'react-redux';
 import { store } from "./app/store";
 import CreateBook from "./pages/CreateBook";
+import UpdateBookPage from "./pages/UpdateBook";
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/search" element={<Search />} />
         <Route path="" element={<PrivateRoute />}>
+          <Route path="/update-listing/:id" element={<UpdateBookPage/>} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/aichat" element={<ChatPage/>} />
           <Route path="/livechat" element={<LiveChat />} />

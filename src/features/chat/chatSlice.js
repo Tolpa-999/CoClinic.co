@@ -7,7 +7,7 @@ const initialState = {
   avatar : "",
   token : "",
   onlineUser : [],
-  socketConnection : null
+  socketConnection : null,
 }
 
 export const chatSlice = createSlice({
@@ -29,14 +29,15 @@ export const chatSlice = createSlice({
         state.email = ""
         state.avatar = ""
         state.token = ""
-        state.socketConnection = null
+        state.socketConnection = null,
+        state.chatHistoryId = ""
     },
     setOnlineUser : (state,action)=>{
       state.onlineUser = action.payload
     },
     setSocketConnection : (state,action)=>{
       state.socketConnection = action.payload
-    }
+    },
   },
 })
 

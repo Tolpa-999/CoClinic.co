@@ -329,7 +329,21 @@ const resources = {
     "wrong": "Something went wrong!",
     "copied": "Link copied!",
     "off": "OFF",
-    "description": "Description"
+    "description": "Description",
+
+    "title": "Title",
+    "author": "Author",
+    "offer": "Offer",
+    "edit": "Edit Book",
+    "regular_price": "Regular price",
+    "discounted_price": "Discounted price",
+    "current_images": "Current Images",
+    "image_urls": "Image Urls",
+    "image_placeholder": "Image Links",
+    "add_image": "Add Image",
+    "saving": "Saving...",
+    "save_changes": "Save Changes",
+    "book_images": "Book Images"
   },
 
   "books": {
@@ -883,12 +897,27 @@ const resources = {
   },
   
   "book": {
-    "loading": "جاري التحميل...",
-    "wrong": "حدث خطأ ما!",
-    "copied": "تم نسخ الرابط!",
-    "off": "إيقاف",
-    "description": "الوصف"
-  },
+  "loading": "جارٍ التحميل...",
+  "wrong": "حدث خطأ ما!",
+  "copied": "تم نسخ الرابط!",
+  "off": "خصم",
+  "description": "الوصف",
+
+  "title": "العنوان",
+  "author": "المؤلف",
+  "offer": "عرض",
+  "edit": "تعديل الكتاب",
+  "regular_price": "السعر الأساسي",
+  "discounted_price": "السعر بعد الخصم",
+  "current_images": "الصور الحالية",
+  "image_urls": "روابط الصور",
+  "image_placeholder": "أدخل روابط الصور",
+  "add_image": "إضافة صورة",
+  "saving": "جارٍ الحفظ...",
+  "save_changes": "حفظ التعديلات",
+  "book_images": "صور الكتاب"
+}
+,
   
   "books": {
     "post_book": "نشر كتاب",

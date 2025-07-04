@@ -4,12 +4,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const OtherSlices = createSlice({
   name: 'others',
   initialState: {
-    sessionId: undefined, 
+    sessionId: undefined,
   },
   reducers: {
     setOthers: (state, action) => {
       state.sessionId = action.payload;
     },
+
   },
 });
 

@@ -1,8 +1,16 @@
 import React from 'react';
 import { Box, Avatar, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 
 const ChatMessage = ({ message, isUser, language }) => {
+  // Use 'timestamp' for client-side messages, 'date' for backend response, fallback to 'Unknown time'
+  const formattedDate = message.timestamp 
+    ? moment(message.timestamp).format('LLL') 
+    : message.date 
+    ? moment(message.date).format('LLL') 
+    : 'Unknown time';
+
   return (
     <Box 
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-3`}
@@ -22,9 +30,7 @@ const ChatMessage = ({ message, isUser, language }) => {
             </svg>
           </Avatar>
         )}
-        
-
-{isUser && (
+        {isUser && (
           <Avatar 
             sx={{ bgcolor: 'secondary.main' }} 
             className="w-10 h-10"
@@ -32,9 +38,7 @@ const ChatMessage = ({ message, isUser, language }) => {
             {message.name?.charAt(0) || 'U'}
           </Avatar>
         )}
-
         <div className={`rounded-2xl px-4 py-3 ${isUser ? 'bg-blue-100 rounded-tr-none' : 'bg-gray-100 rounded-tl-none'}`}>
-
           <Typography 
             variant="body1" 
             className={`whitespace-pre-wrap ${message.isStreaming ? 'blinking-cursor' : ''}`}
@@ -45,23 +49,16 @@ const ChatMessage = ({ message, isUser, language }) => {
             }}
           >
             {message.content}
-            {message.isStreaming && <span className="inline-block ml-1 w-2 h-4 bg-gray-500
-             animate-pulse"></span>}
+            {message.isStreaming && <span className="inline-block ml-1 w-2 h-4 bg-gray-500 animate-pulse"></span>}
           </Typography>
-          
-
-
-
           <Typography 
             variant="caption" 
             display="block" 
             className={`text-gray-500 mt-1 ${isUser ? 'text-left' : 'text-right'}`}
           >
-            {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {formattedDate}
           </Typography>
         </div>
-        
-        
       </motion.div>
     </Box>
   );

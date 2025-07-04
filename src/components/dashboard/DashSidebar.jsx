@@ -62,6 +62,7 @@ const userItems = [
         dispatch(signOutUserFailure(data));
         return;
       }
+      localStorage.removeItem('chatConversationId');
       dispatch(signOutUserSuccess(data));
     } catch (error) {
       dispatch(signOutUserFailure(error.message));

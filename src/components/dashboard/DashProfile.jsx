@@ -120,6 +120,7 @@ const DashProfile = () => {
       dispatch(signOutUserStart());
       const { data } = await axiosInstance.post(AuthUrls.signOut);
       if (data.status === "success") {
+        localStorage.removeItem('chatConversationId');
         dispatch(deleteUserSuccess(data));
       } else {
         dispatch(deleteUserFailure(data));
