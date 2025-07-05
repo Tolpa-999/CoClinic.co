@@ -1,9 +1,14 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
 import { FaUserMd, FaRobot, FaMobileAlt, FaShieldAlt, FaGlobe, FaHandHoldingHeart, FaHeartbeat, FaUsers, FaLightbulb, FaChartLine } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   const { t } = useTranslation();
+
+  function signupPage() {
+
+  }
   
   // Features data
   const features = [
@@ -206,12 +211,9 @@ const About = () => {
           {t('about.cta_description')}
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button className="bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition-opacity">
-            {t('about.sign_up_free')}
-          </button>
-          <button className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full border border-blue-200 hover:bg-blue-50 transition-colors">
+          <Link to={'/'} className="bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition-opacity">
             {t('about.learn_more')}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
