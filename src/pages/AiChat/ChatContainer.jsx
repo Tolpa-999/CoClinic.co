@@ -92,6 +92,7 @@ const ChatContainer = ({ user }) => {
       if (!response.ok) throw new Error('Network error');
       if (!response.body) throw new Error('No stream');
 
+
       const reader = response.body.getReader();
       const decoder = new TextDecoder(); let buffer = '', botContent = '';
 
@@ -105,10 +106,10 @@ const ChatContainer = ({ user }) => {
           if (!chunk.startsWith('data: ')) continue;
           const text = chunk.replace('data: ', '').trim(); if (text === '[DONE]') continue;
           const data = JSON.parse(text);
-          if (data.chatHistoryId) {
+          // if (data.chatHistoryId) {
             setChatHistoryId(data.chatHistoryId);
             localStorage.setItem('chatConversationId', data.chatHistoryId);
-          }
+          // }
           if (data.text) {
             botContent += data.text;
             setMessages(prev => prev.map((m,i) => i === prev.length -1 ? { ...m, content: botContent } : m));

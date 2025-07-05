@@ -26,11 +26,11 @@ function PostTable ({ posts, onDelete })  {
       {posts?.map((post) => (
         <TableRow
           key={post._id}
-          className="bg-white dark:border-gray-700 dark:bg-gray-800"
+          className="bg-white dark:border-gray-700 dark:bg-white"
         >
           <TableCell>{new Date(post.updatedAt).toLocaleDateString()}</TableCell>
           <TableCell>
-            <Link to={`/listing/${post._id}`}>
+            <Link to={`/resource/${post._id}`}>
               <img
                 src={post.imageUrls[0]}
                 alt={post.name}
@@ -129,7 +129,7 @@ export default function DashPosts() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar !bg-white scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser?.isAdmin && userPosts.length > 0 ? (
         <>
           <PostTable

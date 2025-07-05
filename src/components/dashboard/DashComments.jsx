@@ -15,23 +15,23 @@ import axiosInstance from "../../utils/axiosInstance";
 // Reusable Comment Table Component
 function CommentTable ({ comments, onDelete }) {
 
-  const {t} = useTranslation
+  const {t} = useTranslation()
 
   return (
-    <Table hoverable className="shadow-md relative">
-    <TableHead >
-      <TableHeadCell>{t('dashboard.comments.date')}</TableHeadCell>
-      <TableHeadCell>{t('dashboard.comments.content')}</TableHeadCell>
-      <TableHeadCell>{t('dashboard.comments.no_of_likes')}</TableHeadCell>
-      <TableHeadCell>{t('dashboard.comments.post_id')}</TableHeadCell>
-      <TableHeadCell>{t('dashboard.comments.user_id')}</TableHeadCell>
-      <TableHeadCell>{t('dashboard.comments.delete')}</TableHeadCell>
+    <Table hoverable className="shadow-md relative !text-black">
+    <TableHead className="!text-black">
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.date')}</TableHeadCell>
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.content')}</TableHeadCell>
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.no_of_likes')}</TableHeadCell>
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.post_id')}</TableHeadCell>
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.user_id')}</TableHeadCell>
+      <TableHeadCell className="!bg-gray-200">{t('dashboard.comments.delete')}</TableHeadCell>
     </TableHead>
-    <TableBody className="divide-y">
+    <TableBody className="divide-y" >
       {comments.map((comment) => (
         <TableRow
           key={comment._id}
-          className="bg-white dark:border-gray-700 dark:bg-gray-800"
+          className="bg-white dark:border-gray-100 dark:bg-gray-50"
         >
           <TableCell>{new Date(comment.updatedAt).toLocaleDateString()}</TableCell>
           <TableCell>{comment.content}</TableCell>
@@ -109,7 +109,7 @@ export default function DashComments() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 !bg-white dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser?.isAdmin && comments.length > 0 ? (
         <>
           <CommentTable
@@ -123,7 +123,7 @@ export default function DashComments() {
             <Button
               onClick={handleShowMore}
               color="teal"
-              className="w-full self-center text-sm py-7 hover:bg-teal-600"
+              className="w-full self-center text-sm py-7 mt-5 bg-gray-200"
             >
               {t('dashboard.comments.more')}
             </Button>
@@ -140,11 +140,11 @@ export default function DashComments() {
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
               {t('dashboard.comments.delete?')}
             </h3>
-            <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleDeleteComment}>
+            <div className="flex justify-center gap-4 ">
+              <Button color="failure" className="bg-gray-200 px-2 cursor-pointer" onClick={handleDeleteComment}>
                 {t('dashboard.comments.sure_delete')}
               </Button>
-              <Button color="gray" onClick={() => setShowModal(false)}>
+              <Button className="bg-gray-200 px-2 cursor-pointer" color="failure" onClick={() => setShowModal(false)}>
                 {t('dashboard.comments.no_cancel')}
               </Button>
             </div>

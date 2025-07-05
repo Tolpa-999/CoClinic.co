@@ -23,10 +23,10 @@ import axiosInstance from '../../utils/axiosInstance';
 
 // Define a consistent theme
 const theme = {
-  primaryColor: 'bg-gray-600', // Used for icons and buttons
+  primaryColor: 'bg-gray-200', // Used for icons and buttons
   secondaryColor: 'bg-gray-100', // Card backgrounds
-  hoverColor: 'hover:bg-gray-700', // Button hover
-  textColor: 'text-white-700',
+  hoverColor: 'hover:bg-gray-300', // Button hover
+  textColor: 'text-black',
 };
 
 // Reusable Summary Card Component with hover effects
@@ -34,13 +34,13 @@ function SummaryCard  ({ title, total, lastMonth, icon: Icon }) {
   const {t} = useTranslation()
 
   return (
-    <div className={`flex flex-col p-3 ${theme.secondaryColor} gap-4 md:w-72 w-full rounded-md shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-xl`}>  
+    <div className={` flex flex-col p-3 ${theme.secondaryColor} gap-4 md:w-72 w-full rounded-md shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-xl`}>  
     <div className="flex justify-between">
       <div>
         <h3 className="text-gray-700 text-md uppercase font-sm">{title}</h3>
         <p className="text-2xl">{total}</p>
       </div>
-      <Icon className={`${theme.primaryColor} text-white rounded-full text-5xl p-3 shadow-lg transition-colors duration-200 hover:bg-gray-800`} />
+      <Icon className={` bg-gray-500 text-white rounded-full text-5xl p-3 shadow-lg transition-colors duration-20`} />
     </div>
     <div className="flex gap-2 text-sm">
       <span className="text-green-500 flex items-center transition-colors duration-200 hover:text-green-600">
@@ -60,26 +60,26 @@ function DataTable  ({ title, data, columns, link }) {
   const {t} = useTranslation()
 
   return (
-    <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800 transition-shadow duration-200 hover:shadow-lg">
+    <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-100 transition-shadow duration-200 hover:shadow-lg text-black">
     <div className="flex justify-between p-3 text-sm font-semibold">
-      <h1 className="text-center p-2 text-white transition-colors duration-200 hover:text-gray-200 ">{title}</h1>
-      <Button className={`${theme.primaryColor} ${theme.hoverColor} text-white transition-transform duration-200 hover:scale-105`}>  
+      <h1 className="text-center p-2 text-black transition-colors duration-200 hover:text-gray-200 ">{title}</h1>
+      <Button className={`${theme.primaryColor} ${theme.hoverColor} text-black transition-transform duration-200 hover:scale-105`}>  
         <Link to={link}>{t('dashboard.card.all')}</Link>
       </Button>
     </div>
     <Table hoverable>
       <TableHead className="relative">
         {columns.map((col, index) => (
-          <TableHeadCell key={index} className="transition-colors duration-200 hover:text-gray-500" align='center'>
+          <TableHeadCell key={index} className="transition-colors duration-200 text-gray-600 hover:text-gray-900" align='center'>
             {col.header}
           </TableHeadCell>
         ))}
       </TableHead>
       <TableBody className="divide-y relative">
         {data.map((item, index) => (
-          <TableRow key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700">
+          <TableRow key={index} className="bg-white dark:border-gray-700  transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700">
             {columns.map((col, colIndex) => (
-              <TableCell key={colIndex} align="center" className="text-white transition-colors duration-200 hover:text-gray-300">
+              <TableCell key={colIndex} align="center" className="text-black transition-colors duration-200 hover:text-gray-300">
                 {col.render ? col.render(item) : item[col.key]}
               </TableCell>
             ))}

@@ -22,6 +22,7 @@ export default function DashUsers() {
       try {
         const res = await axiosInstance.get(UserUrls.getAll);
         const data = res.data
+        console.log("data ====> ",data)
         if (data?.status == 'success') {
           setUsers(data?.data);
           if (data.length < 9) {
@@ -82,30 +83,30 @@ export default function DashUsers() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 relative">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar !bg-white scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 relative">
       {currentUser?.isAdmin && users.length > 0 ? (
         <>
           <Table hoverable className='relative'>
-            <TableHead>
-              <TableHeadCell>{t('dashboard.users.image')} </TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.username')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.email')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.admin')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.doctor')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.approve')} / {t('dashboard.users.unapprove')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.date')}</TableHeadCell>
-              <TableHeadCell>{t('dashboard.users.delete')}</TableHeadCell>
+            <TableHead >
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.image')} </TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.username')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.email')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.admin')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.doctor')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.approve')} / {t('dashboard.users.unapprove')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.date')}</TableHeadCell>
+              <TableHeadCell className='bg-gray-200'>{t('dashboard.users.delete')}</TableHeadCell>
             </TableHead>
-            <TableBody className="divide-y">
+            <TableBody className="divide-y bg-gray-100">
               {users.map((user) => (
-                <TableRow key={user._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <TableRow key={user._id} className="bg-white dark:border-gray-700 !dark:bg-gray-100">
                   <TableCell align="center">
                     <img src={user.avatar} alt={user.username} className="w-10 h-10 object-cover bg-gray-500 rounded-full" />
                   </TableCell>
                   <TableCell align="center">{user.username}</TableCell>
                   <TableCell align="center">{user.email}</TableCell>
                   <TableCell align="center">{user.isAdmin ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500" />}</TableCell>
-                  <TableCell align="center">{user.isDoctor ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500" />}</TableCell>
+                  <TableCell align="center"z>{user.isDoctor ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500" />}</TableCell>
                   <TableCell align="center">
                     <button
                       className={user.isAdmin ? 'text-red-500' : 'text-green-500'}
@@ -145,13 +146,15 @@ export default function DashUsers() {
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
               {modalConfig.action === 'delete'
                 ? t('dashboard.users.delete?')
-                : ` ${t('dashboard.users.sure_to')} ${users.find((u) => u._id === modalConfig.userId)?.isAdmin ? t('dashboard.users.demote') : t('dashboard.users.promote')} ${t('dashboard.users.this')}`}
+                : ` ${t('dashboard.users.sure_to')}
+                ${users.find((u) => u._id === modalConfig.userId)?.isAdmin ? t('dashboard.users.unapprove') : t('dashboard.users.approve')} `}
+                {t('dashboard.users.this')}
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleAction}>
+              <Button color="failure" className='px-3 bg-gray-200 cursor-pointer' onClick={handleAction}>
                 {t('dashboard.users.sure_delete')}
               </Button>
-              <Button color="gray" onClick={() => setModalConfig({ show: false })}>
+              <Button color="failure" className='px-3 bg-gray-200 cursor-pointer' onClick={() => setModalConfig({ show: false })}>
                 {t('dashboard.users.no_cancel')}
               </Button>
             </div>

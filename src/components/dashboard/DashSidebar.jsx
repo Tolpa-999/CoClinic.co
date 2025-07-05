@@ -73,8 +73,8 @@ const userItems = [
   const sidebarItems = currentUser?.isAdmin ? [...adminItems, ...userItems] : userItems;
 
   return (
-    <Sidebar className="w-full md:w-56">
-      <SidebarItemGroup className="flex flex-col gap-1">
+    <Sidebar className=" md:w-56 !bg-gray-200 sidebar-custom" style={{ backgroundColor: '#9ca3af' }}>
+        <SidebarItemGroup className="flex flex-col gap-1 bg-gray-100 text-black rounded-md pt-2 grayhover">
         {sidebarItems.map((item, index) => (
           <SidebarItem
             key={index}
@@ -83,12 +83,12 @@ const userItems = [
             active={tab === item.to.split('=')[1]}
             icon={item.icon}
             label={item.label === 'Profile' || 'الملف الشخصي' ? (currentUser.isAdmin ? t('dashboard.profile.admin') : t('dashboard.profile.user')) : undefined}
-            labelColor="gray"
+            className='!text-black '
           >
             {item.label}
           </SidebarItem>
         ))}
-        <SidebarItem icon={HiArrowSmRight} onClick={handleSignOut}>
+        <SidebarItem icon={HiArrowSmRight} onClick={handleSignOut} className='!text-black'>
           {t('dashboard.signout')}
         </SidebarItem>
       </SidebarItemGroup>

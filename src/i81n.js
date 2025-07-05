@@ -440,10 +440,60 @@ const resources = {
   },
 
   "about": {
-    "co": "About CoClinic",
-    "description1": "CoClinic is an innovative telehealth platform designed to provide seamless healthcare services through live consultations and interactive AI support. We focus on enhancing the patient experience by offering multiple avenues for interaction, including direct communication with doctors and AI-based chatbots for preliminary consultations.",
-    "description2": "Our mission is to bridge the gap between patients and healthcare professionals, making healthcare accessible and convenient for everyone. Whether you need a quick consultation or in-depth medical advice, CoClinic is here to support you at every step."
-  },
+  "co": "About CoClinic",
+  "description1": "CoClinic is an innovative telehealth platform designed to provide seamless healthcare services through live consultations and interactive AI support. We focus on enhancing the patient experience by offering multiple avenues for interaction, including direct communication with doctors and AI-based chatbots for preliminary consultations.",
+  "description2": "Our mission is to bridge the gap between patients and healthcare professionals, making healthcare accessible and convenient for everyone. Whether you need a quick consultation or in-depth medical advice, CoClinic is here to support you at every step.",
+  
+  "our_mission": "Our Mission",
+  "our_mission_content": "To make quality healthcare accessible to everyone, everywhere through innovative technology and compassionate care.",
+  "accessibility": "Accessibility",
+  "accessibility_desc": "Breaking down barriers to ensure healthcare is available to all, regardless of location or circumstance",
+  "quality": "Quality Care",
+  "quality_desc": "Providing the highest standard of medical expertise with personalized attention",
+  
+  "our_values": "Our Values",
+  "our_values_desc": "The principles that guide every decision we make",
+  "patient_first": "Patient First",
+  "innovation": "Continuous Innovation",
+  "accessibility": "Universal Accessibility",
+  "transparency": "Radical Transparency",
+  
+  "our_services": "Our Comprehensive Services",
+  "our_services_desc": "Experience healthcare that comes to you, wherever you are",
+  "live_consultations": "Live Doctor Consultations",
+  "live_consultations_desc": "Connect with board-certified physicians in real-time for diagnosis and treatment",
+  "ai_assistant": "AI Health Assistant",
+  "ai_assistant_desc": "24/7 access to our intelligent chatbot for symptom checking and health information",
+  "mobile_app": "Mobile Healthcare",
+  "mobile_app_desc": "Complete healthcare management through our intuitive mobile application",
+  "secure_messaging": "Secure Messaging",
+  "secure_messaging_desc": "Private communication with your healthcare providers between visits",
+  "global_access": "Global Access",
+  "global_access_desc": "Connect with specialists worldwide without geographical constraints",
+  "mental_health": "Mental Health Support",
+  "mental_health_desc": "Confidential counseling and therapy sessions with licensed professionals",
+  
+  "patient_satisfaction": "Patient Satisfaction",
+  "availability": "Service Availability",
+  "patients_served": "Patients Served",
+  "medical_professionals": "Medical Professionals",
+  
+  "our_team": "Meet Our Leadership Team",
+  "our_team_desc": "Experts in medicine, technology, and patient experience",
+  "dr_sarah": "Dr. Sarah Johnson",
+  "medical_director": "Medical Director",
+  "dr_ahmed": "Dr. Ahmed Hassan",
+  "tech_lead": "Chief Technology Officer",
+  "dr_emma": "Dr. Emma Rodriguez",
+  "patient_experience": "Director of Patient Experience",
+  "dr_mohammed": "Dr. Mohammed Ali",
+  "ai_research": "Head of AI Research",
+  
+  "join_us_today": "Join the Healthcare Revolution",
+  "cta_description": "Experience the future of healthcare today. Sign up for free and take control of your health journey.",
+  "sign_up_free": "Sign Up Free",
+  "learn_more": "Learn More"
+},
 
   "signin": {
     "fields_error": "All fields are required!",
@@ -1011,10 +1061,60 @@ const resources = {
   },
   
   "about": {
-    "co": "عن CoClinic",
-    "description1": "CoClinic هي منصة رعاية صحية عن بُعد مبتكرة مصممة لتقديم خدمات رعاية صحية سلسة من خلال استشارات مباشرة ودعم تفاعلي بالذكاء الاصطناعي. نركز على تعزيز تجربة المريض من خلال تقديم طرق متعددة للتفاعل، بما في ذلك التواصل المباشر مع الأطباء وروبوتات الدردشة بالذكاء الاصطناعي للاستشارات الأولية.",
-    "description2": "مهمتنا هي سد الفجوة بين المرضى ومقدمي الرعاية الصحية، وجعل الرعاية الصحية في متناول الجميع ومريحة. سواء كنت بحاجة إلى استشارة سريعة أو مشورة طبية متعمقة، CoClinic هنا لدعمك في كل خطوة."
-  },
+  "co": "عن CoClinic",
+  "description1": "CoClinic هي منصة رعاية صحية عن بُعد مبتكرة مصممة لتقديم خدمات رعاية صحية سلسة من خلال استشارات مباشرة ودعم تفاعلي بالذكاء الاصطناعي. نركز على تعزيز تجربة المريض من خلال تقديم طرق متعددة للتفاعل، بما في ذلك التواصل المباشر مع الأطباء وروبوتات الدردشة بالذكاء الاصطناعي للاستشارات الأولية.",
+  "description2": "مهمتنا هي سد الفجوة بين المرضى ومقدمي الرعاية الصحية، وجعل الرعاية الصحية في متناول الجميع ومريحة. سواء كنت بحاجة إلى استشارة سريعة أو مشورة طبية متعمقة، CoClinic هنا لدعمك في كل خطوة.",
+  
+  "our_mission": "مهمتنا",
+  "our_mission_content": "جعل الرعاية الصحية الجيدة في متناول الجميع في كل مكان من خلال التكنولوجيا المبتكرة والرعاية الرحيمة.",
+  "accessibility": "سهولة الوصول",
+  "accessibility_desc": "كسر الحواجز لضمان توفر الرعاية الصحية للجميع، بغض النظر عن الموقع أو الظروف",
+  "quality": "رعاية عالية الجودة",
+  "quality_desc": "توفير أعلى مستوى من الخبرة الطبية مع اهتمام شخصي",
+  
+  "our_values": "قيمنا",
+  "our_values_desc": "المبادئ التي توجه كل قرار نتخذه",
+  "patient_first": "المريض أولاً",
+  "innovation": "الابتكار المستمر",
+  "accessibility": "إمكانية الوصول العالمية",
+  "transparency": "الشفافية الجذرية",
+  
+  "our_services": "خدماتنا الشاملة",
+  "our_services_desc": "جرب الرعاية الصحية التي تأتي إليك، أينما كنت",
+  "live_consultations": "استشارات طبية مباشرة",
+  "live_consultations_desc": "تواصل مع أطباء معتمدين في الوقت الفعلي للتشخيص والعلاج",
+  "ai_assistant": "مساعد صحي بالذكاء الاصطناعي",
+  "ai_assistant_desc": "وصول 24/7 إلى روبوت المحادثات الذكي للتحقق من الأعراض والمعلومات الصحية",
+  "mobile_app": "الرعاية الصحية عبر الهاتف المحمول",
+  "mobile_app_desc": "إدارة كاملة للرعاية الصحية من خلال تطبيقنا الجوال البديهي",
+  "secure_messaging": "المراسلة الآمنة",
+  "secure_messaging_desc": "تواصل خاص مع مقدمي الرعاية الصحية بين الزيارات",
+  "global_access": "الوصول العالمي",
+  "global_access_desc": "تواصل مع المتخصصين في جميع أنحاء العالم دون قيود جغرافية",
+  "mental_health": "دعم الصحة النفسية",
+  "mental_health_desc": "جلسات إرشاد وعلاج سرية مع محترفين مرخصين",
+  
+  "patient_satisfaction": "رضا المرضى",
+  "availability": "توافر الخدمة",
+  "patients_served": "المرضى المخدومين",
+  "medical_professionals": "المحترفون الطبيون",
+  
+  "our_team": "تعرف على فريق القيادة لدينا",
+  "our_team_desc": "خبراء في الطب والتكنولوجيا وتجربة المريض",
+  "dr_sarah": "الدكتورة سارة جونسون",
+  "medical_director": "المديرة الطبية",
+  "dr_ahmed": "الدكتور أحمد حسن",
+  "tech_lead": "مدير التكنولوجيا",
+  "dr_emma": "الدكتورة إيما رودريغيز",
+  "patient_experience": "مديرة تجربة المريض",
+  "dr_mohammed": "الدكتور محمد علي",
+  "ai_research": "رئيس أبحاث الذكاء الاصطناعي",
+  
+  "join_us_today": "انضم إلى ثورة الرعاية الصحية",
+  "cta_description": "جرب مستقبل الرعاية الصحية اليوم. سجل مجانًا وكن مسيطرًا على رحلتك الصحية.",
+  "sign_up_free": "سجل مجانًا",
+  "learn_more": "تعلم المزيد"
+},
   
   "signin": {
     "fields_error": "جميع الحقول مطلوبة!",
