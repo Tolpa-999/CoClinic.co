@@ -46,7 +46,7 @@ const ChatContainer = ({ user }) => {
 
   // Fetch chat history
   useEffect(() => {
-    if (!chatHistId) return;
+    if (!chatHistId || chatHistId == undefined) return;
     setIsLoadingHistory(true);
     fetch(`${AiCahtUrls.getChat}/${chatHistId}`, {
       headers: { Authorization: `Bearer ${user.token}`, 'Content-Type': 'application/json' },
