@@ -140,8 +140,8 @@ const additionalFields = {
   navigate("/verify-email");
 }, 2000);
     } catch (error) {
-      console.log(error.response.data.error);
-      setSnackbarMessage(error.response.data.error || "Registration failed.");
+      console.log(error?.response?.data?.message);
+      setSnackbarMessage(error?.response?.data.message || "Registration failed.");
       setSnackbarSeverity("error");
     }
   };
