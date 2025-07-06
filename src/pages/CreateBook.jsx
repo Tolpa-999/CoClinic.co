@@ -77,13 +77,13 @@ const CreateBook = () => {
       setLoading(false);
       if (data.status !== 'success') {
         setError(data.message);
-      } else {z
+      } else {
         toast.success(data.message || t('books.created'));
         navigate(`/resource/${data.data._id}`);
       }
     } catch (err){
       setError(err?.response?.data?.message);
-      setLoading(false)``;
+      setLoading(false);
     }
   };
 
