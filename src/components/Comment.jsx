@@ -20,9 +20,11 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
     const getUser = async () => {
       try {
         const res = await axiosInstance.get(`${UserUrls.getById}/${comment.userId}`);
+        console.log("in general ==>",data.data)
         const data = await res.data;
         if (res.status == 'success') {
           setUser(data.data);
+          console.log("in success ==>",data.data)
           
         }
       
@@ -62,14 +64,14 @@ const handleSave = async () => {
       <div className='flex-shrink-0 mr-3'>
         <img
           className='w-10 h-10 rounded-full bg-gray-200'
-          src={user.avatar}
-          alt={user.username}
+          src={currentUser.avatar}
+          alt={currentUser.username}
         />
       </div>
       <div className='flex-1'>
         <div className='flex items-center mb-1'>
           <span className='font-bold mr-1 text-xs truncate'>
-            {user ? `@${user.username}` : t('dashboard.comments.anonymous')}
+            {currentUser ? `@${currentUser.username}` : t('dashboard.comments.anonymous')}
           </span>
           <span className='text-gray-500 text-xs'>
             {moment(comment.createdAt).fromNow()}

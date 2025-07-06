@@ -83,7 +83,8 @@ export default function DashUsers() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar !bg-white scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 relative">
+    <div className='className="w-full !bg-[#f0faf7]'>
+        <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 relative">
       {currentUser?.isAdmin && users.length > 0 ? (
         <>
           <Table hoverable className='relative'>
@@ -162,5 +163,7 @@ export default function DashUsers() {
         </ModalBody>
       </Modal>
     </div>
+    </div>
+    
   );
 }

@@ -1,3 +1,8 @@
+
+
+
+
+
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -72,18 +77,23 @@ const CreateBook = () => {
       setLoading(false);
       if (data.status !== 'success') {
         setError(data.message);
-      } else {
+      } else {z
         toast.success(data.message || t('books.created'));
-        navigate(`/book/${data.data._id}`);
+        navigate(`/resource/${data.data._id}`);
       }
-    } catch {
-      setError(t('books.failed_to_create'));
-      setLoading(false);
+    } catch (err){
+      setError(err?.response?.data?.message);
+      setLoading(false)``;
     }
   };
 
+  
+
   return (
-    <main className="p-3 max-w-4xl mx-auto">
+
+    <main className='bg-[#f0faf7] w-full'>
+
+      <div className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">{t('books.create')}</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-4">
@@ -191,7 +201,10 @@ const CreateBook = () => {
           </button>
         </div>
       </form>
+    </div>
+
     </main>
+    
   );
 };
 

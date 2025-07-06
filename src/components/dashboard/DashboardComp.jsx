@@ -164,7 +164,7 @@ export default function DashboardComp() {
   ];
 
   return (
-    <div className="p-3 md:mx-auto container mx-auto min-h-screen   bg-[url('/livechat_3.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className="p-3 md:mx-auto bg-[#f0faf7]">
       <div className="flex-wrap flex gap-4 justify-center">
         <SummaryCard
           title={t('dashboard.users.total')}

@@ -6,7 +6,7 @@ const Appointment = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <div className="container mx-auto p-4 min-h-screen   bg-[url('/livechat_3.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className="bg-[#f0faf7]">
       {currentUser?.isDoctor ? <DoctorAppointmentView /> : <PatientAppointmentView />}
     </div>
   );

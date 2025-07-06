@@ -144,8 +144,11 @@ const DashProfile = () => {
     }
   };
 
+  
+
   return (
-    <div className="p-3 w-1/2 mx-auto">
+    <div className="w-full bg-[#f0faf7]">
+      <div className="p-3 w-1/2 mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">{t('dashboard.profile.name')}</h1>
       <ProfileForm
         currentUser={currentUser}
@@ -162,6 +165,7 @@ const DashProfile = () => {
           {t('dashboard.profile.signout')}
         </span>
       </div>
+    </div>
     </div>
   );
 };

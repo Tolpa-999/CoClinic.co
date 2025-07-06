@@ -113,9 +113,12 @@ const Profile = () => {
       dispatch(deleteUserFailure(error.response.data));
     }
   };
+
+  
   
   return (
-    <div className="p-3 max-w-lg mx-auto">
+    <div className="bg-[#f0faf7] w-full">
+      <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">{t('profile.profile')}</h1>
 
       {/* <div className={`max-lg:hidden   ${currentLanguage === 'en' ? 'left-4' : 'right-4'} z-10`}>
@@ -172,6 +175,7 @@ const Profile = () => {
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">{t('profile.delete')}</span>
         <span onClick={handleSignOut} className="text-red-700 cursor-pointer">{t('profile.signout')}</span>
       </div>
+    </div>
     </div>
   );
 };

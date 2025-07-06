@@ -66,8 +66,8 @@ const HomeChat = () => {
   
   
   return (
-    <div className="container mx-auto p-4 min-h-screen   bg-[url('/livechat_3.jpg')] bg-cover bg-center bg-no-repeat">
-      <div className='grid w-2/3 lg:grid-cols-[300px,1fr]  mx-auto min-h-[90vh]  bg-[url("/livechat.jpg")] bg-cover bg-center bg-no-repeat'>
+    <div className="min-h-screen bg-[#f0faf7]">
+      <div className='grid w-2/3 lg:grid-cols-[300px,1fr]  mx-auto min-h-[90vh]'>
           <section className={`bg-white ${!basePath && "hidden"}  lg:block`}>
              <Sidebar/>
           </section>
