@@ -173,7 +173,7 @@ const MessagePage = () => {
       return (
         <div
           key={index}
-          className={`p-2 rounded-lg max-w-[280px] md:max-w-sm lg:max-w-md shadow-md ${
+          className={`rounded-lg max-w-[280px] md:max-w-sm lg:max-w-md shadow-md ${
             isCurrentUser
               ? 'self-end bg-teal-100 text-right'
               : 'self-start bg-white text-left'
@@ -195,7 +195,7 @@ const MessagePage = () => {
             )}
           </div>
           {msg?.text && <p className="px-2 pt-1 break-words">{msg.text}</p>}
-          <p className="text-xs text-gray-500 mt-1 px-2">
+          <p className="text-xs text-gray-500 px-2">
             {moment(msg.createdAt).format('hh:mm')}
           </p>
         </div>
