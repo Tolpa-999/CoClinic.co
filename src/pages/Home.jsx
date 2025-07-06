@@ -77,7 +77,6 @@ const Home = () => {
                   whileHover="hover"
                   whileTap="tap"
                   className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-lg transition-all duration-300"
-                  onClick={() => (window.location.href = "/signup")}
                 >
                   {t('home.get_started')}
                 </motion.button>
