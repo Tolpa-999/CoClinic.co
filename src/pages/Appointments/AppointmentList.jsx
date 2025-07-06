@@ -28,7 +28,23 @@ const AppointmentList = ({ userType }) => {
   if (error) return <p className="text-center text-red-500">{t('general.error')}: {error}</p>;
 
   return (
-    <div className="grid gap-6 min-lg:grid-cols-2">
+    <div className="grid gap-6 min-lg:grid-cols-2 min-h-[60vh]">
+      {appointments?.length === 0 && (
+  <div className="col-span-full text-center py-20 bg-white rounded-2xl shadow border border-gray-200 min-h-[300px] flex flex-col justify-center items-center">
+    <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+      {userType === 'patient'
+        ? t('appointment.empty.patient_title')
+        : t('appointment.empty.doctor_title')}
+    </h2>
+    <p className="text-gray-500 text-md max-w-md">
+      {userType === 'patient'
+        ? t('appointment.empty.patient_description')
+        : t('appointment.empty.doctor_description')}
+    </p>
+  </div>
+)}
+
+
       {appointments?.map((appointment) => (
         <div
           key={appointment._id}

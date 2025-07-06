@@ -243,6 +243,14 @@ const resources = {
   },
 
   "appointment": {
+
+    "empty": {
+    "patient_title": "No Appointments Yet",
+    "patient_description": "You haven’t booked any consultations yet. When you do, they’ll show up here.",
+    "doctor_title": "No Consultations Scheduled",
+    "doctor_description": "No patients have scheduled appointments with you yet. Stay tuned!",
+  },
+
     "confirmation": {
       "status_updated": "Status updated successfully",
       "status_failed": "Status update failed",
@@ -867,6 +875,14 @@ const resources = {
   },
   
   "appointment": {
+
+    "empty": {
+    "patient_title": "لا توجد مواعيد حالياً",
+    "patient_description": "لم تقم بحجز أي استشارات بعد. عند الحجز، ستظهر هنا.",
+    "doctor_title": "لا توجد استشارات مجدولة",
+    "doctor_description": "لم يقم أي مريض بحجز موعد معك بعد. ترقب!",
+  },
+
     "confirmation": {
       "status_updated": "تم تحديث الحالة بنجاح",
       "status_failed": "فشل تحديث الحالة",

@@ -6,7 +6,7 @@ const Appointment = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <div className="bg-[#f0faf7]">
+    <div className="bg-[#f0faf7] p-5">
       {currentUser?.isDoctor ? <DoctorAppointmentView /> : <PatientAppointmentView />}
     </div>
   );
