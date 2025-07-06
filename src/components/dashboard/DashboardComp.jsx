@@ -120,6 +120,8 @@ export default function DashboardComp() {
       const postsData = postsRes.data;
       const commentsData = commentsRes.data;
 
+      console.log(usersRes, postsData, commentsData)
+
         if (usersRes.ok && postsRes.ok && commentsRes.ok) {
           setDashboardData({
             users: usersData.data,
@@ -134,8 +136,8 @@ export default function DashboardComp() {
           });
         }
       } catch (error) {
-        toast.error(t('dashboard.card.error'), error?.message || t('dashboard.card.unkown'));
-        console.error(t('dashboard.card.error'), error?.message || t('dashboard.card.unkown'));
+        toast.error(t('dashboard.card.error'), error?.response?.data?.message || t('dashboard.card.unkown'));
+        console.error(t('dashboard.card.error'), error?.response?.data?.message || t('dashboard.card.unkown'));
       }
     };
 

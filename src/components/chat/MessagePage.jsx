@@ -139,9 +139,9 @@ const MessagePage = () => {
     <div className="w-full  bg-white ">
       <header className=" top-0 h-16 bg-white flex justify-between items-center px-4">
         <div className="flex items-center gap-4">
-          <Link to="/livechat" className="lg:hidden">
-            <FaAngleLeft size={25} />
-          </Link>
+          <Link to="/livechat" className="lg:hidden p-2 hover:bg-green-50 rounded">
+      <FaAngleLeft size={25} className="text-green-600" />
+    </Link>
           <div>
             <Avatar
               width={50}
@@ -166,7 +166,7 @@ const MessagePage = () => {
         </div>
       </header>
 
-      <section className="h-5/6 overflow-x-hidden overflow-y-scroll scrollbar relative bg-slate-50 bg-opacity-80">
+      <section className="h-5/6 overflow-x-hidden overflow-y-scroll scrollbar relative bg-gray-200 bg-opacity-80">
   <div className="flex flex-col gap-2 py-2 mx-2 h-[51vh]" ref={currentMessage}>
     {allMessage?.map((msg, index) => {
       const isCurrentUser = user._id === msg?.msgByUserId;

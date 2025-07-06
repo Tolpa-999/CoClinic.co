@@ -33,7 +33,7 @@ const Sidebar = () => {
   }, [socketConnection, user]);
 
   return (
-    <div className="flex flex-col h-full w-full bg-white rounded-tr-lg rounded-br-lg shadow-lg  min-h-[90vh]">
+    <div className="flex flex-col h-full w-full bg-white rounded-tr-lg rounded-br-lg shadow-lg">
       {/* Top Icons */}
       <div className="flex items-center justify-between p-3 border-b">
         <NavLink
