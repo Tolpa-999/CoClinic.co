@@ -169,7 +169,7 @@ const MessagePage = () => {
       <section className="h-5/6 overflow-x-hidden overflow-y-scroll scrollbar relative bg-slate-50 bg-opacity-80">
         <div className="flex flex-col gap-2 py-2 mx-2 h-[51vh] " ref={currentMessage}>
           {allMessage?.map((msg, index) => (
-            <div key={index} className={`p-1 py-1 rounded w-fit max-w-[280px] md:max-w-sm lg:max-w-md ${user._id === msg?.msgByUserId ? "ml-auto bg-teal-100 left-0" : "bg-white"}`}>
+            <div key={index} className={`p-1 py-1 rounded w-fit max-w-[280px] md:max-w-sm lg:max-w-md ${user._id === msg?.msgByUserId ? "ml-auto bg-teal-100 left-0" : "bg-white right-0"}`}>
               <div className="w-full relative">
                 {msg?.imageUrl && (
                   <img src={msg?.imageUrl} className="w-full h-full object-scale-down" />
