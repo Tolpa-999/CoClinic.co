@@ -122,17 +122,20 @@ export default function DashboardComp() {
 
       console.log(usersRes, postsData, commentsData)
 
-        if (usersRes.ok && postsRes.ok && commentsRes.ok) {
+      console.log("usersData.totalUsers ====> ", usersData.totalUsers)
+      console.log("usersRes .ok ====> ", usersData.status)
+
+        if (usersData.status == "success"  && postsData.status == "success" && commentsData.status == "success") {
           setDashboardData({
-            users: usersData.data,
-            comments: commentsData.data,
-            posts: postsData.data,
-            totalUsers: usersData.totalUsers,
-            totalComments: commentsData.totalComments,
-            totalPosts: postsData.totalPosts,
-            lastMonthUsers: usersData.lastMonthUsers,
-            lastMonthComments: commentsData.lastMonthComments,
-            lastMonthPosts: commentsData.lastMonthPosts,
+            users: usersData?.data,
+            comments: commentsData?.data,
+            posts: postsData?.data,
+            totalUsers: usersData?.totalUsers,
+            totalComments: commentsData?.totalComments,
+            totalPosts: postsData?.totalPosts,
+            lastMonthUsers: usersData?.lastMonthUsers,
+            lastMonthComments: commentsData?.lastMonthComments,
+            lastMonthPosts: commentsData?.lastMonthPosts,
           });
         }
       } catch (error) {
