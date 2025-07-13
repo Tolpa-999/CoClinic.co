@@ -148,7 +148,7 @@ const resources = {
     "create_book": "Create Book",
     "find": "Find Doctors, Services ...",
     "home": "Home",
-    "ai_chat": "AI Chat",
+    "ai_chat": "AI",
     "live_chat": "Live Chat",
     "appointments": "Appointments",
     "resources": "Resource",
