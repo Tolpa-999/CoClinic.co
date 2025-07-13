@@ -26,12 +26,15 @@ import AppointmentConfirmation from "./pages/Appointments/AppointmentConfirmatio
 import { useTranslation } from "react-i18next";
 import useLanguageEffect from "./hooks/useLanguageEffect";
 import ChatPage from "./pages/AiChat/ChatPage";
+import SelfChatbot from "./pages/SelfChatbotPage";
+import Pneumonia from "./pages/PneumoniaPage";
 
 
 import { useSelector } from 'react-redux';
 import { store } from "./app/store";
 import CreateBook from "./pages/CreateBook";
 import UpdateBookPage from "./pages/UpdateBook";
+import AIToolsShowcase from "./pages/AiTools";
 
 
 
@@ -61,8 +64,12 @@ const App = () => {
         <Route path="" element={<PrivateRoute />}>
           <Route path="/update-listing/:id" element={<UpdateBookPage/>} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/aichat" element={<ChatPage/>} />
-          <Route path="/livechat" element={<LiveChat />} />
+          <Route path="/pneumonia" element={<Pneumonia />} />
+          <Route path="/aichat" element={<AIToolsShowcase/>} />
+          <Route path="/self-chatbot" element={<SelfChatbot/>} />
+          <Route path="/gemini" element={<ChatPage/>} />
+          <Route path="/pneumonia" element={<Pneumonia/>} />
+          <Route path="/self-bot" element={<SelfChatbot/>} />
           <Route path="/create-book" element={<CreateBook />} />
           <Route path="/appointment" element={<Appointment/>} />
           <Route path="/appointment/confirmation" element={<AppointmentConfirmation />} />
