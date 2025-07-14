@@ -9,6 +9,7 @@ import { FaUser, FaEnvelope, FaLock, FaCalendarAlt, FaVenusMars, FaStethoscope, 
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "../utils/axiosInstance";
 
 
 const Signup = () => { 
@@ -131,7 +132,7 @@ const additionalFields = {
         specialization: formData.specialization || undefined,
       };
 
-      const response = await axios.post(AuthUrls.signUp, payload);
+      const response = await axiosInstance.post(AuthUrls.signUp, payload);
       console.log(response.data);
       setSnackbarMessage("Registration successful! Please verify your email.");
       setSnackbarSeverity("success");

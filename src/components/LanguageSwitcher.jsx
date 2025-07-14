@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="relative group ">
+    <div className="relative group z-50">
       <button 
         className="flex items-center space-x-1 text-gray-600 hover:text-green-700 transition-colors cursor-pointer"
         aria-label={t('header.language_switcher')}
